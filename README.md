@@ -1,1 +1,1 @@
-This project records its own learning using the framework
+Learn to use the springboot framework
