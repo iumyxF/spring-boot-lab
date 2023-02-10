@@ -12,6 +12,7 @@
     <modules>
         <module>spring-boot-i18n</module>
         <module>spring-boot-jackson</module>
+        <module>spring-boot-mapstruct</module>
     </modules>
 
     <properties>
@@ -21,6 +22,8 @@
         <spring-boot.version>2.7.8</spring-boot.version>
         <lombok.version>1.18.20</lombok.version>
         <hutool.version>5.8.11</hutool.version>
+        <mapstruct.version>1.5.3.Final</mapstruct.version>
+        <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
     </properties>
 
     <dependencyManagement>
@@ -48,6 +51,22 @@
                 <version>${hutool.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <!--mapstruct-->
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct-processor</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok-mapstruct-binding</artifactId>
+                <version>${lombok-mapstruct-binding.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
