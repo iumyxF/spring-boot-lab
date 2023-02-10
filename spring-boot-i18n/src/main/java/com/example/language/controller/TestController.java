@@ -38,4 +38,9 @@ public class TestController {
         return Result.ok();
     }
 
+    @GetMapping("/test3")
+    public Result test3() {
+        throw new CommonException("user.register.fail", "JackeyLove");
+    }
+
 }
