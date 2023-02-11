@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
+
 
 /**
  * @author feng
@@ -18,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/i18n")
 public class TestController {
 
-    @Autowired
+    @Resource
     private MessageSource messageSource;
 
     @GetMapping("/test1")
@@ -40,7 +42,7 @@ public class TestController {
 
     @GetMapping("/test3")
     public Result test3() {
-        throw new CommonException("user.register.fail", "JackeyLove");
+        throw new CommonException("user.register.fail", "jack");
     }
 
 }

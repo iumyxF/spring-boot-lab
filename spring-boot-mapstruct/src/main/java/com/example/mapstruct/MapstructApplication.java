@@ -20,13 +20,13 @@ import java.util.Arrays;
 
 @Slf4j
 @SpringBootApplication
-public class Application {
+public class MapstructApplication {
 
     /**
      * 更多使用情况：https://zhuanlan.zhihu.com/p/368731266?utm_id=0
      */
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(MapstructApplication.class, args);
         User user = buildUser();
         Car car = buildCar();
         log.info("属性类型和名字都相同的简单转换");

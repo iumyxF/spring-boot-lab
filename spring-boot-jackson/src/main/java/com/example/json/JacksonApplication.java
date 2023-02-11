@@ -1,15 +1,16 @@
-package com.example.language;
+package com.example.json;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * @author feng
- * @date 2023/2/9 20:21
+ * @description:
+ * @Date 2023/2/10 9:50
+ * @Author fzy
  */
 @SpringBootApplication
-public class Application {
+public class JacksonApplication {
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(JacksonApplication.class, args);
     }
 }

@@ -10,14 +10,9 @@ import org.mapstruct.MappingTarget;
 import org.mapstruct.factory.Mappers;
 
 /**
- * @description: user类转换器
- * @Date 2023/2/10 10:54
- * @Author fzy
- */
-
-/**
  * The interface User converter.
  *
+ * @author fzy
  * @Mapper(componentModel = "spring") 将转换器交给Spring管理，这样编译出来的Impl会带有@Component注解，可以被其他类注入使用 <p> mapper中还有两个常用属性： 常量 constant：参数无论可不可用都用这个常量值。 默认值 defaultValue：如果参数值可用则用参数值，不可用才会使用defaultValue的值 <p> defaultExpression和expression，与上面两个类似，expression能使用Java表达式进行赋值 1、赋值ID（参数无论可不可用都用这个常量值）：expression = "java(UUID.randomUUID().toString())" 2、赋值日期（如果参数值可用则用参数值，不可用才会使用这个值）：java(LocalDateTime.now()) other： 源对象中的空字符串，转换时我想让他变成null
  * @Mapping(target = "str", expression ="java(source.str.isEmpty() ? null : source.str)")
  */
