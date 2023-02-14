@@ -15,6 +15,7 @@
         <module>spring-boot-mapstruct</module>
         <module>spring-boot-mock</module>
         <module>spring-boot-aop</module>
+        <module>spring-boot-dynamicdb</module>
     </modules>
 
     <properties>
