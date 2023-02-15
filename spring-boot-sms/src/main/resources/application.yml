@@ -1,0 +1,13 @@
+#--- # sms 短信
+#腾讯云：
+# SecretId、SecretKey 查询: https://console.cloud.tencent.com/cam/capi */
+# 应用 ID 可前往 [短信控制台](https://console.cloud.tencent.com/smsv2/app-manage) 查看
+# 签名信息可前往 [国内短信](https://console.cloud.tencent.com/smsv2/csms-sign)
+# 模板 ID 可前往 [国内短信](https://console.cloud.tencent.com/smsv2/csms-template)
+sms:
+  enabled: true
+  endpoint: sms.tencentcloudapi.com
+  accessKeyId: accessKeyId
+  accessKeySecret: accessKeySecret
+  signName: signName
+  sdkAppId: sdkAppId
