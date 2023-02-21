@@ -45,16 +45,6 @@ public class RedisConfig extends CachingConfigurerSupport {
         return template;
     }
 
-    @NotNull
-    private static Jackson2JsonRedisSerializer getJackson2JsonRedisSerializer() {
-        Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
-        ObjectMapper om = new ObjectMapper();
-        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-        om.activateDefaultTyping(LaissezFaireSubTypeValidator.instance,ObjectMapper.DefaultTyping.NON_FINAL);
-        jackson2JsonRedisSerializer.setObjectMapper(om);
-        return jackson2JsonRedisSerializer;
-    }
-
     @Bean
     public CacheManager cacheManager(RedisConnectionFactory factory) {
         RedisSerializer<String> redisSerializer = new StringRedisSerializer();
@@ -69,6 +59,21 @@ public class RedisConfig extends CachingConfigurerSupport {
                 .cacheDefaults(config)
                 .build();
         return cacheManager;
+    }
+
+    /**
+     * 方法提取，创建序列化对象
+     *
+     * @return Jackson2JsonRedisSerializer
+     */
+    @NotNull
+    private static Jackson2JsonRedisSerializer getJackson2JsonRedisSerializer() {
+        Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
+        ObjectMapper om = new ObjectMapper();
+        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+        om.activateDefaultTyping(LaissezFaireSubTypeValidator.instance, ObjectMapper.DefaultTyping.NON_FINAL);
+        jackson2JsonRedisSerializer.setObjectMapper(om);
+        return jackson2JsonRedisSerializer;
     }
 
 }
