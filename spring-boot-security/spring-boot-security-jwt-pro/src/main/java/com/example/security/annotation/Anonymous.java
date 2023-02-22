@@ -7,9 +7,8 @@ import java.lang.annotation.*;
  * @Date 2023/2/22 9:44
  * @Author fzy
  */
-@Target({ ElementType.METHOD, ElementType.TYPE })
+@Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface Anonymous
-{
+public @interface Anonymous {
 }
