@@ -17,8 +17,8 @@
         <module>spring-boot-aop</module>
         <module>spring-boot-dynamicdb</module>
         <module>spring-boot-sms</module>
-        <module>spring-boot-security</module>
         <module>spring-boot-rabbitmq</module>
+        <module>spring-boot-security</module>
     </modules>
 
     <properties>
