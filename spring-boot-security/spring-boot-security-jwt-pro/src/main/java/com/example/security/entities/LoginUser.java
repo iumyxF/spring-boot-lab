@@ -31,6 +31,41 @@ public class LoginUser implements UserDetails {
      */
     private User user;
 
+    /**
+     * 用户唯一标识
+     */
+    private String token;
+
+    /**
+     * 登录时间
+     */
+    private Long loginTime;
+
+    /**
+     * 过期时间
+     */
+    private Long expireTime;
+
+    /**
+     * 登录IP地址
+     */
+    private String ipaddr;
+
+    /**
+     * 浏览器类型
+     */
+    private String browser;
+
+    /**
+     * 操作系统
+     */
+    private String os;
+
+    public LoginUser(Long userId, User user) {
+        this.userId = userId;
+        this.user = user;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;

@@ -36,6 +36,8 @@
         <aspectjweaver.version>1.9.7</aspectjweaver.version>
         <dynamic-ds.version>3.5.2</dynamic-ds.version>
         <tencentcloud-sdk-java>3.1.692</tencentcloud-sdk-java>
+        <jwt.version>0.9.1</jwt.version>
+        <bitwalker.version>1.21</bitwalker.version>
     </properties>
 
     <dependencyManagement>
@@ -118,6 +120,18 @@
                 <groupId>com.tencentcloudapi</groupId>
                 <artifactId>tencentcloud-sdk-java-sms</artifactId>
                 <version>${tencentcloud-sdk-java}</version>
+            </dependency>
+            <!-- Token生成与解析-->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>${jwt.version}</version>
+            </dependency>
+            <!-- 解析客户端操作系统、浏览器等 -->
+            <dependency>
+                <groupId>eu.bitwalker</groupId>
+                <artifactId>UserAgentUtils</artifactId>
+                <version>${bitwalker.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

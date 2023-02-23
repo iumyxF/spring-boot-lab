@@ -1,5 +1,10 @@
 package com.example.security.utils;
 
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
@@ -9,6 +14,12 @@ import java.io.IOException;
  * @Author fzy
  */
 public class ServletUtils {
+
+    public static ServletRequestAttributes getRequestAttributes() {
+        RequestAttributes attributes = RequestContextHolder.getRequestAttributes();
+        return (ServletRequestAttributes) attributes;
+    }
+
 
     /**
      * 将字符串渲染到客户端
@@ -25,5 +36,12 @@ public class ServletUtils {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 获取request
+     */
+    public static HttpServletRequest getRequest() {
+        return getRequestAttributes().getRequest();
     }
 }

@@ -14,7 +14,7 @@ import java.io.Serializable;
  * @Date 2023/2/22 10:03
  * @Author fzy
  */
-@TableName("jwt_user")
+@TableName("security_user")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

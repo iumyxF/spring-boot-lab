@@ -20,7 +20,7 @@ public interface UserMapper extends BaseMapper<User> {
      * @param userName 用户名
      * @return 用户对象信息
      */
-    @Select(value = "select * from jwt_user where username = #{userName};")
+    @Select(value = "select * from security_user where username = #{userName};")
     User selectUserByUserName(@Param("userName") String userName);
 
 }
