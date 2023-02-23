@@ -1,5 +1,6 @@
 package com.example.security.entities;
 
+import com.alibaba.fastjson2.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -71,7 +72,7 @@ public class LoginUser implements UserDetails {
         return null;
     }
 
-    @JsonIgnore
+    @JSONField(serialize = false)
     @Override
     public String getPassword() {
         return user.getPassword();
@@ -82,25 +83,25 @@ public class LoginUser implements UserDetails {
         return user.getUsername();
     }
 
-    @JsonIgnore
+    @JSONField(serialize = false)
     @Override
     public boolean isAccountNonExpired() {
         return true;
     }
 
-    @JsonIgnore
+    @JSONField(serialize = false)
     @Override
     public boolean isAccountNonLocked() {
         return true;
     }
 
-    @JsonIgnore
+    @JSONField(serialize = false)
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
-    @JsonIgnore
+    @JSONField(serialize = false)
     @Override
     public boolean isEnabled() {
         return true;
