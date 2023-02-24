@@ -1,7 +1,6 @@
 package com.example.security.entities;
 
 import com.alibaba.fastjson2.annotation.JSONField;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,7 +19,7 @@ import java.util.Collection;
 @NoArgsConstructor
 public class LoginUser implements UserDetails {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
     /**
      * 用户ID
@@ -28,9 +27,14 @@ public class LoginUser implements UserDetails {
     private Long userId;
 
     /**
-     * 用户信息
+     * 用户名
      */
-    private User user;
+    private String username;
+
+    /**
+     * 密码
+     */
+    private String password;
 
     /**
      * 用户唯一标识
@@ -62,9 +66,10 @@ public class LoginUser implements UserDetails {
      */
     private String os;
 
-    public LoginUser(Long userId, User user) {
+    public LoginUser(Long userId, String username, String password) {
         this.userId = userId;
-        this.user = user;
+        this.username = username;
+        this.password = password;
     }
 
     @Override
@@ -75,12 +80,12 @@ public class LoginUser implements UserDetails {
     @JSONField(serialize = false)
     @Override
     public String getPassword() {
-        return user.getPassword();
+        return password;
     }
 
     @Override
     public String getUsername() {
-        return user.getUsername();
+        return username;
     }
 
     @JSONField(serialize = false)

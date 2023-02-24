@@ -4,7 +4,6 @@ import com.example.security.context.AuthenticationContextHolder;
 import com.example.security.entities.LoginUser;
 import com.example.security.mapper.UserMapper;
 import com.example.security.utils.RedisCache;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

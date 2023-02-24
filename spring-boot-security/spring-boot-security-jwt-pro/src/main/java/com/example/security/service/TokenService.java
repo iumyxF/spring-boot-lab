@@ -9,6 +9,7 @@ import eu.bitwalker.useragentutils.UserAgent;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -25,6 +26,7 @@ import java.util.concurrent.TimeUnit;
  *
  * @author ruoyi
  */
+@Slf4j
 @Component
 public class TokenService {
     /**
@@ -68,9 +70,9 @@ public class TokenService {
                 // 解析对应的权限以及用户信息
                 String uuid = (String) claims.get("login_user_key");
                 String userKey = getTokenKey(uuid);
-                LoginUser user = redisCache.getCacheObject(userKey);
-                return user;
+                return redisCache.getCacheObject(userKey);
             } catch (Exception e) {
+                log.error(e.toString());
             }
         }
         return null;
@@ -159,8 +161,7 @@ public class TokenService {
      * @return 令牌
      */
     private String createToken(Map<String, Object> claims) {
-        String token = Jwts.builder().setClaims(claims).signWith(SignatureAlgorithm.HS512, secret).compact();
-        return token;
+        return Jwts.builder().setClaims(claims).signWith(SignatureAlgorithm.HS512, secret).compact();
     }
 
     /**
@@ -191,10 +192,11 @@ public class TokenService {
      * @return token
      */
     private String getToken(HttpServletRequest request) {
+        String Bearer = "Bearer ";
         String token = request.getHeader(header);
-        if (StringUtils.isNotEmpty(token) && token.startsWith("Bearer ")) {
+        if (StringUtils.isNotEmpty(token) && token.startsWith(Bearer)) {
             //token==> Bearer token ===> token
-            token = token.replace("Bearer ", "");
+            token = token.replace(Bearer, "");
         }
         return token;
     }
