@@ -1,6 +1,6 @@
 package com.example.security.entities;
 
-import com.alibaba.fastjson2.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,14 +27,9 @@ public class LoginUser implements UserDetails {
     private Long userId;
 
     /**
-     * 用户名
+     * 用户对象
      */
-    private String username;
-
-    /**
-     * 密码
-     */
-    private String password;
+    private User user;
 
     /**
      * 用户唯一标识
@@ -66,10 +61,9 @@ public class LoginUser implements UserDetails {
      */
     private String os;
 
-    public LoginUser(Long userId, String username, String password) {
+    public LoginUser(Long userId, User user) {
         this.userId = userId;
-        this.username = username;
-        this.password = password;
+        this.user = user;
     }
 
     @Override
@@ -77,36 +71,36 @@ public class LoginUser implements UserDetails {
         return null;
     }
 
-    @JSONField(serialize = false)
+    @JsonIgnore
     @Override
     public String getPassword() {
-        return password;
+        return user.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return username;
+        return user.getUsername();
     }
 
-    @JSONField(serialize = false)
+    @JsonIgnore
     @Override
     public boolean isAccountNonExpired() {
         return true;
     }
 
-    @JSONField(serialize = false)
+    @JsonIgnore
     @Override
     public boolean isAccountNonLocked() {
         return true;
     }
 
-    @JSONField(serialize = false)
+    @JsonIgnore
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
-    @JSONField(serialize = false)
+    @JsonIgnore
     @Override
     public boolean isEnabled() {
         return true;

@@ -28,7 +28,7 @@ public class PermitAllUrlProperties implements InitializingBean, ApplicationCont
 
     private List<String> urls = new ArrayList<>();
 
-    public String ASTERISK = "*";
+    public final String ASTERISK = "*";
 
     @Override
     public void afterPropertiesSet() {

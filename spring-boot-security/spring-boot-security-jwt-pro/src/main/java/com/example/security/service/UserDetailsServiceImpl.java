@@ -38,6 +38,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     }
 
     public UserDetails createLoginUser(User user) {
-        return new LoginUser(user.getUserId(), user.getUsername(), user.getPassword());
+        return new LoginUser(user.getUserId(), user);
     }
 }

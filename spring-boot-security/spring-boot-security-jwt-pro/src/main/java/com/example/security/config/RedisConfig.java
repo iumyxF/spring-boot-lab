@@ -1,5 +1,6 @@
 package com.example.security.config;
 
+import com.alibaba.fastjson.support.spring.GenericFastJsonRedisSerializer;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.annotation.EnableCaching;
@@ -25,23 +26,22 @@ public class RedisConfig extends CachingConfigurerSupport {
     @Bean
     @SuppressWarnings(value = {"unchecked", "rawtypes"})
     public RedisTemplate<Object, Object> redisTemplate(RedisConnectionFactory connectionFactory) {
-        RedisTemplate<Object, Object> template = new RedisTemplate<>();
-        template.setConnectionFactory(connectionFactory);
-        FastJson2JsonRedisSerializer serializer = new FastJson2JsonRedisSerializer(Object.class);
-        // 使用StringRedisSerializer来序列化和反序列化redis的key值
-        template.setKeySerializer(new StringRedisSerializer());
-        template.setValueSerializer(serializer);
-        // Hash的key也采用StringRedisSerializer的序列化方式
-        template.setHashKeySerializer(new StringRedisSerializer());
-        template.setHashValueSerializer(serializer);
-        template.afterPropertiesSet();
-        return template;
+        RedisTemplate redisTemplate = new RedisTemplate();
+        redisTemplate.setConnectionFactory(connectionFactory);
+        GenericFastJsonRedisSerializer fastJsonRedisSerializer = new GenericFastJsonRedisSerializer();
+        //设置默认的Serialize，包含 keySerializer & valueSerializer
+        redisTemplate.setDefaultSerializer(fastJsonRedisSerializer);
+        //单独设置keySerializer
+        redisTemplate.setKeySerializer(fastJsonRedisSerializer);
+        //单独设置valueSerializer
+        redisTemplate.setValueSerializer(fastJsonRedisSerializer);
+        return redisTemplate;
     }
 
     @Bean
     public CacheManager cacheManager(RedisConnectionFactory factory) {
         RedisSerializer<String> redisSerializer = new StringRedisSerializer();
-        FastJson2JsonRedisSerializer serializer = new FastJson2JsonRedisSerializer(Object.class);
+        GenericFastJsonRedisSerializer serializer = new GenericFastJsonRedisSerializer();
         // 配置序列化（解决乱码的问题）,过期时间600秒
         RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig()
                 .entryTtl(Duration.ofSeconds(600))

@@ -141,6 +141,11 @@
                 <artifactId>fastjson2</artifactId>
                 <version>${fastjson.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
             <!-- Sa-Token 权限认证，在线文档：https://sa-token.cc -->
             <dependency>
                 <groupId>cn.dev33</groupId>
