@@ -23,6 +23,7 @@
         <module>spring-boot-websocket</module>
         <module>spring-boot-websocket/spring-boot-websocket-getting-started</module>
         <module>spring-boot-websocket/spring-boot-websocket-im</module>
+        <module>spring-boot-websocket/spring-boot-websocket-im-pro</module>
     </modules>
 
     <properties>
