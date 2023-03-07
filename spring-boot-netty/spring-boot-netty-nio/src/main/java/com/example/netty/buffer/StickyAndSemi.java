@@ -44,9 +44,7 @@ public class StickyAndSemi {
                     target.put(buffer.get());
                 }
                 target.flip();
-                StringBuilder builder = new StringBuilder();
-                builder.append(StandardCharsets.UTF_8.decode(target));
-                System.out.println(builder);
+                System.out.print(StandardCharsets.UTF_8.decode(target));
             }
         }
         // 切换为写模式，但是缓冲区可能未读完，这里需要使用compact
