@@ -24,6 +24,7 @@
         <module>spring-boot-websocket/spring-boot-websocket-getting-started</module>
         <module>spring-boot-websocket/spring-boot-websocket-im</module>
         <module>spring-boot-websocket/spring-boot-websocket-im-pro</module>
+        <module>spring-boot-netty</module>
     </modules>
 
     <properties>
