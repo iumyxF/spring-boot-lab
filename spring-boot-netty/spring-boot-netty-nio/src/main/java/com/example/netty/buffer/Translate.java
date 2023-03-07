@@ -16,7 +16,7 @@ public class Translate {
 
     public static void method1() {
         String str1 = "中文";
-        String str2 = "";
+        String str2;
 
         // 通过StandardCharsets的encode方法获得ByteBuffer
         // 此时获得的ByteBuffer为读模式，无需通过flip切换模式
@@ -31,7 +31,7 @@ public class Translate {
     public static void method2() {
         // 准备两个字符串
         String str1 = "你好";
-        String str2 = "";
+        String str2;
 
         // 通过StandardCharsets的encode方法获得ByteBuffer
         // 此时获得的ByteBuffer为读模式，无需通过flip切换模式
