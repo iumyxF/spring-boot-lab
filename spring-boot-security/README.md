@@ -8,3 +8,5 @@
 - 使用oauth结合github进行认证授权
 ### spring-boot-security-satoken
 - 使用sa-token实现登录逻辑
+### spring-boot-security-interface-sign
+- 接口签名认证
