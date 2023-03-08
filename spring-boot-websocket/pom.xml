@@ -10,6 +10,12 @@
     </parent>
 
     <artifactId>spring-boot-websocket</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>spring-boot-websocket-getting-started</module>
+        <module>spring-boot-websocket-im</module>
+        <module>spring-boot-websocket-im-pro</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>

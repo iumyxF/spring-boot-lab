@@ -15,6 +15,7 @@
         <module>spring-boot-security-jwt</module>
         <module>spring-boot-security-jwt-pro</module>
         <module>spring-boot-security-oauth</module>
+        <module>spring-boot-security-satoken</module>
     </modules>
 
     <properties>
