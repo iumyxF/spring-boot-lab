@@ -123,8 +123,7 @@ public class NioServerDetailedPro {
         StringBuffer message = new StringBuffer();
         //这句话的意思是，将目前通道中的数据写入到缓存区
         //最大可写入的数据量就是buff的容量
-        while ((realLen = clientSocketChannel.read(contextBytes)) != 0) {
-
+        while ((realLen = clientSocketChannel.read(contextBytes)) != -1) {
             //一定要把buffer切换成“读”模式，否则由于limit = capacity
             //在read没有写满的情况下，就会导致多读
             contextBytes.flip();
@@ -132,7 +131,6 @@ public class NioServerDetailedPro {
             int capacity = contextBytes.capacity();
             byte[] messageBytes = new byte[capacity];
             contextBytes.get(messageBytes, position, realLen);
-
             //这种方式也是可以读取数据的，而且不用关心position的位置。
             //因为是目前contextBytes所有的数据全部转出为一个byte数组。
             //使用这种方式时，一定要自己控制好读取的最终位置(realLen很重要)
