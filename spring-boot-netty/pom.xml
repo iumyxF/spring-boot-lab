@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>spring-boot-netty-nio</module>
+        <module>spring-boot-netty-primary</module>
     </modules>
 
     <properties>
