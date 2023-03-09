@@ -1,0 +1,7 @@
+server:
+  port: 8080
+
+sdk:
+  hello:
+    name: iumyx
+    address: China
