@@ -1,15 +1,16 @@
-package com.example.consumer;
+package com.example.sms;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * @author feng
- * @date 2023/3/9 20:40
+ * @author iumyxF
  */
 @SpringBootApplication
-public class HelloApplication {
+public class SmsStarterApplication {
+
     public static void main(String[] args) {
-        SpringApplication.run(HelloApplication.class, args);
+        SpringApplication.run(SmsStarterApplication.class, args);
     }
+
 }

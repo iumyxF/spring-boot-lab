@@ -1,6 +1,6 @@
 package com.example.consumer;
 
-import com.example.sdk.service.HelloService;
+import com.example.sms.service.SmsService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,15 +13,16 @@ import javax.annotation.Resource;
  */
 @RestController
 @RequestMapping("/hello")
-public class HelloController {
+public class ConsumerController {
     /**
-     * HelloService在我们自定义的starter中已经完成了自动配置，所以此处可以直接注入
+     * 自定义的starter中已经完成了自动配置，所以此处可以直接注入
      */
     @Resource
-    private HelloService helloService;
+    private SmsService smsService;
 
-    @GetMapping("/say")
-    public String sayHello() {
-        return helloService.sayHello();
+    @GetMapping("/sms")
+    public String sendSms() {
+        smsService.send("18888888888", "mySignName", "666", "hello starter");
+        return "send success";
     }
 }

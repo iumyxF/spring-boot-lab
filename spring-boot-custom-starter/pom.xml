@@ -12,7 +12,6 @@
     <artifactId>spring-boot-custom-starter</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>provider-sdk-spring-boot-starter</module>
         <module>consumer-sdk-spring-boot</module>
     </modules>
 
