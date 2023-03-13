@@ -14,6 +14,6 @@
 
     使用protostuff实现Java对象的传输
 
-### file
+### udp 
 
-    使用protostuff实现文件的传输
+    使用udp协议完成消息传输
