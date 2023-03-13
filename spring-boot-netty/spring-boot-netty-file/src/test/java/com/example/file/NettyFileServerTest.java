@@ -1,4 +1,4 @@
-package com.example.netty.http.web;
+package com.example.file;
 
 import com.example.netty.file.server.NettyServer;
 

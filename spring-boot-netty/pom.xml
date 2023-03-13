@@ -14,6 +14,7 @@
     <modules>
         <module>spring-boot-netty-nio</module>
         <module>spring-boot-netty-primary</module>
+        <module>spring-boot-netty-file</module>
     </modules>
 
     <properties>
