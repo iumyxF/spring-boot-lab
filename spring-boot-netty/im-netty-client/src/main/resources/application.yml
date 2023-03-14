@@ -1,0 +1,7 @@
+server:
+  port: 8081
+
+netty:
+  server:
+    host: 127.0.0.1
+    port: 8888
