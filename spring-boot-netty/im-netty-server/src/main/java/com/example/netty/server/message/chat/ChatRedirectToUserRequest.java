@@ -1,6 +1,5 @@
 package com.example.netty.server.message.chat;
 
-
 import com.example.netty.common.dispatcher.Message;
 import lombok.Data;
 import lombok.ToString;
@@ -24,4 +23,8 @@ public class ChatRedirectToUserRequest implements Message {
      * 内容
      */
     private String content;
+    /**
+     * 发送者
+     */
+    private String fromUser;
 }

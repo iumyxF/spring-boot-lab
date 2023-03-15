@@ -22,11 +22,13 @@ public class NettyServerHandlerInitializer extends ChannelInitializer<Channel> {
 
     /**
      * 心跳超时时间
+     * 补充知识:TCP自带的空闲检测机制,默认是2小时,从系统资源层面来说是可接受的
+     * 但是从业务层面时间过长，因此我们是设置成180秒
      */
     private static final Integer READ_TIMEOUT_SECONDS = 3 * 60;
 
-    //@Resource
-    //private MessageDispatcher messageDispatcher;
+    @Resource
+    private MessageDispatcher messageDispatcher;
 
     @Resource
     private NettyServerHandler nettyServerHandler;
@@ -44,7 +46,7 @@ public class NettyServerHandlerInitializer extends ChannelInitializer<Channel> {
                 // 解码器
                 .addLast(new InvocationDecoder())
                 // 消息分发器
-                //.addLast(messageDispatcher)
+                .addLast(messageDispatcher)
                 // 服务端处理器
                 .addLast(nettyServerHandler);
     }

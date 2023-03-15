@@ -1,6 +1,5 @@
 package com.example.netty.client.message.chat;
 
-
 import com.example.netty.common.dispatcher.Message;
 import lombok.Data;
 import lombok.ToString;

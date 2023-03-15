@@ -41,7 +41,8 @@ public class AuthRequestHandler implements MessageHandler<AuthRequest> {
 
         // 响应认证成功
         AuthResponse authResponse = new AuthResponse();
-        authResponse.setCode(0);
+        authResponse.setCode(200);
+        authResponse.setMessage("认证成功");
         channel.writeAndFlush(new Invocation(AuthResponse.TYPE, authResponse));
     }
 

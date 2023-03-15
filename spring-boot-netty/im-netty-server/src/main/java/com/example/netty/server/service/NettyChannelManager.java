@@ -103,9 +103,18 @@ public class NettyChannelManager {
      * 向所有用户发送消息
      *
      * @param invocation 消息体
+     * @param id         发送端ID
      */
-    public void sendAll(Invocation invocation) {
+    public void sendAll(Invocation invocation, ChannelId id) {
+        Channel selfChannel = channels.get(id);
+        if (selfChannel == null) {
+            log.error("当前channel不存在，或断开连接");
+        }
         for (Channel channel : channels.values()) {
+            //排除自己不用发送
+            if (channel.equals(selfChannel)) {
+                continue;
+            }
             if (!channel.isActive()) {
                 log.error("[send][连接({})未激活]", channel.id());
                 return;
@@ -114,5 +123,4 @@ public class NettyChannelManager {
             channel.writeAndFlush(invocation);
         }
     }
-
 }

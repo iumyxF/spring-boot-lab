@@ -8,8 +8,10 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.timeout.IdleStateEvent;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 
 
 /**
@@ -22,10 +24,14 @@ import org.springframework.stereotype.Component;
 @ChannelHandler.Sharable
 public class NettyClientHandler extends ChannelInboundHandlerAdapter {
 
+    @Lazy
+    @Resource
+    private NettyClient nettyClient;
+
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         // TODO 发起重连 nettyClient.reconnect(); 循环依赖待解决
-
+        nettyClient.reconnect();
         // 继续触发事件
         super.channelInactive(ctx);
     }
@@ -37,6 +43,10 @@ public class NettyClientHandler extends ChannelInboundHandlerAdapter {
         ctx.channel().close();
     }
 
+    /**
+     * 和IdleStateHandler处理器配合使用。在Channel的读或者写空闲时间太长时，将会触发一个 IdleStateEvent事件。
+     * userEventTriggered 会接受到各种事件 包括了IdleStateEvent。
+     */
     @Override
     public void userEventTriggered(ChannelHandlerContext ctx, Object event) throws Exception {
         // 空闲时，向服务端发起一次心跳
@@ -44,6 +54,7 @@ public class NettyClientHandler extends ChannelInboundHandlerAdapter {
             log.info("[userEventTriggered][发起一次心跳]");
             HeartbeatRequest heartbeatRequest = new HeartbeatRequest();
             ctx.writeAndFlush(new Invocation(HeartbeatRequest.TYPE, heartbeatRequest))
+                    //如果服务端没有回应，代表服务端关闭了，直接关闭通道
                     .addListener(ChannelFutureListener.CLOSE_ON_FAILURE);
         } else {
             super.userEventTriggered(ctx, event);

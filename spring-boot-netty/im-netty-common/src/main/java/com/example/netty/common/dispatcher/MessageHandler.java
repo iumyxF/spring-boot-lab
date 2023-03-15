@@ -3,7 +3,7 @@ package com.example.netty.common.dispatcher;
 import io.netty.channel.Channel;
 
 /**
- * @description: 消息分发处理
+ * @description: 消息处理器
  * @Date 2023/3/14 11:04
  * @Author fzy
  */

@@ -30,11 +30,15 @@ public class NettyClientHandlerInitializer extends ChannelInitializer<Channel> {
     @Resource
     private NettyClientHandler nettyClientHandler;
 
+    /**
+     * Netty 提供了 IdleStateHandler 处理器，提供空闲检测的功能，在 Channel 的读或者写空闲时间太长时，将会触发一个 IdleStateEvent 事件。
+     */
     @Override
     protected void initChannel(Channel ch) {
         ch.pipeline()
-                // 空闲检测
+                // 空闲检测，每60秒发送心跳
                 .addLast(new IdleStateHandler(READ_TIMEOUT_SECONDS, 0, 0))
+                //设置了180秒为超时
                 .addLast(new ReadTimeoutHandler(3 * READ_TIMEOUT_SECONDS))
                 // 编码器
                 .addLast(new InvocationEncoder())

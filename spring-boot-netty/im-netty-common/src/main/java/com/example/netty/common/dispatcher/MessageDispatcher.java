@@ -5,14 +5,13 @@ import com.example.netty.common.codec.Invocation;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
-import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * @description: 消息分发处理器
+ * @description: 消息分发器
  * @Date 2023/3/14 11:06
  * @Author fzy
  */

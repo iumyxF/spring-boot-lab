@@ -1,6 +1,5 @@
 package com.example.netty.client.message.heartbeat;
 
-
 import com.example.netty.common.dispatcher.Message;
 
 /**

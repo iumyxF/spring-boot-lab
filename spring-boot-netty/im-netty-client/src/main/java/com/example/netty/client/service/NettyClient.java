@@ -67,6 +67,7 @@ public class NettyClient {
         bootstrap.connect().addListener((ChannelFutureListener) future -> {
             if (!future.isSuccess()) {
                 log.error("[start][Netty Client 连接服务器({}:{}) 失败]", serverHost, serverPort);
+                //尝试重新连接
                 reconnect();
                 return;
             }

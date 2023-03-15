@@ -22,7 +22,7 @@ public class InvocationDecoder extends ByteToMessageDecoder {
     private int byteLength = 4;
 
     /**
-     * 解码过程，将缓冲区字节数据转成invocation实体
+     * 反序列化，将缓冲区字节数据转成invocation实体
      */
     @Override
     protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) {
@@ -32,12 +32,12 @@ public class InvocationDecoder extends ByteToMessageDecoder {
         if (in.readableBytes() <= byteLength) {
             return;
         }
-        // 读取长度
+        // 读取字节数粗的总长度
         int length = in.readInt();
         if (length < 0) {
             throw new CorruptedFrameException("negative length: " + length);
         }
-        // 如果 message 不够可读，则退回到原读取位置
+        // 如果 当前字节数组的可读长度小于length，则退回到原读取位置
         if (in.readableBytes() < length) {
             in.resetReaderIndex();
             return;
