@@ -24,13 +24,15 @@ import javax.annotation.Resource;
 @ChannelHandler.Sharable
 public class NettyClientHandler extends ChannelInboundHandlerAdapter {
 
+    /**
+     * 懒加载解决循环依赖问题
+     */
     @Lazy
     @Resource
     private NettyClient nettyClient;
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-        // TODO 发起重连 nettyClient.reconnect(); 循环依赖待解决
         nettyClient.reconnect();
         // 继续触发事件
         super.channelInactive(ctx);
