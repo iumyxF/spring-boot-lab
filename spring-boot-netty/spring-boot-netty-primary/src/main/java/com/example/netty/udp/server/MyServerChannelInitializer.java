@@ -16,7 +16,7 @@ public class MyServerChannelInitializer extends ChannelInitializer<NioDatagramCh
     private final EventLoopGroup group = new NioEventLoopGroup();
 
     @Override
-    protected void initChannel(NioDatagramChannel ch) throws Exception {
+    protected void initChannel(NioDatagramChannel ch) {
         ChannelPipeline pipeline = ch.pipeline();
         pipeline.addLast(group, new MyServerHandler());
     }

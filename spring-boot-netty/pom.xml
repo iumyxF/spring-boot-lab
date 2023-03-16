@@ -12,13 +12,13 @@
     <artifactId>spring-boot-netty</artifactId>
     <packaging>pom</packaging>
     <modules>
+        <module>im-netty-client</module>
+        <module>im-netty-server</module>
+        <module>im-netty-common</module>
         <module>spring-boot-netty-nio</module>
         <module>spring-boot-netty-primary</module>
         <module>spring-boot-netty-file</module>
         <module>spring-boot-netty-websocket</module>
-        <module>im-netty-client</module>
-        <module>im-netty-server</module>
-        <module>im-netty-common</module>
     </modules>
 
     <properties>

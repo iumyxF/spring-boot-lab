@@ -17,9 +17,9 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class SerializationUtil {
 
-    private static final Map<Class<?>, Schema<?>> cachedSchema = new ConcurrentHashMap<>();
+    private static final Map<Class<?>, Schema<?>> CACHED_SCHEMA = new ConcurrentHashMap<>();
 
-    private static final Objenesis objenesis = new ObjenesisStd();
+    private static final Objenesis OBJENESIS = new ObjenesisStd();
 
     private SerializationUtil() {
 
@@ -53,7 +53,7 @@ public class SerializationUtil {
      */
     public static <T> T deserialize(byte[] data, Class<T> cls) {
         try {
-            T message = objenesis.newInstance(cls);
+            T message = OBJENESIS.newInstance(cls);
             Schema<T> schema = getSchema(cls);
             ProtostuffIOUtil.mergeFrom(data, message, schema);
             return message;
@@ -63,10 +63,10 @@ public class SerializationUtil {
     }
 
     private static <T> Schema<T> getSchema(Class<T> cls) {
-        Schema<T> schema = (Schema<T>) cachedSchema.get(cls);
+        Schema<T> schema = (Schema<T>) CACHED_SCHEMA.get(cls);
         if (schema == null) {
             schema = RuntimeSchema.createFrom(cls);
-            cachedSchema.put(cls, schema);
+            CACHED_SCHEMA.put(cls, schema);
         }
         return schema;
     }
