@@ -3,10 +3,14 @@ package com.example.netty.server.service;
 import com.example.netty.common.codec.Invocation;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelId;
+import io.netty.channel.group.ChannelGroup;
+import io.netty.channel.group.DefaultChannelGroup;
 import io.netty.util.AttributeKey;
+import io.netty.util.concurrent.GlobalEventExecutor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
@@ -34,6 +38,11 @@ public class NettyChannelManager {
      * 通过它，可以获取用户对应的 Channel。这样，我们可以向指定用户发送消息。
      */
     private ConcurrentMap<String, Channel> userChannels = new ConcurrentHashMap<>();
+
+    /**
+     * 群组
+     */
+    private static Map<String, ChannelGroup> channelGroupMap = new ConcurrentHashMap<>();
 
     /**
      * 添加 Channel 到 {@link #channels} 中
@@ -122,5 +131,32 @@ public class NettyChannelManager {
             // 发送消息
             channel.writeAndFlush(invocation);
         }
+    }
+
+    /**
+     * 将某个channel加入到组
+     *
+     * @param groupName
+     * @param channel
+     */
+    public synchronized void addGroup(String groupName, Channel channel) {
+        //获取该组名的ChannelGroup
+        ChannelGroup channelGroup = channelGroupMap.get(groupName);
+        if (null == channelGroup) {
+            channelGroup = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
+            channelGroupMap.put(groupName, channelGroup);
+        }
+        //将用户channel添加到channelGroup
+        channelGroup.add(channel);
+    }
+
+    /**
+     * 根据组名获取ChannelGroup
+     *
+     * @param groupName 组名
+     * @return ChannelGroup
+     */
+    public ChannelGroup getChannelGroup(String groupName) {
+        return channelGroupMap.get(groupName);
     }
 }
