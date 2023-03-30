@@ -1,11 +1,11 @@
-package com.example.netty.server.handler.chat;
+package com.example.netty.server.handler.group;
 
 
 import com.example.netty.common.codec.Invocation;
 import com.example.netty.common.dispatcher.MessageHandler;
 import com.example.netty.server.message.chat.ChatRedirectToUserRequest;
 import com.example.netty.server.message.chat.ChatSendResponse;
-import com.example.netty.server.message.chat.ChatSendToGroupRequest;
+import com.example.netty.server.message.group.ChatSendToGroupRequest;
 import com.example.netty.server.service.NettyChannelManager;
 import io.netty.channel.Channel;
 import io.netty.channel.group.ChannelGroup;

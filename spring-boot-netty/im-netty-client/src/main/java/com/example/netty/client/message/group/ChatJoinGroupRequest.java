@@ -1,4 +1,4 @@
-package com.example.netty.client.message.chat;
+package com.example.netty.client.message.group;
 
 import com.example.netty.common.dispatcher.Message;
 import lombok.Data;

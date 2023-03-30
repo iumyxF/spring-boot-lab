@@ -1,7 +1,7 @@
-package com.example.netty.server.handler.chat;
+package com.example.netty.server.handler.group;
 
 import com.example.netty.common.dispatcher.MessageHandler;
-import com.example.netty.server.message.chat.ChatJoinGroupRequest;
+import com.example.netty.server.message.group.ChatJoinGroupRequest;
 import com.example.netty.server.message.chat.ChatSendResponse;
 import com.example.netty.server.service.NettyChannelManager;
 import io.netty.channel.Channel;
