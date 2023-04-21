@@ -22,6 +22,7 @@
         <module>spring-boot-websocket</module>
         <module>spring-boot-netty</module>
         <module>spring-boot-custom-starter</module>
+        <module>spring-boot-mqtt</module>
     </modules>
 
     <properties>
