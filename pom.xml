@@ -25,6 +25,7 @@
         <module>spring-boot-mqtt</module>
         <module>spring-boot-algorithm-application</module>
         <module>spring-boot-cache</module>
+        <module>spring-boot-mail</module>
     </modules>
 
     <properties>
