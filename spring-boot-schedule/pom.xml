@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>spring-boot-schedule-native</module>
+        <module>spring-boot-schedule-quartz</module>
     </modules>
 
     <properties>

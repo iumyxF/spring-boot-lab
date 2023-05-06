@@ -14,6 +14,7 @@
 10. Cloud Storage(Ali,Tencent)
 11. process https://blog.csdn.net/xl_1803/article/details/127029387
 12. DataX
+13. canal
 
 ## extension
 
