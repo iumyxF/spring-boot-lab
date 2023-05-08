@@ -2,8 +2,8 @@
 
 ## The case to be added:
 
-1. spring cache,spring admin
-2. Mail
+1. ~~spring cache~~
+2. ~~Mail~~
 3. redisson
 4. xxl-job and Quartz
 5. java8 stream operation
@@ -12,9 +12,11 @@
 8. rabbitMQ
 9. dubbo
 10. Cloud Storage(Ali,Tencent)
-11. process https://blog.csdn.net/xl_1803/article/details/127029387
+11. control process https://blog.csdn.net/xl_1803/article/details/127029387
 12. DataX
 13. canal
+14. spring admin
+15. guava
 
 ## extension
 
