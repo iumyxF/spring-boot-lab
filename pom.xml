@@ -27,6 +27,7 @@
         <module>spring-boot-cache</module>
         <module>spring-boot-mail</module>
         <module>spring-boot-schedule</module>
+        <module>spring-boot-redisson</module>
     </modules>
 
     <properties>
@@ -35,7 +36,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring-boot.version>2.7.11</spring-boot.version>
         <lombok.version>1.18.24</lombok.version>
-        <hutool.version>5.8.11</hutool.version>
+        <hutool.version>5.8.18</hutool.version>
         <mapstruct.version>1.5.3.Final</mapstruct.version>
         <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
         <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
@@ -48,6 +49,7 @@
         <bitwalker.version>1.21</bitwalker.version>
         <fastjson.version>2.0.23</fastjson.version>
         <sa-token.version>1.34.0</sa-token.version>
+        <redisson.version>3.21.0</redisson.version>
     </properties>
 
     <dependencyManagement>
@@ -170,6 +172,24 @@
                         <artifactId>hutool-all</artifactId>
                     </exclusion>
                 </exclusions>
+            </dependency>
+            <!--redisson-->
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson-spring-boot-starter</artifactId>
+                <version>${redisson.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.redisson</groupId>
+                        <artifactId>redisson-spring-data-30</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <!--redisson对应的spring2.7.x版本-->
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson-spring-data-27</artifactId>
+                <version>${redisson.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
