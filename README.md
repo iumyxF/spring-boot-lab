@@ -4,7 +4,7 @@
 
 1. ~~spring cache~~
 2. ~~Mail~~
-3. redisson
+3. ~~redisson~~
 4. xxl-job and Quartz
 5. java8 stream operation
 6. spring-boot-docker packing process
@@ -17,6 +17,7 @@
 13. canal
 14. spring admin
 15. guava
+16. lock4J (Distributed lock)
 
 ## extension
 
