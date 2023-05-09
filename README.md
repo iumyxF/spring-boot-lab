@@ -18,6 +18,7 @@
 14. spring admin
 15. guava
 16. lock4J (Distributed lock)
+17. easyExcel
 
 ## extension
 

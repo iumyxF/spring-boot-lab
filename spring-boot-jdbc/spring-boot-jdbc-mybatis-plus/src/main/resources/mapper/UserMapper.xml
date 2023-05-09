@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.plus.mapper.UserMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.plus.model.entities.User">
+        <id property="userId" column="user_id" jdbcType="BIGINT"/>
+        <result property="userName" column="user_name" jdbcType="VARCHAR"/>
+        <result property="age" column="age" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <resultMap id="UserVoResultMap" type="com.example.plus.model.vo.UserVo">
+        <id column="user_id" property="userId" jdbcType="BIGINT"/>
+        <result column="username" property="username" jdbcType="VARCHAR"/>
+        <result column="role_id" property="roleId" jdbcType="BIGINT"/>
+        <result column="role_name" property="roleName" jdbcType="VARCHAR"/>
+        <collection property="menuIds" javaType="java.util.List" ofType="long">
+            <result column="menu_id"/>
+        </collection>
+        <collection property="menuNames" javaType="java.util.List" ofType="string">
+            <result column="menu_name"/>
+        </collection>
+        <collection property="menuPaths" javaType="java.util.List" ofType="string">
+            <result column="menu_path"/>
+        </collection>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        user_id , user_name, age
+    </sql>
+
+    <sql id="UserVo_Column_List">
+        u.user_id, u.user_name, u.age, r.role_id, r.role_name, m.menu_id, m.menu_name, m.menu_path
+    </sql>
+
+
+    <select id="selectUserVoById" resultMap="UserVoResultMap">
+        select
+        <include refid="UserVo_Column_List"/>
+        from user as u
+        left join user_role as ur on u.user_id = ur.user_id
+        left join role as r on ur.role_id = r.role_id
+        left join role_menu as rm on r.role_id = rm.role_id
+        left join menu as m on rm.menu_id = m.menu_id
+        where u.user_id = #{userId}
+    </select>
+
+
+</mapper>
