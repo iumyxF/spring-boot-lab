@@ -6,7 +6,6 @@ import com.example.mock.dao.PorkStorageMapper;
 import com.example.mock.entities.PorkInst;
 import com.example.mock.entities.PorkStorage;
 import com.example.mock.exception.BaseBusinessException;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
