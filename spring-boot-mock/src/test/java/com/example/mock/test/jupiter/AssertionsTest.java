@@ -111,13 +111,16 @@ public class AssertionsTest {
         return "hello world!";
     }
 
+    /**
+     * 断言时间限制，第一个参数是最大时间，第二个参数是执行函数
+     */
     @Test
     void timeoutExceeded() {
         // The following assertion fails with an error message similar to:
         // execution exceeded timeout of 10 ms by 91 ms
         assertTimeout(ofMillis(10), () -> {
             // Simulate task that takes more than 10 ms.
-            Thread.sleep(100);
+            Thread.sleep(1);
         });
     }
 
@@ -130,7 +133,7 @@ public class AssertionsTest {
         // execution timed out after 10 ms
         assertTimeoutPreemptively(ofMillis(10), () -> {
             // Simulate task that takes more than 10 ms.
-            Thread.sleep(100);
+            Thread.sleep(2);
         });
     }
 

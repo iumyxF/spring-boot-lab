@@ -24,7 +24,7 @@ class DynamicsTest {
     // This will result in a JUnitException!
     @TestFactory
     List<String> dynamicTestsWithInvalidReturnType() {
-        return Arrays.asList("Hello");
+        return Collections.singletonList("Hello");
     }
 
     @TestFactory

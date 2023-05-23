@@ -1,6 +1,7 @@
 # JUnit5
 
 junit5 就是 org.junit.jupiter
+参考链接:https://pdai.tech/md/develop/ut/dev-ut-x-junit5.html
 
 ## 注解
 
@@ -37,6 +38,21 @@ junit5 就是 org.junit.jupiter
 - fail 使单元测试失败
 
 # Mock
+
+mock测试就是在测试过程中，对那些不容易构建的对象用一个虚拟对象来代替测试的方法就叫mock测试。
+参考链接:https://pdai.tech/md/develop/ut/dev-ut-x-mockito.html
+
+## 基本使用
+
+1. mock 对象的方法的返回值默认都是返回类型的默认值
+2. 给mock出来的对象赋值不能通过set方法，这是无效的。需要通过打桩thenReturn的方式制定返回值
+
+### Junit4和Junit5 在配合Mock使用中出现的区别
+
+1. Junit4使用RunWith注解，如果是SpringBoot下的测试Junit5直接使用@SpringBootTest代替即可，如果是普通测试，则Junit5使用@ExtendWith来代替。
+
+### 参数化匹配
+link:https://pdai.tech/md/develop/ut/dev-ut-x-mockito.html#%E6%B5%8B%E8%AF%95-%E4%BD%BF%E7%94%A8mock%E6%96%B9%E6%B3%95
 
 ## 注解
 

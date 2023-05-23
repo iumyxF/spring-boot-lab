@@ -16,7 +16,7 @@ public class RepeatTest {
         int currentRepetition = repetitionInfo.getCurrentRepetition();
         int totalRepetitions = repetitionInfo.getTotalRepetitions();
         String methodName = testInfo.getTestMethod().get().getName();
-        System.out.println(String.format("即将执行重复: [重复次数:%d / %d , 方法名%s]", currentRepetition, totalRepetitions, methodName));
+        System.out.printf("即将执行重复: [重复次数:%d / %d , 方法名%s]%n", currentRepetition, totalRepetitions, methodName);
     }
 
     @RepeatedTest(3)
