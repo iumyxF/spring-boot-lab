@@ -30,6 +30,7 @@
         <module>spring-boot-redisson</module>
         <module>spring-boot-jdbc</module>
         <module>spring-boot-video</module>
+        <module>spring-boot-oss</module>
     </modules>
 
     <properties>
@@ -54,6 +55,7 @@
         <redisson.version>3.21.0</redisson.version>
         <p6spy.version>3.9.1</p6spy.version>
         <commons-io.version>2.12.0</commons-io.version>
+        <aliyun-sdk-oss.version>3.16.0</aliyun-sdk-oss.version>
     </properties>
 
     <dependencyManagement>
@@ -206,6 +208,12 @@
                 <groupId>commons-io</groupId>
                 <artifactId>commons-io</artifactId>
                 <version>${commons-io.version}</version>
+            </dependency>
+            <!--阿里云oss-->
+            <dependency>
+                <groupId>com.aliyun.oss</groupId>
+                <artifactId>aliyun-sdk-oss</artifactId>
+                <version>${aliyun-sdk-oss.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
