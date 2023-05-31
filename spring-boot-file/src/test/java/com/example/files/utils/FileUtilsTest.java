@@ -57,33 +57,4 @@ public class FileUtilsTest {
         FileUtils.deleteFile(newFilePath);
         System.out.println("文件删除成功");
     }
-
-
-    @Test
-    public void saveFileToLocal() {
-    }
-
-    @Test
-    public void deleteFile() {
-    }
-
-    @Test
-    public void modifyFileContent() {
-    }
-
-    @Test
-    public void renameFile() {
-    }
-
-    @Test
-    public void listAllFiles() {
-    }
-
-    @Test
-    public void readFileContent() {
-    }
-
-    @Test
-    public void copyFile() {
-    }
 }
