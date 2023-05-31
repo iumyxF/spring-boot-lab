@@ -32,6 +32,7 @@
         <module>spring-boot-video</module>
         <module>spring-boot-oss</module>
         <module>spring-boot-file</module>
+        <module>spring-boot-jsoup</module>
     </modules>
 
     <properties>
