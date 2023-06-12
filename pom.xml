@@ -33,13 +33,14 @@
         <module>spring-boot-oss</module>
         <module>spring-boot-file</module>
         <module>spring-boot-jsoup</module>
+        <module>spring-boot-elasticsearch</module>
     </modules>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring-boot.version>2.7.11</spring-boot.version>
+        <spring-boot.version>2.7.12</spring-boot.version>
         <lombok.version>1.18.24</lombok.version>
         <hutool.version>5.8.18</hutool.version>
         <mapstruct.version>1.5.3.Final</mapstruct.version>
