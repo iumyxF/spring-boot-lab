@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <!-- 在logstash启动文件logstash-app-search.conf中配置的IP地址和端口 -->
+        <destination>192.168.242.120:9001</destination>
+        <encoder charset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder"/>
+    </appender>
+    <root level="INFO">
+        <appender-ref ref="LOGSTASH"/>
+        <appender-ref ref="CONSOLE"/>
+    </root>
+</configuration>

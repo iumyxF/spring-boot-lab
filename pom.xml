@@ -34,6 +34,7 @@
         <module>spring-boot-file</module>
         <module>spring-boot-jsoup</module>
         <module>spring-boot-elasticsearch</module>
+        <module>spring-boot-elk</module>
     </modules>
 
     <properties>
