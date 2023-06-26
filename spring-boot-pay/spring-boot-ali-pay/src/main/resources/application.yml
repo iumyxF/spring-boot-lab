@@ -1,0 +1,31 @@
+# 服务器端口号
+server:
+  port: 8081
+  servlet:
+    context-path: /alipayDemo
+# 项目系统参数配置
+spring:
+  application:
+    name: springboot_alipay_demo
+  # json字符串中时间戳统一转换
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  # 前端渲染模板
+  thymeleaf:
+    cache: false
+    mode: HTML
+    encoding: UTF-8
+    prefix: classpath:/templates/
+    suffix: .html
+
+alipay:
+  config:
+    appId: xxx
+    privateKey: xxx
+    publicKey: xxx
+    notifyUrl: xxx
+    returnUrl: xxx
+    signType: xxx
+    charset: xxx
+    gatewayUrl: xxx

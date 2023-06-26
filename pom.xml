@@ -35,6 +35,7 @@
         <module>spring-boot-jsoup</module>
         <module>spring-boot-elasticsearch</module>
         <module>spring-boot-elk</module>
+        <module>spring-boot-pay</module>
     </modules>
 
     <properties>
