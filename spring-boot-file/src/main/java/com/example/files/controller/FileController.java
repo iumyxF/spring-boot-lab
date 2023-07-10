@@ -4,6 +4,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,7 +23,7 @@ import java.nio.file.Paths;
 
 /**
  * @author fzy
- * @description:
+ * @description: https://github.com/niumoo/down-bit
  * @date 2023/5/31 14:19
  */
 @Slf4j
@@ -27,6 +31,8 @@ import java.nio.file.Paths;
 public class FileController {
 
     private static final String FILE_PATH = "F:\\temp\\";
+
+    // region 上传
 
     /**
      * 上传文件
@@ -51,6 +57,76 @@ public class FileController {
         return "上传成功";
     }
 
+    /**
+     * 临时目录
+     */
+    private static final String TEMP_DIR = "F:\\temp\\";
+
+    /**
+     * 大文件分片上传
+     *
+     * @param file        分片文件
+     * @param chunkNumber 当前分片index
+     * @param totalChunks 总分片
+     * @param fileName    文件名
+     */
+    @PostMapping("/chunks")
+    public void uploadChunk(MultipartFile file, Integer chunkNumber, Integer totalChunks, String fileName) {
+        // 创建分片文件保存路径
+        String chunkFilePath = TEMP_DIR + fileName + ".part" + chunkNumber;
+        try {
+            // 保存分片文件
+            file.transferTo(new File(chunkFilePath));
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Failed to save chunk file: " + chunkFilePath);
+        }
+        // 判断是否完成所有分片上传
+        if (chunkNumber.equals(totalChunks - 1)) {
+            // 所有分片上传完毕，合并文件
+            mergeChunks(fileName, totalChunks);
+        }
+    }
+
+    private void mergeChunks(String fileName, int totalChunks) {
+        // 创建目标文件保存路径
+        String destFilePath = "F:\\temp\\files\\" + fileName;
+        try (FileOutputStream destFileOutputStream = new FileOutputStream(destFilePath)) {
+            // 循环读取每个分片文件并写入目标文件
+            for (int i = 0; i < totalChunks; i++) {
+                String chunkFilePath = TEMP_DIR + fileName + ".part" + i;
+                FileInputStream chunkFileInputStream = new FileInputStream(chunkFilePath);
+
+                byte[] buffer = new byte[1024];
+                int bytesRead;
+                while ((bytesRead = chunkFileInputStream.read(buffer)) != -1) {
+                    destFileOutputStream.write(buffer, 0, bytesRead);
+                }
+                chunkFileInputStream.close();
+                // 删除已合并的分片文件
+                new File(chunkFilePath).delete();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Failed to merge chunk files");
+        }
+        // 验证合并后的文件完整性，例如计算MD5校验和
+
+        // 移动文件到目标目录
+
+        // 清理临时目录
+    }
+
+    //endregion
+
+    //region 下载
+
+    /**
+     * 下载文件，下载到流中
+     *
+     * @param response
+     * @throws UnsupportedEncodingException
+     */
     @GetMapping("/download")
     public void download(HttpServletResponse response) throws UnsupportedEncodingException {
         String fileName = new String("001.mp4".getBytes(), "ISO8859-1");
@@ -66,6 +142,30 @@ public class FileController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 下载文件，使用springboot的ResponseEntity
+     *
+     * @return
+     * @throws UnsupportedEncodingException
+     */
+    @GetMapping("/download2")
+    public ResponseEntity<FileSystemResource> downloadFile() throws UnsupportedEncodingException {
+        // 指定要下载的文件路径
+        String fileName = new String("001.mp4".getBytes(), "ISO8859-1");
+        File file = new File(FILE_PATH + fileName);
+        // 检查文件是否存在
+        if (!file.exists()) {
+            return ResponseEntity.notFound().build();
+        }
+        // 设置响应头信息
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+        headers.setContentDispositionFormData("attachment", file.getName());
+        // 将文件转为FileSystemResource
+        FileSystemResource fileResource = new FileSystemResource(file);
+        return new ResponseEntity<>(fileResource, headers, ResponseEntity.ok().build().getStatusCode());
     }
 
     /**
@@ -102,4 +202,5 @@ public class FileController {
         IOUtils.copy(myStream, response.getOutputStream());
         response.flushBuffer();
     }
+    //endregion
 }
