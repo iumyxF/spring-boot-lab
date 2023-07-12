@@ -75,6 +75,9 @@ link:https://pdai.tech/md/develop/ut/dev-ut-x-mockito.html#%E6%B5%8B%E8%AF%95-%E
 8. 打桩doReturn/when，参数要么都是固定值，要么都用匹配器(anyInt().any(Xxx.clas)，eq("string"))。
 
 # TDD
+## 一些参考链接
+1. http://thoreauz.com/2019/05/19/java-tdd/
+2. https://github.com/Jueee/JavaTestDrivenDev/tree/master
 
 ## 命名
 
