@@ -46,12 +46,16 @@ mock测试就是在测试过程中，对那些不容易构建的对象用一个�
 
 1. mock 对象的方法的返回值默认都是返回类型的默认值
 2. 给mock出来的对象赋值不能通过set方法，这是无效的。需要通过打桩thenReturn的方式制定返回值
+3. Mockito-初始化的方法有2种：
+   - 在Junit的类上面使用@RunWith(MockitoJUnitRunner.class)注解。
+   - 在测试方法被调用之前，使用MockitoAnnotations.initMocks(this);
 
 ### Junit4和Junit5 在配合Mock使用中出现的区别
 
 1. Junit4使用RunWith注解，如果是SpringBoot下的测试Junit5直接使用@SpringBootTest代替即可，如果是普通测试，则Junit5使用@ExtendWith来代替。
 
 ### 参数化匹配
+
 link:https://pdai.tech/md/develop/ut/dev-ut-x-mockito.html#%E6%B5%8B%E8%AF%95-%E4%BD%BF%E7%94%A8mock%E6%96%B9%E6%B3%95
 
 ## 注解
@@ -59,3 +63,22 @@ link:https://pdai.tech/md/develop/ut/dev-ut-x-mockito.html#%E6%B5%8B%E8%AF%95-%E
 - @InjectMocks：创建一个实例，简单的说是这个Mock可以调用真实代码的方法，其余用@Mock（或@Spy）注解创建的mock将被注入到用该实例中
 - @Mock：对函数的调用均执行mock（即虚假函数），不执行真正部分。
 - @Spy： 对函数的调用均执行真正部分。
+
+## 使用经验
+1. 注解：使用注解，主要需要@RunWith(MockitoJUnitRunner.class)或者2MockitoAnnotations.initMocks(this); 
+2. @MockBean是spring-boot支持的，需要在SpringRunner下运行，别搞混了。
+3. mock void方法doNothing().when(spy).add(anyInt(),anyString())。
+4. mock 异常：doThrow(new XxxException()).when(spy).add(anyInt(),anyString())。
+5. mock 静态方法：需要使用powermock。
+6. **spy和mock的区别：spy是间谍类，如果没有打桩，将会调用真正的方法。mock如果没有打桩，不会调用方法，返回默认零值。** 
+7. **doReturn/when和when/thenReturn是有区别的，一般使用前者。在使用spy创建间谍类时，when/thenReturn会执行真正的方法，再给出mock的返回值，如果执行报错，就会中断。** 
+8. 打桩doReturn/when，参数要么都是固定值，要么都用匹配器(anyInt().any(Xxx.clas)，eq("string"))。
+
+# TDD
+
+## 命名
+
+语法： Given 部分描述前置条件， When 部分描述操作，而 Then 部分描述期望的结果。
+如果测试没有前置条件（这通常是在用 @Before 和 @BeforeClass 注解的方法中设置的），可省略Given 部分。
+不要完全依赖注释以提供有关测试目标的信息。
+因为从IDE执行测试时，注释不会出现，它们也不会出现在CI或构建工具生成的报告中。

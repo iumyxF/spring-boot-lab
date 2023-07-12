@@ -54,7 +54,9 @@ public class TestServiceImpl {
         System.out.println("doService=2 执行完毕...");
     }
 
-
+    /**
+     * 调用私有方法议然能被手动回滚
+     */
     @Transactional(rollbackFor = Exception.class)
     public void doServiceVersion3() {
         System.out.println("doService-3 执行开始...");
