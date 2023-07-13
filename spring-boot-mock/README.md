@@ -37,6 +37,21 @@ junit5 就是 org.junit.jupiter
 - assertTimeout 断言超时
 - fail 使单元测试失败
 
+# Junit4
+## JUnit4常用的注解
+1. @Test：将一个方法标记为测试方法；
+2. @Before：每一个测试方法调用前必执行的方法；
+3. @After：每一个测试方法调用后必执行的方法；
+4. @BeforeClass：所有测试方法调用前执行一次，在测试类没有实例化之前就已被加载，需用static修饰；
+5. @AfterClass：所有测试方法调用后执行一次，在测试类没有实例化之前就已被加载，需用static修饰；
+6. @Ignore：暂不执行该方法；
+
+- 一个JUnit4的单元测试用例执行顺序为：
+  - @BeforeClass -> @Before -> @Test -> @After -> @AfterClass;
+- 每一个测试方法的调用顺序为：
+  - @Before -> @Test -> @After;
+
+
 # Mock
 
 mock测试就是在测试过程中，对那些不容易构建的对象用一个虚拟对象来代替测试的方法就叫mock测试。
