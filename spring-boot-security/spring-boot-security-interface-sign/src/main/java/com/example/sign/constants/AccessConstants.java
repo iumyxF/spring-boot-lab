@@ -3,7 +3,7 @@ package com.example.sign.constants;
 /**
  * @description: 密钥常量
  * @Date 2023/3/8 14:31
- * @Author fzy
+ * @author iumyxF
  */
 public interface AccessConstants {
 

@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * @description: Sa -Token持久层接口(本地RedisCache实现)
  * @Date 2023 /2/25 10:58
- * @Author fzy
+ * @author iumyxF
  */
 @Repository
 public class SecuritySaTokenDao implements SaTokenDao {

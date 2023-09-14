@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 /**
  * @description: 短信配置文件
  * @Date 2023/2/15 9:49
- * @Author fzy
+ * @author iumyxF
  */
 @Data
 @Component

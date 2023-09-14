@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import java.io.*;
 
 /**
- * @author fzy
+ * @author iumyxF
  * @description: 阿里云oss案例
  * @date 2023/5/29 17:01
  */

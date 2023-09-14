@@ -13,7 +13,7 @@ import org.springframework.web.socket.WebSocketSession;
 /**
  * @description: 用户认证消息处理器
  * @Date 2023/2/27 14:42
- * @Author fzy
+ * @author iumyxF
  */
 @Component
 public class AuthMessageHandler implements MessageHandler<AuthRequest> {

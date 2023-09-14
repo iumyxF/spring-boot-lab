@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * @description: Aop自定义注解
  * @Date 2023/2/13 9:51
- * @Author fzy
+ * @author iumyxF
  */
 @SpringBootApplication
 public class AopApplication {

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * @description: 接口签名认证工具 应该改成AccessService
  * @Date 2023/3/8 14:48
- * @Author fzy
+ * @author iumyxF
  */
 @Slf4j
 @Component

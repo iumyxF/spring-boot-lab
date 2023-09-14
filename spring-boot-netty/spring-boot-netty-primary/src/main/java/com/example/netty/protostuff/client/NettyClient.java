@@ -11,7 +11,7 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 /**
  * @description:
  * @Date 2023/3/10 10:52
- * @Author fzy
+ * @author iumyxF
  */
 public class NettyClient {
     public static void main(String[] args) {

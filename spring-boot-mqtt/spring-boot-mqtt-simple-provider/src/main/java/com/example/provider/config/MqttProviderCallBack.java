@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @author fzy
+ * @author iumyxF
  * @description: 消息发布客户端回调
  * @date 2023/4/21 14:01
  */

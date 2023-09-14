@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import javax.annotation.PostConstruct;
 
 /**
- * @author fzy
+ * @author iumyxF
  * @description:
  * @date 2023/4/21 14:08
  */

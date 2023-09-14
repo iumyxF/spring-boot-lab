@@ -10,7 +10,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 /**
  * @description:
  * @Date 2023/3/10 15:51
- * @Author fzy
+ * @author iumyxF
  */
 public class NettyServer {
     public static void main(String[] args) {

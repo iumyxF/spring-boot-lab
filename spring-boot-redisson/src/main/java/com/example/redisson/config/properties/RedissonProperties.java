@@ -8,7 +8,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 /**
- * @author fzy
+ * @author iumyxF
  * @description: redisson 属性配置
  * @date 2023/5/8 9:49
  */

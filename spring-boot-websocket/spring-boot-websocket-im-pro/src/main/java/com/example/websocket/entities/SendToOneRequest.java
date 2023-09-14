@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 /**
  * @description: 发送消息相关 Message
  * @Date 2023/2/27 14:30
- * @Author fzy
+ * @author iumyxF
  */
 @Data
 @Builder

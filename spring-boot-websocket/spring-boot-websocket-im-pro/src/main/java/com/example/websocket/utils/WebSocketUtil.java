@@ -14,7 +14,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * @description: websocket工具类 WebSocketSession 传输的对象是TextMessage
  * @Date 2023/2/28 14:50
- * @Author fzy
+ * @author iumyxF
  */
 public class WebSocketUtil {
 

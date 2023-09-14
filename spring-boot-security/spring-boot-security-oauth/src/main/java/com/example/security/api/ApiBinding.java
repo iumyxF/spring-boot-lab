@@ -7,7 +7,7 @@ import org.springframework.web.client.RestTemplate;
 /**
  * @description:
  * @Date 2023/3/1 14:22
- * @Author fzy
+ * @author iumyxF
  */
 public class ApiBinding {
 

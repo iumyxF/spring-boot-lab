@@ -12,7 +12,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 /**
  * @description: 服务端
  * @Date 2023/3/9 10:24
- * @Author fzy
+ * @author iumyxF
  */
 public class NettyServer {
     public static void main(String[] args) throws InterruptedException {

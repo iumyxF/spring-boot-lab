@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * @description: 猪肉实体
  * @Date 2023/2/11 10:44
- * @Author fzy
+ * @author iumyxF
  */
 @Data
 @NoArgsConstructor

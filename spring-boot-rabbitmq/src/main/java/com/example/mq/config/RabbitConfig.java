@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * @description:
  * @Date 2023/2/21 14:39
- * @Author fzy
+ * @author iumyxF
  */
 @Configuration
 public class RabbitConfig {

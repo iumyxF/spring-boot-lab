@@ -7,7 +7,7 @@ import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author fzy
+ * @author iumyxF
  * @description: Semaphore翻译成字面意思为 信号量，Semaphore 可以同时让多个线程同时访问共享资源，
  * 通过 acquire() 获取一个许可，如果没有就等待，而 release() 释放一个许可。
  * @date 2023/7/20 11:38

@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @author fzy
+ * @author iumyxF
  * @description: 自动配置Scheduler
  * @date 2023/5/6 14:46
  */

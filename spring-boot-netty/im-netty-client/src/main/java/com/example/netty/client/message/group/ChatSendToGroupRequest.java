@@ -7,7 +7,7 @@ import lombok.ToString;
 /**
  * @description: 群发消息请求（改良版）
  * @Date 2023/3/29 14:57
- * @Author fzy
+ * @author iumyxF
  */
 @Data
 @ToString

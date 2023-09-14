@@ -15,7 +15,7 @@ import javax.annotation.Resource;
 /**
  * @description: 私聊消息请求处理器
  * @Date 2023/3/15 14:19
- * @Author fzy
+ * @author iumyxF
  */
 @Slf4j
 @Component

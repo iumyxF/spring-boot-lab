@@ -12,7 +12,7 @@ import javax.annotation.Resource;
 /**
  * @description: 加入组请求消息处理器
  * @Date 2023/3/29 14:43
- * @Author fzy
+ * @author iumyxF
  */
 @Component
 public class ChatJoinGroupRequestHandler implements MessageHandler<ChatJoinGroupRequest> {

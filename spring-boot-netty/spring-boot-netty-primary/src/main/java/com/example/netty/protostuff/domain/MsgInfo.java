@@ -3,7 +3,7 @@ package com.example.netty.protostuff.domain;
 /**
  * @description: 消息体
  * @Date 2023/3/10 15:48
- * @Author fzy
+ * @author iumyxF
  */
 public class MsgInfo {
 

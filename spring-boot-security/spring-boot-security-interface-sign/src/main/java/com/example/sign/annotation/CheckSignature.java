@@ -5,7 +5,7 @@ import java.lang.annotation.*;
 /**
  * @description: 校验签名注解
  * @Date 2023/3/8 15:11
- * @Author fzy
+ * @author iumyxF
  */
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)

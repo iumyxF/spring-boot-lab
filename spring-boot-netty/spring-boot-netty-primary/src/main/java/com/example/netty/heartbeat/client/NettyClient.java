@@ -9,7 +9,7 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 /**
  * @description: 客户端初始化
  * @Date 2023/3/16 14:28
- * @Author fzy
+ * @author iumyxF
  */
 public class NettyClient {
 

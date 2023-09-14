@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * @description: 随机名字接口
  * @Date 2023/3/8 10:40
- * @Author fzy
+ * @author iumyxF
  */
 @RestController
 @RequestMapping("/name")

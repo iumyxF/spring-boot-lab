@@ -10,7 +10,7 @@ import java.util.Date;
 /**
  * @description: 客户端接受消息的channel
  * @Date 2023/3/10 13:55
- * @Author fzy
+ * @author iumyxF
  */
 public class MyInMsgHandler extends ChannelInboundHandlerAdapter {
     /**

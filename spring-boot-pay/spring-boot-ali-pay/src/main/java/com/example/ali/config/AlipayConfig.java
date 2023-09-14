@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @author fzy
+ * @author iumyxF
  * @description: ali支付配置属性
  * @date 2023/6/26 9:29
  */

@@ -7,7 +7,7 @@ import org.springframework.web.socket.server.standard.ServerEndpointExporter;
 /**
  * @description: WebSocket配置类
  * @Date 2023/2/27 14:18
- * @Author fzy
+ * @author iumyxF
  */
 @Configuration
 public class WebSocketConfiguration {

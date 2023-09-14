@@ -20,7 +20,7 @@ import java.util.Objects;
 /**
  * @description: jwt过滤器
  * @Date 2023/2/22 9:55
- * @Author fzy
+ * @author iumyxF
  */
 @Component
 public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {

@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
 /**
  * @description: 设置anonymous注解允许匿名访问的url
  * @Date 2023/2/22 9:43
- * @Author fzy
+ * @author iumyxF
  */
 @Configuration
 public class PermitAllUrlProperties implements InitializingBean, ApplicationContextAware {

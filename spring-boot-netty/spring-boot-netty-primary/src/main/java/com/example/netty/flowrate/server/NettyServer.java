@@ -10,7 +10,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 /**
  * @description: 流量整形数据流速率控制
  * @Date 2023/3/27 16:43
- * @Author fzy
+ * @author iumyxF
  */
 public class NettyServer {
     public static void main(String[] args) {

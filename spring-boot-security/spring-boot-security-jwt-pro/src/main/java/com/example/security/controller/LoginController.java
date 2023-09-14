@@ -12,7 +12,7 @@ import javax.annotation.Resource;
 /**
  * @description: 登录
  * @Date 2023/2/23 10:22
- * @Author fzy
+ * @author iumyxF
  */
 @RestController
 public class LoginController {

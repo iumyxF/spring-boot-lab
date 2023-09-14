@@ -9,7 +9,7 @@ import java.util.concurrent.Future;
 /**
  * @description: 线程工具类
  * @Date 2023/2/13 14:21
- * @Author fzy
+ * @author iumyxF
  */
 @Slf4j
 public class Threads {

@@ -6,7 +6,7 @@ import io.netty.channel.socket.nio.NioDatagramChannel;
 /**
  * @description: udp channel初始化器,这里不再是socketChannel 而是NioDatagramChannel
  * @Date 2023/3/13 9:39
- * @Author fzy
+ * @author iumyxF
  */
 public class MyClientChannelInitializer extends ChannelInitializer<NioDatagramChannel> {
     @Override

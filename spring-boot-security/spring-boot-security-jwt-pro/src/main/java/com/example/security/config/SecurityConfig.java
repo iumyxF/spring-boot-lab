@@ -25,7 +25,7 @@ import org.springframework.web.filter.CorsFilter;
 /**
  * @description: security配置类
  * @Date 2023/2/22 9:41
- * @Author fzy
+ * @author iumyxF
  */
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {

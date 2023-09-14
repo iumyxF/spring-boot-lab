@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 /**
  * @description: 用户登录表单请求体
  * @Date 2023/2/23 10:24
- * @Author fzy
+ * @author iumyxF
  */
 @Data
 @NoArgsConstructor

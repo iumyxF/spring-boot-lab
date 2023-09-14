@@ -7,7 +7,7 @@ import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 /**
  * @description:
  * @Date 2023/3/13 15:45
- * @Author fzy
+ * @author iumyxF
  */
 public class MsgUtil {
 

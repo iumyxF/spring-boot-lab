@@ -14,7 +14,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 /**
  * @description: SaToken配置
  * @Date 2023/2/25 9:50
- * @Author fzy
+ * @author iumyxF
  */
 @Slf4j
 @Configuration

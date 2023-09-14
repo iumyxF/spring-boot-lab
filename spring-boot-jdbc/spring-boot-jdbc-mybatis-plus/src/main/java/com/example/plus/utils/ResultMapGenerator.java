@@ -9,7 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * @author fzy
+ * @author iumyxF
  * @description: 实体类生成mybatis sql
  * @date 2023/5/9 14:42
  */

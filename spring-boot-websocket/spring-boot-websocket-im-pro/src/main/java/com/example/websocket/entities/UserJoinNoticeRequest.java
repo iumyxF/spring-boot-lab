@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 /**
  * @description: 用户成功认证之后，会广播用户加入群聊的通知 Message
  * @Date 2023/2/27 14:25
- * @Author fzy
+ * @author iumyxF
  */
 @Data
 @Builder

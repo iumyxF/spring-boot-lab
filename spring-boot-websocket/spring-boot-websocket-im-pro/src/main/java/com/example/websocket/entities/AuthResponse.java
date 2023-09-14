@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 /**
  * @description: 用户认证响应
  * @Date 2023/2/27 14:25
- * @Author fzy
+ * @author iumyxF
  */
 @Data
 @Builder

@@ -11,7 +11,7 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
 
 /**
- * @author fzy
+ * @author iumyxF
  * @description:
  * @date 2023/6/2 14:04
  * <p>

@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 /**
  * @description: 猪肉库存DAO
  * @Date 2023/2/11 10:50
- * @Author fzy
+ * @author iumyxF
  */
 @Mapper
 public interface PorkStorageMapper extends BaseMapper<PorkStorage> {

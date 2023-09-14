@@ -12,7 +12,7 @@ import java.util.Collection;
 /**
  * @description: 登录用户身份
  * @Date 2023/2/22 10:05
- * @Author fzy
+ * @author iumyxF
  */
 @Data
 @AllArgsConstructor

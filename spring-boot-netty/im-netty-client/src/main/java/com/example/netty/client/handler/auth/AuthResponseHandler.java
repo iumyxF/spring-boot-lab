@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 /**
  * @description: 认证响应处理
  * @Date 2023/3/15 10:26
- * @Author fzy
+ * @author iumyxF
  */
 @Slf4j
 @Component

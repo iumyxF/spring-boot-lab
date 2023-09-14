@@ -24,7 +24,7 @@ import java.util.Objects;
 /**
  * @description: WebSocket处理器
  * @Date 2023/2/28 10:07
- * @Author fzy
+ * @author iumyxF
  */
 public class WebSocketHandler extends TextWebSocketHandler implements InitializingBean {
 

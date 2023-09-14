@@ -8,7 +8,7 @@ import org.mockito.Spy;
 import static org.mockito.Mockito.*;
 
 /**
- * @author fzy
+ * @author iumyxF
  * @description: @mock 和 @Spy 注解
  * 如果打了桩，无论spy还是mock都会返回打桩值，如果没打桩，spy会走真实调用，mock则只会返回默认值
  * @date 2023/5/22 11:43

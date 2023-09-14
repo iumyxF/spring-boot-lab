@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * @description: 服务端配置文件
  * @Date 2023/3/14 10:47
- * @Author fzy
+ * @author iumyxF
  */
 @Configuration
 public class NettyServerConfig {

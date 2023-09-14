@@ -7,7 +7,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 /**
  * @description: 整合rabbitMq
  * @Date 2023/2/21 14:31
- * @Author fzy
+ * @author iumyxF
  */
 @EnableAsync
 @SpringBootApplication

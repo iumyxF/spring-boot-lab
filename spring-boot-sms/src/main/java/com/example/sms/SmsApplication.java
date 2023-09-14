@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * @description: 短信整合案例
  * @Date 2023/2/15 9:33
- * @Author fzy
+ * @author iumyxF
  */
 @SpringBootApplication
 public class SmsApplication {

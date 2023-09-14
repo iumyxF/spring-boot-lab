@@ -10,7 +10,7 @@ import java.io.Serializable;
 /**
  * @description: 实体
  * @Date 2023/2/14 16:14
- * @Author fzy
+ * @author iumyxF
  */
 @Data
 @TableName("user")

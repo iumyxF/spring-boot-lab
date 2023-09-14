@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 /**
  * @description: 日志操作持久化对象
  * @Date 2023/2/13 10:48
- * @Author fzy
+ * @author iumyxF
  */
 @Data
 @NoArgsConstructor

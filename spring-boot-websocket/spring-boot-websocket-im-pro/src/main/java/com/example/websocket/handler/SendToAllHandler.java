@@ -12,7 +12,7 @@ import org.springframework.web.socket.WebSocketSession;
 /**
  * @description: 广播消息处理器
  * @Date 2023/2/27 15:09
- * @Author fzy
+ * @author iumyxF
  */
 @Component
 public class SendToAllHandler implements MessageHandler<SendToAllRequest> {

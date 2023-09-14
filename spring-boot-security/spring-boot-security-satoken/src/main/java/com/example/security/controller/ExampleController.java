@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * @description: 入门案例
  * @Date 2023/2/25 9:31
- * @Author fzy
+ * @author iumyxF
  */
 @RestController
 @RequestMapping("/example")

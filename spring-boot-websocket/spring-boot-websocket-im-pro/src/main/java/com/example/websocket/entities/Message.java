@@ -9,7 +9,7 @@ package com.example.websocket.entities;
  * }
  * 消息可以根据不同业务进行扩展：用户认证请求、删除一个好友请求等。
  * @Date 2023/2/27 14:21
- * @Author fzy
+ * @author iumyxF
  */
 public interface Message {
 }

@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
- * @author fzy
+ * @author iumyxF
  * @description: 异常断言
  * @date 2023/5/15 10:26
  */

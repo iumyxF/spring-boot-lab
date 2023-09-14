@@ -6,7 +6,7 @@ import lombok.Data;
 /**
  * @description: 退出群组请求
  * @Date 2023/3/30 14:50
- * @Author fzy
+ * @author iumyxF
  */
 @Data
 public class ChatLeaveGroupRequest implements Message {

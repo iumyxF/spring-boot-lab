@@ -9,7 +9,7 @@ import javax.validation.constraints.NotEmpty;
 /**
  * @description: 注册用户表单对象
  * @Date 2023/2/23 14:03
- * @Author fzy
+ * @author iumyxF
  */
 @Data
 @AllArgsConstructor

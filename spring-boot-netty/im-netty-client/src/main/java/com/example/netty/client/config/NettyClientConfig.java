@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * @description:
  * @Date 2023/3/14 16:16
- * @Author fzy
+ * @author iumyxF
  */
 @Configuration
 public class NettyClientConfig {

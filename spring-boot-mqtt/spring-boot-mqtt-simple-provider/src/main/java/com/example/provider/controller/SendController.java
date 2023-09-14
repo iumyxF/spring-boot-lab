@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * @author fzy
+ * @author iumyxF
  * @description: 控制器测试发布消息
  * @date 2023/4/21 14:03
  */

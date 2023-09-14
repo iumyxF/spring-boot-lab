@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * @description: 接口验证拦截器
  * @Date 2023/3/8 10:45
- * @Author fzy
+ * @author iumyxF
  */
 @Slf4j
 public class InterfaceSignInterceptor implements HandlerInterceptor {

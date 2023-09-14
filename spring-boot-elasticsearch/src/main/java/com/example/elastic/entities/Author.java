@@ -5,7 +5,7 @@ import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
 /**
- * @author fzy
+ * @author iumyxF
  * @description:
  * @date 2023/6/3 10:31
  */

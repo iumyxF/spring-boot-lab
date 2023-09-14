@@ -14,7 +14,7 @@ import javax.annotation.Resource;
 /**
  * @description: 群发消息接受处理器
  * @Date 2023/3/15 15:04
- * @Author fzy
+ * @author iumyxF
  */
 @Component
 public class ChatSendToAllHandler implements MessageHandler<ChatSendToAllRequest> {

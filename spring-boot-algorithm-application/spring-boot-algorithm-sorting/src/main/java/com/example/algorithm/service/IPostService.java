@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * The interface Post service.
  *
- * @author fzy
+ * @author iumyxF
  * @description:
  * @date 2023 /4/28 15:56
  */

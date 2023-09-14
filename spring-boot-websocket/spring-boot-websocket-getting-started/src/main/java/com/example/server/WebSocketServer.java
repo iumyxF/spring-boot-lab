@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 /**
  * @description:
  * @Date 2023/2/27 14:02
- * @Author fzy
+ * @author iumyxF
  */
 @Component
 @ServerEndpoint("/websocket/message")

@@ -6,7 +6,7 @@ import static org.assertj.core.api.Fail.fail;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 /**
- * @author fzy
+ * @author iumyxF
  * @description: 生命周期测试用例
  * @date 2023/5/15 9:55
  */

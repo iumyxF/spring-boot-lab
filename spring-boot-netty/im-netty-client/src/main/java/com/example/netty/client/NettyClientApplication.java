@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * @description: 客户端主启动类
  * @Date 2023/3/14 15:47
- * @Author fzy
+ * @author iumyxF
  */
 @SpringBootApplication
 public class NettyClientApplication {

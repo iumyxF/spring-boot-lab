@@ -19,7 +19,7 @@ import java.util.Objects;
 /**
  * @description: 退出登录处理
  * @Date 2023/2/22 9:54
- * @Author fzy
+ * @author iumyxF
  */
 @Configuration
 public class LogoutSuccessHandlerImpl implements LogoutSuccessHandler {

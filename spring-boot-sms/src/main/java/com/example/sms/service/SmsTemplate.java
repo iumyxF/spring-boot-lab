@@ -7,7 +7,7 @@ import java.util.Map;
 /**
  * @description: 短信模板
  * @Date 2023/2/15 10:25
- * @Author fzy
+ * @author iumyxF
  */
 public interface SmsTemplate {
 

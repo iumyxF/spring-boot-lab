@@ -20,7 +20,7 @@ import java.util.Map;
 /**
  * The type Picture service.
  *
- * @author fzy
+ * @author iumyxF
  * @description:
  * @date 2023 /5/31 9:17
  */

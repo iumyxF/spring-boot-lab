@@ -3,7 +3,7 @@ package com.example.netty.file.domain;
 /**
  * @description: 常量
  * @Date 2023/3/11 11:00
- * @Author fzy
+ * @author iumyxF
  */
 public class Constants {
 

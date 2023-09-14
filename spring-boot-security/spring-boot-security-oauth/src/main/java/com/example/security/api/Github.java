@@ -3,7 +3,7 @@ package com.example.security.api;
 /**
  * @description:
  * @Date 2023/3/1 14:21
- * @Author fzy
+ * @author iumyxF
  */
 public class Github extends ApiBinding {
 

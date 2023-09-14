@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 /**
- * @author fzy
+ * @author iumyxF
  * @description: 支付体
  * @date 2023/6/26 9:29
  */

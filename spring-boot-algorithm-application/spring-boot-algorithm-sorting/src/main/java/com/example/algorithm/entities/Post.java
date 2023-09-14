@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 
 /**
- * @author fzy
+ * @author iumyxF
  * @description: 帖子对象
  * @date 2023/4/28 15:50
  */

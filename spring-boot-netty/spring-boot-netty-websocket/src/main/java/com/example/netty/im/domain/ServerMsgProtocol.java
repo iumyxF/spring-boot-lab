@@ -5,7 +5,7 @@ import lombok.Data;
 /**
  * @description: 服务端消息实体
  * @Date 2023/3/13 14:17
- * @Author fzy
+ * @author iumyxF
  */
 @Data
 public class ServerMsgProtocol {

@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 /**
  * @description: 腾讯短信实现
  * @Date 2023/2/15 10:27
- * @Author fzy
+ * @author iumyxF
  */
 @Service
 public class TencentSmsTemplate implements SmsTemplate {

@@ -11,7 +11,7 @@ import java.nio.charset.StandardCharsets;
 /**
  * @description:
  * @Date 2023/3/16 14:28
- * @Author fzy
+ * @author iumyxF
  */
 public class MyClientChannelInitializer extends ChannelInitializer<SocketChannel> {
     @Override

@@ -8,7 +8,7 @@ import org.apache.ibatis.type.JdbcType;
 /**
  * @description: user DAO
  * @Date 2023/2/22 10:15
- * @Author fzy
+ * @author iumyxF
  */
 @Mapper
 public interface UserMapper extends BaseMapper<User> {

@@ -11,7 +11,7 @@ import javax.annotation.Resource;
 /**
  * @description: 注册服务
  * @Date 2023/2/23 14:05
- * @Author fzy
+ * @author iumyxF
  */
 @Service
 public class RegisterService {

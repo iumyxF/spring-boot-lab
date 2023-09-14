@@ -8,7 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * @author fzy
+ * @author iumyxF
  * @description: 视频分辨率转换器
  * @date 2023/5/29 14:31
  */

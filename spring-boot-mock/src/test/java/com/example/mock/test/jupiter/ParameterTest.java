@@ -14,7 +14,7 @@ import static org.junit.jupiter.params.provider.EnumSource.Mode.EXCLUDE;
 import static org.junit.jupiter.params.provider.EnumSource.Mode.MATCH_ALL;
 
 /**
- * @author fzy
+ * @author iumyxF
  * @description: 参数化测试
  * @date 2023/5/15 11:04
  */

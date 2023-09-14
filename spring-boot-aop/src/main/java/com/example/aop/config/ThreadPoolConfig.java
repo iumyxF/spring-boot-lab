@@ -13,7 +13,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 /**
  * @description: 线程池配置
  * @Date 2023/2/13 14:12
- * @Author fzy
+ * @author iumyxF
  */
 @Configuration
 public class ThreadPoolConfig {

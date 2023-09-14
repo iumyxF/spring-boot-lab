@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 /**
- * @author fzy
+ * @author iumyxF
  * @description: 邮箱配置属性】
  * @date 2023/5/3 9:50
  */

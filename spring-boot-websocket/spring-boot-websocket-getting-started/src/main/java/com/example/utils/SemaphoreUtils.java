@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 /**
  * @description:
  * @Date 2023/2/27 14:02
- * @Author fzy
+ * @author iumyxF
  */
 public class SemaphoreUtils {
     /**

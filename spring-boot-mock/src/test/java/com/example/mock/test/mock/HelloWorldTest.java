@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 /**
- * @author fzy
+ * @author iumyxF
  * @description: mock 的简单使用
  * @date 2023/5/22 10:23
  */

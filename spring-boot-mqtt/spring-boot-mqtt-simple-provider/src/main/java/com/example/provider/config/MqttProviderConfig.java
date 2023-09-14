@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @author fzy
+ * @author iumyxF
  * @description:
  * @date 2023/4/21 14:00
  */

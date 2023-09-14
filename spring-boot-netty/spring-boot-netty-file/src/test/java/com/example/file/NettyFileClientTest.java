@@ -10,7 +10,7 @@ import java.io.File;
 /**
  * @description: 客户端文件上传测试
  * @Date 2023/3/11 14:02
- * @Author fzy
+ * @author iumyxF
  */
 public class NettyFileClientTest {
     public static void main(String[] args) {

@@ -5,7 +5,7 @@ import com.example.netty.file.server.NettyServer;
 /**
  * @description: 服务端文件上传测试
  * @Date 2023/3/11 14:04
- * @Author fzy
+ * @author iumyxF
  */
 public class NettyFileServerTest {
     public static void main(String[] args) {

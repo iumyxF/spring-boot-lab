@@ -11,7 +11,7 @@ import java.util.Map;
 /**
  * @description: 创建WebSession拦截器
  * @Date 2023/2/28 10:04
- * @Author fzy
+ * @author iumyxF
  */
 public class WebSocketShakeInterceptor extends HttpSessionHandshakeInterceptor {
 

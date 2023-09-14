@@ -7,7 +7,7 @@ import java.io.Serializable;
 /**
  * @description: 消息实体类
  * @Date 2023/2/21 14:34
- * @Author fzy
+ * @author iumyxF
  */
 @Data
 public class MessageEntity implements Serializable {

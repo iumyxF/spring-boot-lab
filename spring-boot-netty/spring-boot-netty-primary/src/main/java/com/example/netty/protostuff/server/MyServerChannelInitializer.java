@@ -9,7 +9,7 @@ import io.netty.channel.socket.SocketChannel;
 /**
  * @description:
  * @Date 2023/3/10 15:50
- * @Author fzy
+ * @author iumyxF
  */
 public class MyServerChannelInitializer extends ChannelInitializer<SocketChannel> {
 

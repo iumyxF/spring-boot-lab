@@ -7,7 +7,7 @@ import com.example.security.entities.Result;
  *
  * @description:
  * @Date 2023 /2/17 10:39
- * @Author fzy
+ * @author iumyxF
  */
 public interface ILogoutService {
 

@@ -7,7 +7,7 @@ import lombok.EqualsAndHashCode;
 import java.io.Serializable;
 
 /**
- * @author fzy
+ * @author iumyxF
  * @description:
  * @date 2023/5/31 9:07
  */

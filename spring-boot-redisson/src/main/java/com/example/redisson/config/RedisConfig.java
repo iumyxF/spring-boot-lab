@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Configuration;
 import javax.annotation.Resource;
 
 /**
- * @author fzy
+ * @author iumyxF
  * @description: redis配置类
  * @date 2023/5/8 9:51
  */

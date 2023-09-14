@@ -5,7 +5,7 @@ import com.example.netty.file.domain.*;
 /**
  * @description: 消息处理工具类
  * @Date 2023/3/11 11:00
- * @Author fzy
+ * @author iumyxF
  */
 public class MsgUtil {
 

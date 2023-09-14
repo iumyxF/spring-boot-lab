@@ -17,7 +17,7 @@ import javax.annotation.Resource;
 /**
  * @description:
  * @Date 2023/2/17 10:08
- * @Author fzy
+ * @author iumyxF
  */
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)

@@ -9,7 +9,7 @@ import io.netty.channel.socket.SocketChannel;
 /**
  * @description: 服务端自定义handler
  * @Date 2023/3/11 11:00
- * @Author fzy
+ * @author iumyxF
  */
 public class MyServerChannelInitializer extends ChannelInitializer<SocketChannel> {
     @Override

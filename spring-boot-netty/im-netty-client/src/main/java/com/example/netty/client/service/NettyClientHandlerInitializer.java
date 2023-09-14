@@ -14,7 +14,7 @@ import javax.annotation.Resource;
 /**
  * @description: handler初始化器
  * @Date 2023/3/14 15:58
- * @Author fzy
+ * @author iumyxF
  */
 @Component
 public class NettyClientHandlerInitializer extends ChannelInitializer<Channel> {

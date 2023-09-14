@@ -15,7 +15,7 @@ import javax.annotation.Resource;
 /**
  * @description: 退出组请求处理
  * @Date 2023/3/30 14:51
- * @Author fzy
+ * @author iumyxF
  */
 @Component
 public class ChatLeaveGroupRequestHandler implements MessageHandler<ChatLeaveGroupRequest> {

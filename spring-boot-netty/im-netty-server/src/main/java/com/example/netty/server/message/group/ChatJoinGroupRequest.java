@@ -7,7 +7,7 @@ import lombok.ToString;
 /**
  * @description: 加入到某个组中
  * @Date 2023/3/29 14:33
- * @Author fzy
+ * @author iumyxF
  */
 @Data
 @ToString

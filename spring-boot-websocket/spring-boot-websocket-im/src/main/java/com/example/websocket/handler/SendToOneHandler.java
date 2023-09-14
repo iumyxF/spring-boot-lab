@@ -12,7 +12,7 @@ import javax.websocket.Session;
 /**
  * @description: 发送给一个人的消息处理器
  * @Date 2023/2/27 15:05
- * @Author fzy
+ * @author iumyxF
  */
 @Component
 public class SendToOneHandler implements MessageHandler<SendToOneRequest> {

@@ -16,7 +16,7 @@ import javax.annotation.Resource;
 /**
  * @description: 群发消息处理（改良版）
  * @Date 2023/3/29 15:03
- * @Author fzy
+ * @author iumyxF
  */
 @Component
 public class ChatSendToGroupRequestHandler implements MessageHandler<ChatSendToGroupRequest> {

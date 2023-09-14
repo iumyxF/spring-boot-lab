@@ -5,7 +5,7 @@ import com.example.netty.protostuff.domain.MsgInfo;
 /**
  * @description:
  * @Date 2023/3/10 15:49
- * @Author fzy
+ * @author iumyxF
  */
 public class MsgUtil {
 

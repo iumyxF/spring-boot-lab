@@ -12,7 +12,7 @@ import java.io.RandomAccessFile;
 /**
  * @description: 文件处理工具类
  * @Date 2023/3/11 11:00
- * @Author fzy
+ * @author iumyxF
  */
 public class FileUtil {
 

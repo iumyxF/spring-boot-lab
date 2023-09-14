@@ -12,7 +12,7 @@ import java.io.Serializable;
 /**
  * @description: 系统人员实体
  * @Date 2023/2/22 10:03
- * @Author fzy
+ * @author iumyxF
  */
 @TableName("security_user")
 @Data

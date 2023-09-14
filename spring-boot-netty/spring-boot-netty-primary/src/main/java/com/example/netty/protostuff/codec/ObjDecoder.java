@@ -16,7 +16,7 @@ import java.util.List;
  * 此外，protostuff 还可以按照protobuf的配置序列化成json/yaml/xml等格式。
  * 在性能上，protostuff不输原生的protobuf，甚至有反超之势。
  * @Date 2023/3/10 10:56
- * @Author fzy
+ * @author iumyxF
  */
 public class ObjDecoder extends ByteToMessageDecoder {
 

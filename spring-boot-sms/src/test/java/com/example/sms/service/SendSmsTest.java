@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 /**
  * @description: 官方案例测试
  * @Date 2023/2/15 9:52
- * @Author fzy
+ * @author iumyxF
  */
 public class SendSmsTest {
 

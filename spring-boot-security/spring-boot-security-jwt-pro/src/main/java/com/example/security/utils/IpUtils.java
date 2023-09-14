@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * @description: 获取IP地址工具类
  * @Date 2023/2/23 10:12
- * @Author fzy
+ * @author iumyxF
  */
 public class IpUtils {
 

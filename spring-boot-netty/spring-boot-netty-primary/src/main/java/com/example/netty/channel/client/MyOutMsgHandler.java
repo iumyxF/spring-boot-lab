@@ -9,7 +9,7 @@ import java.util.Date;
 /**
  * @description: 客户端处理出站信息
  * @Date 2023/3/10 13:56
- * @Author fzy
+ * @author iumyxF
  */
 public class MyOutMsgHandler extends ChannelOutboundHandlerAdapter {
 

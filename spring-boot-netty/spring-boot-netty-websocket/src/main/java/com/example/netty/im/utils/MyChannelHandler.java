@@ -7,7 +7,7 @@ import io.netty.util.concurrent.GlobalEventExecutor;
 /**
  * @description: 存储用户channel
  * @Date 2023/3/13 14:47
- * @Author fzy
+ * @author iumyxF
  */
 public class MyChannelHandler {
 

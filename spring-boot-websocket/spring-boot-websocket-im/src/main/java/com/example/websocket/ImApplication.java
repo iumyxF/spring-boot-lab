@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * @description: 聊天室案例 基于tomcat session的websocket
  * @Date 2023/2/27 14:12
- * @Author fzy
+ * @author iumyxF
  */
 @SpringBootApplication
 public class ImApplication {

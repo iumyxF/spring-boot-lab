@@ -19,7 +19,7 @@ import java.net.InetSocketAddress;
 /**
  * @description: 主启动类
  * @Date 2023/3/14 10:47
- * @Author fzy
+ * @author iumyxF
  */
 @Slf4j
 @Component("nettyServer")

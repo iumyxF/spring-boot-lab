@@ -34,7 +34,7 @@ import java.time.format.DateTimeFormatter;
 /**
  * @description: redis序列化配置，解决了嵌套问题
  * @Date 2023/2/17 10:57
- * @Author fzy
+ * @author iumyxF
  */
 @Configuration
 @EnableCaching

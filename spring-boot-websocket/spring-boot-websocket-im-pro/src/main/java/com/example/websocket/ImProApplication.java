@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * Tomcat WebSocket使用的是Session作为会话,
  * 而Spring WebSocket使用的是WebSocketSession作为会话
  * @Date 2023/2/27 14:12
- * @Author fzy
+ * @author iumyxF
  */
 @SpringBootApplication
 public class ImProApplication {

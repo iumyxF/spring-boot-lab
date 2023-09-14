@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * @description:
  * @Date 2023/2/22 9:10
- * @Author fzy
+ * @author iumyxF
  */
 @SpringBootApplication
 public class JwtApplication {

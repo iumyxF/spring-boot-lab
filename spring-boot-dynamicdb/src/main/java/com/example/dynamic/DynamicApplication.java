@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * @description: 多数据源启动器
  * @Date 2023/2/14 16:01
- * @Author fzy
+ * @author iumyxF
  */
 @SpringBootApplication
 public class DynamicApplication {

@@ -7,7 +7,7 @@ import java.nio.charset.StandardCharsets;
 /**
  * @description: byteBuffer中粘包和半包问题
  * @Date 2023/3/6 16:43
- * @Author fzy
+ * @author iumyxF
  */
 public class StickyAndSemi {
     /**

@@ -11,7 +11,7 @@ import java.util.Date;
 /**
  * @description: udp消息处理
  * @Date 2023/3/13 9:42
- * @Author fzy
+ * @author iumyxF
  */
 public class MyClientHandler extends SimpleChannelInboundHandler<DatagramPacket> {
     @Override

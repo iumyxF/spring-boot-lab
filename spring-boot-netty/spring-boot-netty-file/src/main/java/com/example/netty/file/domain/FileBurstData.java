@@ -3,7 +3,7 @@ package com.example.netty.file.domain;
 /**
  * @description: 文件分片数据块
  * @Date 2023/3/11 10:58
- * @Author fzy
+ * @author iumyxF
  */
 public class FileBurstData {
     /**

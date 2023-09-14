@@ -8,7 +8,7 @@ import java.util.UUID;
 /**
  * @description:
  * @Date 2023/3/27 16:42
- * @Author fzy
+ * @author iumyxF
  */
 public class MyClientHandler extends SimpleChannelInboundHandler<String> {
 

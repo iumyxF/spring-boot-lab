@@ -10,7 +10,7 @@ import javax.annotation.Resource;
 /**
  * @description:
  * @Date 2023/3/9 14:58
- * @Author fzy
+ * @author iumyxF
  */
 @RestController
 @RequestMapping(value = "/server")

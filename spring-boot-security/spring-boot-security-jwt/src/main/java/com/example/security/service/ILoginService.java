@@ -8,7 +8,7 @@ import com.example.security.entities.User;
  *
  * @description:
  * @Date 2023 /2/17 9:56
- * @Author fzy
+ * @author iumyxF
  */
 public interface ILoginService {
 

@@ -11,7 +11,7 @@ import javax.annotation.Resource;
 /**
  * @description: 服务端 Channel 实现类，提供对客户端 Channel 建立连接、断开连接、异常时的处理
  * @Date 2023/3/14 14:42
- * @Author fzy
+ * @author iumyxF
  */
 @Slf4j
 @Component

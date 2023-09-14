@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * @author fzy
+ * @author iumyxF
  * @description: junit5 测试使用实体
  * @date 2023/5/15 10:03
  */

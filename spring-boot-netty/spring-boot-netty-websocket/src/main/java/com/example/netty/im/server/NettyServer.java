@@ -14,7 +14,7 @@ import java.net.InetSocketAddress;
 /**
  * @description: netty服务端 交给spring容器管理
  * @Date 2023/3/13 14:18
- * @Author fzy
+ * @author iumyxF
  */
 @Slf4j
 @Component("nettyServer")

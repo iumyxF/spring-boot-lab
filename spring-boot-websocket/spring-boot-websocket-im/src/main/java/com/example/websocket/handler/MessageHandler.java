@@ -7,7 +7,7 @@ import javax.websocket.Session;
 /**
  * @description: 消息处理器
  * @Date 2023/2/27 14:40
- * @Author fzy
+ * @author iumyxF
  */
 public interface MessageHandler<T extends Message> {
 

@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.exmaple.jsop.domain.entities.Picture;
 
 /**
- * @author fzy
+ * @author iumyxF
  * @description:
  * @date 2023/5/31 9:15
  */

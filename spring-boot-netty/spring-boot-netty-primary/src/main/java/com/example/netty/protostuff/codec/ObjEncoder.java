@@ -8,7 +8,7 @@ import io.netty.handler.codec.MessageToByteEncoder;
 /**
  * @description: 编码器
  * @Date 2023/3/10 15:49
- * @Author fzy
+ * @author iumyxF
  */
 public class ObjEncoder extends MessageToByteEncoder {
 

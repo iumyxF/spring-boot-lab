@@ -3,7 +3,7 @@ package com.example.sms.exception;
 /**
  * @description: 短信异常
  * @Date 2023/2/15 10:30
- * @Author fzy
+ * @author iumyxF
  */
 public class SmsException extends RuntimeException {
 

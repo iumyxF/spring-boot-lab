@@ -5,7 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * @author fzy
+ * @author iumyxF
  * @description: 图片实体
  * @date 2023/5/31 9:06
  */

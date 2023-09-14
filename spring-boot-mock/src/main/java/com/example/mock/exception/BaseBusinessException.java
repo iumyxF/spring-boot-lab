@@ -3,7 +3,7 @@ package com.example.mock.exception;
 /**
  * @description: 业务异常
  * @Date 2023/2/11 10:57
- * @Author fzy
+ * @author iumyxF
  */
 public class BaseBusinessException extends RuntimeException {
 

@@ -5,7 +5,7 @@ import java.lang.annotation.*;
 /**
  * @description: 定义一个普通注解
  * @Date 2023/2/13 10:27
- * @Author fzy
+ * @author iumyxF
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)

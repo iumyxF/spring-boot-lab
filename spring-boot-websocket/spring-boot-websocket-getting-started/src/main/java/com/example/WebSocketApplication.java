@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * @description: websocket入门案例
  * @Date 2023/2/27 14:02
- * @Author fzy
+ * @author iumyxF
  */
 @SpringBootApplication
 public class WebSocketApplication {

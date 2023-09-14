@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 /**
  * @description: 心跳响应处理器
  * @Date 2023/3/15 10:14
- * @Author fzy
+ * @author iumyxF
  */
 @Slf4j
 @Component

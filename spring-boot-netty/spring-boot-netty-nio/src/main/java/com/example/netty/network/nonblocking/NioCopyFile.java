@@ -12,7 +12,7 @@ import java.nio.channels.FileChannel;
 /**
  * @description: 使用NIO对文件进行复制
  * @Date 2023/3/7 13:43
- * @Author fzy
+ * @author iumyxF
  */
 public class NioCopyFile {
 

@@ -31,7 +31,7 @@ import java.util.Objects;
  * {"type":"SEND_TO_ONE_REQUEST","body":{"toUser":"番茄","msgId":"eaef4a3c-35dd-46ee-b548-f9c4eb6396fe","content":"我是一条单聊消息"}}
  * {"type":"SEND_TO_ALL_REQUEST","body":{"msgId":"838e97e1-6ae9-40f9-99c3-f7127ed64747","content":"我是一条群聊消息"}}
  * @Date 2023/2/27 14:14
- * @Author fzy
+ * @author iumyxF
  */
 @Component
 @ServerEndpoint("/websocket/im")

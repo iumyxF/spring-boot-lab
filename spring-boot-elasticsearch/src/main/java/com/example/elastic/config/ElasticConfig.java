@@ -10,7 +10,7 @@ import org.springframework.data.elasticsearch.config.AbstractElasticsearchConfig
 import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
 
 /**
- * @author fzy
+ * @author iumyxF
  * @description:
  * @date 2023/6/3 10:28
  */

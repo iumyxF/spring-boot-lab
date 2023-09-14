@@ -9,7 +9,7 @@ import io.netty.handler.stream.ChunkedWriteHandler;
 /**
  * @description:
  * @Date 2023/3/13 14:42
- * @Author fzy
+ * @author iumyxF
  */
 public class MyChannelInitializer extends ChannelInitializer<SocketChannel> {
     @Override

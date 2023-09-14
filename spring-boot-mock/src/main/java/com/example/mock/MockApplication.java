@@ -15,7 +15,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * 4.2、是否与模拟输入数据匹配：用户需要1斤猪肉，不能返回5斤猪肉的数据
  * 4.3、是否与api层的所有分支匹配：部分api层会对返回值进行响应码(2xx || 3xx || 4xx)校验，这类场景便需要构造不同响应码的Mock数据
  * @Date 2023/2/11 10:31
- * @Author fzy
+ * @author iumyxF
  */
 @SpringBootApplication
 public class MockApplication {

@@ -10,7 +10,7 @@ import lombok.ToString;
 /**
  * @description: 消息传输协议实体
  * @Date 2023/3/14 10:58
- * @Author fzy
+ * @author iumyxF
  */
 @Data
 @NoArgsConstructor

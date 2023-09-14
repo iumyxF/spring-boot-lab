@@ -11,7 +11,7 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 /**
  * @description: netty 客户端
  * @Date 2023/3/9 10:27
- * @Author fzy
+ * @author iumyxF
  */
 public class NettyClient {
     public static void main(String[] args) throws InterruptedException {

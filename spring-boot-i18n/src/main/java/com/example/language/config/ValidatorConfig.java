@@ -14,7 +14,7 @@ import java.util.Properties;
 /**
  * @description: 校验配置
  * @Date 2023/2/17 14:42
- * @Author fzy
+ * @author iumyxF
  */
 @Configuration
 public class ValidatorConfig {

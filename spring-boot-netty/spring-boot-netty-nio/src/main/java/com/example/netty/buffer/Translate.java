@@ -6,7 +6,7 @@ import java.nio.charset.StandardCharsets;
 /**
  * @description: String 和 byteBuffer的转换
  * @Date 2023/3/6 16:29
- * @Author fzy
+ * @author iumyxF
  */
 public class Translate {
     public static void main(String[] args) {

@@ -5,7 +5,7 @@ import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 /**
- * @author fzy
+ * @author iumyxF
  * @description:
  * @date 2023/4/21 14:09
  */

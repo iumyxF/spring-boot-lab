@@ -9,7 +9,7 @@ import org.springframework.data.elasticsearch.repository.ElasticsearchRepository
 /**
  * The interface Article repository.
  *
- * @author fzy
+ * @author iumyxF
  * @description: query语句中的?0是占位符
  * @date 2023 /6/3 10:27
  */

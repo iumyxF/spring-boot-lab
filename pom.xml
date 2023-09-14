@@ -38,6 +38,7 @@
         <module>spring-boot-pay</module>
         <module>spring-boot-transaction</module>
         <module>spring-boot-java</module>
+        <module>spring-boot-workflow</module>
     </modules>
 
     <properties>
@@ -63,6 +64,7 @@
         <p6spy.version>3.9.1</p6spy.version>
         <commons-io.version>2.12.0</commons-io.version>
         <aliyun-sdk-oss.version>3.16.0</aliyun-sdk-oss.version>
+        <flowable.version>6.6.0</flowable.version>
     </properties>
 
     <dependencyManagement>
@@ -221,6 +223,12 @@
                 <groupId>com.aliyun.oss</groupId>
                 <artifactId>aliyun-sdk-oss</artifactId>
                 <version>${aliyun-sdk-oss.version}</version>
+            </dependency>
+            <!--工作流flowable-->
+            <dependency>
+                <groupId>org.flowable</groupId>
+                <artifactId>flowable-spring-boot-starter</artifactId>
+                <version>${flowable.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

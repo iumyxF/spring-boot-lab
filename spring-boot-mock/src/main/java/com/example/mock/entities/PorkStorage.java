@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 /**
  * @description: 猪肉库存的数据库实体类
  * @Date 2023/2/11 10:40
- * @Author fzy
+ * @author iumyxF
  */
 @Data
 @NoArgsConstructor

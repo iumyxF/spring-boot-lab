@@ -14,7 +14,7 @@ import javax.annotation.Resource;
 /**
  * @description: 认证请求处理器
  * @Date 2023/3/14 15:28
- * @Author fzy
+ * @author iumyxF
  */
 @Component
 public class AuthRequestHandler implements MessageHandler<AuthRequest> {

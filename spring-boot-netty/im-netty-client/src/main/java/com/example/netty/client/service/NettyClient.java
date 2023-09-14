@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * @description: netty客户端
  * @Date 2023/3/14 15:47
- * @Author fzy
+ * @author iumyxF
  */
 @Slf4j
 @Component

@@ -17,7 +17,7 @@ import java.io.Serializable;
 /**
  * @description: 认证失败处理，返回未授权
  * @Date 2023/2/22 9:48
- * @Author fzy
+ * @author iumyxF
  */
 @Component
 public class AuthenticationEntryPointImpl implements AuthenticationEntryPoint, Serializable {

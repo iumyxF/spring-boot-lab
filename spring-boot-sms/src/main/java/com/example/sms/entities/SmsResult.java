@@ -6,7 +6,7 @@ import lombok.Data;
 /**
  * @description: 短信上传返回实体
  * @Date 2023/2/15 10:25
- * @Author fzy
+ * @author iumyxF
  */
 @Data
 @Builder

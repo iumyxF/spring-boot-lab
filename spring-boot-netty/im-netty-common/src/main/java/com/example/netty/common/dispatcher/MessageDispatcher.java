@@ -13,7 +13,7 @@ import java.util.concurrent.Executors;
 /**
  * @description: 消息分发器
  * @Date 2023/3/14 11:06
- * @Author fzy
+ * @author iumyxF
  */
 @ChannelHandler.Sharable
 public class MessageDispatcher extends SimpleChannelInboundHandler<Invocation> {

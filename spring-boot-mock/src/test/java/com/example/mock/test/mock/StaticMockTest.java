@@ -13,7 +13,7 @@ import static org.mockito.Mockito.mockStatic;
 import static org.mockito.Mockito.when;
 
 /**
- * @author fzy
+ * @author iumyxF
  * @description: PowerMock 实现静态方法的测试
  * @date 2023/5/22 14:27
  */

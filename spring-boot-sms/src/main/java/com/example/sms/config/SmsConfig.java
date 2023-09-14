@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * @description: 短信配置类
  * @Date 2023/2/15 10:23
- * @Author fzy
+ * @author iumyxF
  */
 
 @Configuration
