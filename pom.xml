@@ -39,6 +39,7 @@
         <module>spring-boot-transaction</module>
         <module>spring-boot-java</module>
         <module>spring-boot-workflow</module>
+        <module>spring-boot-stream-media</module>
     </modules>
 
     <properties>
@@ -65,6 +66,9 @@
         <commons-io.version>2.12.0</commons-io.version>
         <aliyun-sdk-oss.version>3.16.0</aliyun-sdk-oss.version>
         <flowable.version>6.6.0</flowable.version>
+        <javacv.version>1.5.9</javacv.version>
+        <opencv-platform-gpu.version>4.7.0-1.5.9</opencv-platform-gpu.version>
+        <ffmpeg-platform-gpl.version>6.0-1.5.9</ffmpeg-platform-gpl.version>
     </properties>
 
     <dependencyManagement>
@@ -229,6 +233,25 @@
                 <groupId>org.flowable</groupId>
                 <artifactId>flowable-spring-boot-starter</artifactId>
                 <version>${flowable.version}</version>
+            </dependency>
+            <!--javaCV-->
+            <dependency>
+                <groupId>org.bytedeco</groupId>
+                <artifactId>javacv-platform</artifactId>
+                <version>${javacv.version}</version>
+            </dependency>
+            <!-- Additional dependencies required to use CUDA and cuDNN -->
+            <dependency>
+                <groupId>org.bytedeco</groupId>
+                <artifactId>opencv-platform-gpu</artifactId>
+                <version>${opencv-platform-gpu.version}</version>
+            </dependency>
+
+            <!-- Optional GPL builds with (almost) everything enabled -->
+            <dependency>
+                <groupId>org.bytedeco</groupId>
+                <artifactId>ffmpeg-platform-gpl</artifactId>
+                <version>${ffmpeg-platform-gpl.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
