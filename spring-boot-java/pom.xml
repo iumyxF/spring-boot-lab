@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>java-basic-juc</module>
+        <module>java-bloom-filter</module>
     </modules>
 
 </project>

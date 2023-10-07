@@ -13,7 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * @author fzy
+ * @author iumyx
  * @description: 抓取本地MP4文件 推流到SRS服务器上，目前缺点：掉帧、画面模糊
  * @date 2023/9/27 16:08
  */
