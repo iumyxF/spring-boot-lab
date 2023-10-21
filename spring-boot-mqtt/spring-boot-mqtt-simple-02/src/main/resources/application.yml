@@ -1,0 +1,22 @@
+server:
+  port: 9099
+spring:
+  #给项目来个名字
+  application:
+    name: mqtt-demo-02
+  #MQTT-用户名
+  mqtt:
+    username: admin
+    #MQTT-密码password: password
+    password: admin
+    #MQTT-服务器连接地址，如果有多个，用逗号隔开，如：tcp://127.0.0.1:1883，tcp://192.168.2.133:1883
+    url: tcp://127.0.0.1:1883
+    #MQTT-连接服务器默认客户端ID
+    client:
+      id: mqtt-demo-02
+    #MQTT-默认的消息推送主题，实际可在调用接口时指定
+    default:
+      topic: topic
+      myGo: soyorin
+    #连接超时
+    completionTimeout: 3000
