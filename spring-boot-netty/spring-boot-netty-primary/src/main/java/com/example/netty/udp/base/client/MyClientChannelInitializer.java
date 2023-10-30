@@ -1,4 +1,4 @@
-package com.example.netty.udp.client;
+package com.example.netty.udp.base.client;
 
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.socket.nio.NioDatagramChannel;

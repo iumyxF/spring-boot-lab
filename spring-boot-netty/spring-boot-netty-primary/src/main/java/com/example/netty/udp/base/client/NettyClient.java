@@ -1,4 +1,4 @@
-package com.example.netty.udp.client;
+package com.example.netty.udp.base.client;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.ByteBuf;
@@ -20,20 +20,16 @@ public class NettyClient {
 
     public static void main(String[] args) {
         NioEventLoopGroup group = new NioEventLoopGroup();
-
         try {
             Bootstrap b = new Bootstrap();
             //设置udp channel
             b.group(group).channel(NioDatagramChannel.class)
                     .handler(new MyClientChannelInitializer());
-
             Channel channel = b.bind(7398).sync().channel();
-
             //构建UDP消息体,DatagramPacket
             InetSocketAddress address = new InetSocketAddress("127.0.0.1", 7397);
             ByteBuf buffer = Unpooled.copiedBuffer("hello server,i am udp client!", StandardCharsets.UTF_8);
             DatagramPacket datagramPacket = new DatagramPacket(buffer, address);
-
             channel.writeAndFlush(datagramPacket);
             channel.closeFuture().await();
         } catch (Exception e) {

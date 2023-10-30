@@ -1,4 +1,4 @@
-package com.example.netty.udp.server;
+package com.example.netty.udp.base.server;
 
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;

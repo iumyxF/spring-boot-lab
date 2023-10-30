@@ -1,4 +1,4 @@
-package com.example.netty.udp.server;
+package com.example.netty.udp.base.server;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
