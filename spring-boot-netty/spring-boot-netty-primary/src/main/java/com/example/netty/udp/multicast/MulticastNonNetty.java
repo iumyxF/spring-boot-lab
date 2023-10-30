@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * @author fzy
+ * @author iumyxF
  * @description: 不使用netty监听组播信息
  * @date 2023/10/26 15:47
  */

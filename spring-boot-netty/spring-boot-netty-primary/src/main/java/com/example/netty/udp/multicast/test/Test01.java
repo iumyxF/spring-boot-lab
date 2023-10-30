@@ -16,7 +16,7 @@ import java.net.InetSocketAddress;
 import java.net.NetworkInterface;
 
 /**
- * @author fzy
+ * @author iumyxF
  * @description: 来源newBing
  * 出现的问题：IPv6 socket cannot join IPv4 multicast group
  * @date 2023/10/30 9:40

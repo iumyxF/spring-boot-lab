@@ -12,7 +12,7 @@ import java.net.*;
 import java.util.Enumeration;
 
 /**
- * @author fzy
+ * @author iumyxF
  * @description: 使用Netty监听组播信息
  * @date 2023/10/30 9:19
  */

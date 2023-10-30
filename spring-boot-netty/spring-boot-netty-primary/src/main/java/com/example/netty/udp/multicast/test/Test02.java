@@ -12,7 +12,7 @@ import java.net.InetSocketAddress;
 import java.net.NetworkInterface;
 
 /**
- * @author fzy
+ * @author iumyxF
  * @description: EpollEventLoopGroup 只能用于Linux环境下
  * @date 2023/10/30 10:14
  */
