@@ -9,11 +9,17 @@ import io.netty.channel.ChannelPipeline;
 import io.netty.util.CharsetUtil;
 
 /**
+ * @author iumyxF
  * @description: 服务端handler处理
  * @Date 2023/3/9 10:25
- * @author iumyxF
  */
 public class NettyServerHandler extends ChannelInboundHandlerAdapter {
+
+    @Override
+    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        System.out.println("[服务端] 有新的channel 加入" + System.currentTimeMillis());
+    }
+
     /**
      * 读取客户端发送过来的消息
      *

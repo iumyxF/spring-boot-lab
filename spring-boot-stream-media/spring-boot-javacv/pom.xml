@@ -16,16 +16,26 @@
             <groupId>org.bytedeco</groupId>
             <artifactId>javacv-platform</artifactId>
         </dependency>
-        <!-- Additional dependencies required to use CUDA and cuDNN -->
+         <!--Additional dependencies required to use CUDA and cuDNN -->
         <dependency>
             <groupId>org.bytedeco</groupId>
             <artifactId>opencv-platform-gpu</artifactId>
         </dependency>
 
-        <!-- Optional GPL builds with (almost) everything enabled -->
+         <!--Optional GPL builds with (almost) everything enabled -->
         <dependency>
             <groupId>org.bytedeco</groupId>
             <artifactId>ffmpeg-platform-gpl</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
         </dependency>
     </dependencies>
 </project>

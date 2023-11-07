@@ -65,4 +65,35 @@ public class NetUtils {
         }
         return localIPlist;
     }
+
+    public static NetworkInterface getNetworkInterface() {
+        try {
+            Enumeration<NetworkInterface> allNetInterfaces = NetworkInterface.getNetworkInterfaces();
+            while (allNetInterfaces.hasMoreElements()) {
+                NetworkInterface netInterface = allNetInterfaces.nextElement();
+                // 去除回环接口，子接口，未运行和接口
+                if (netInterface.isLoopback() || netInterface.isVirtual() || !netInterface.isUp()) {
+                    continue;
+                }
+                if (!netInterface.getDisplayName().contains("Intel")
+                        && !netInterface.getDisplayName().contains("Realtek")
+                        && !netInterface.getDisplayName().contains("ens33")) {
+                    continue;
+                }
+                Enumeration<InetAddress> addresses = netInterface.getInetAddresses();
+                while (addresses.hasMoreElements()) {
+                    InetAddress ip = addresses.nextElement();
+                    if (ip != null) {
+                        if (ip instanceof Inet4Address) {
+                            return netInterface;
+                        }
+                    }
+                }
+                break;
+            }
+        } catch (SocketException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
 }

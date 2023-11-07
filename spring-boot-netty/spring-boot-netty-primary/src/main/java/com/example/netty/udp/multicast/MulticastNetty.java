@@ -34,7 +34,7 @@ public class MulticastNetty {
     }
 
     public void startServer() {
-        NetworkInterface networkInterface = NetUtils.getNetworkInterfaceByName(networkInterfaceName);
+        NetworkInterface networkInterface = NetUtils.getNetworkInterface();
         Inet6Address networkInterfaceAddress = getLocalAddress(networkInterface);
         NioEventLoopGroup group = new NioEventLoopGroup();
         try {

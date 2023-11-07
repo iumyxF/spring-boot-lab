@@ -1,7 +1,7 @@
-package com.example.netty.demo.client;
+package com.example.netty.media.client;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.util.CharsetUtil;
@@ -12,6 +12,9 @@ import io.netty.util.CharsetUtil;
  * @Date 2023/3/9 10:28
  */
 public class NettyClientHandler extends ChannelInboundHandlerAdapter {
+
+    private final static ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+
     /**
      * 当通道就绪就会触发
      *
@@ -20,7 +23,7 @@ public class NettyClientHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelActive(ChannelHandlerContext ctx) {
         System.out.println("[客户端] : 上下文对象 ctx = " + System.currentTimeMillis());
-        ctx.writeAndFlush(Unpooled.copiedBuffer("[客户端] : 服务端我需要用户列表数据...", CharsetUtil.UTF_8));
+        //ctx.writeAndFlush(Unpooled.copiedBuffer("[客户端] : 服务端我需要用户列表数据...", CharsetUtil.UTF_8));
     }
 
     /**

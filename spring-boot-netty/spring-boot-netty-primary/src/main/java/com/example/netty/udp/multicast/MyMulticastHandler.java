@@ -11,7 +11,7 @@ import io.netty.channel.socket.DatagramPacket;
  */
 public class MyMulticastHandler extends SimpleChannelInboundHandler<DatagramPacket> {
     @Override
-    protected void channelRead0(ChannelHandlerContext channelHandlerContext, DatagramPacket packet) throws Exception {
+    protected void channelRead0(ChannelHandlerContext channelHandlerContext, DatagramPacket packet) {
         System.err.println("接收到的消息: " + packet);
     }
 }
