@@ -25,13 +25,13 @@ public class Source implements Serializable {
     /**
      *
      */
-    private String reamark;
+    private String remark;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 
-    public Source(String reamark) {
-        this.reamark = reamark;
+    public Source(String remark) {
+        this.remark = remark;
     }
 
     @Override
@@ -47,7 +47,7 @@ public class Source implements Serializable {
         }
         Source other = (Source) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-                && (this.getReamark() == null ? other.getReamark() == null : this.getReamark().equals(other.getReamark()));
+                && (this.getRemark() == null ? other.getRemark() == null : this.getRemark().equals(other.getRemark()));
     }
 
     @Override
@@ -55,20 +55,19 @@ public class Source implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-        result = prime * result + ((getReamark() == null) ? 0 : getReamark().hashCode());
+        result = prime * result + ((getRemark() == null) ? 0 : getRemark().hashCode());
         return result;
     }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", reamark=").append(reamark);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
+        String sb = getClass().getSimpleName() +
+                " [" +
+                "Hash = " + hashCode() +
+                ", id=" + id +
+                ", reamark=" + remark +
+                ", serialVersionUID=" + serialVersionUID +
+                "]";
+        return sb;
     }
 }
