@@ -40,13 +40,14 @@
         <module>spring-boot-java</module>
         <module>spring-boot-workflow</module>
         <module>spring-boot-stream-media</module>
+        <module>spring-boot-office</module>
     </modules>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring-boot.version>2.7.12</spring-boot.version>
+        <spring-boot.version>2.7.18</spring-boot.version>
         <lombok.version>1.18.24</lombok.version>
         <hutool.version>5.8.18</hutool.version>
         <mapstruct.version>1.5.3.Final</mapstruct.version>
@@ -270,19 +271,4 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.7.0</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-
 </project>

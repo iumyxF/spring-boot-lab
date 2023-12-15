@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--这里的js指的是安装onlyOffice的服务器地址-->
+    <script type="text/javascript" src="http://ip:port/web-apps/apps/api/documents/api.js"></script>
+    <script>
+        document.write('<script src="http://ip:port/web-apps/apps/api/documents/api.js"><\/script>');
+        const config = {
+            "type": "desktop",
+            "mode": "review",
+            "documentType": "word",
+            "document": {
+                "fileType": "docx",
+                "key": "Khirz6zTPdfd7",
+                "info": {},
+                "permissions": {
+                    "comment": true,
+                    "copy": true,
+                    "download": true,
+                    "edit": true,
+                    "print": true,
+                    "fillForms": true,
+                    "modifyFilter": true,
+                    "modifyContentControl": true,
+                    "review": true,
+                    "commentGroups": {}
+                },
+                "title": "testWrod",
+                // 文件的互联网访问路径 对应OfficeController中的fileUrl
+                "url": "xxx"
+            },
+            "editorConfig": {
+                "mode": "edit",
+                // 对应OfficeController中的callbackUrl
+                "callbackUrl": "xxx",
+                "lang": "zh",
+                "createUrl": "",
+                "templates": [],
+                "user": {
+                    "id": "78e1e841",
+                    "name": "zoe"
+                },
+                "customization": {
+                    "forcesave": true,
+                    "submitForm": false,
+                    "about": true,
+                    "feedback": false
+                },
+                "canCoAuthoring": true,
+                "canUseHistory": true,
+                "canHistoryClose": true,
+                "canHistoryRestore": false,
+                "canSendEmailAddresses": false,
+                "canRequestEditRights": true,
+                "canRequestClose": false,
+                "canRename": false,
+                "canMakeActionLink": true,
+                "canRequestUsers": true,
+                "canRequestSendNotify": true,
+                "canRequestSaveAs": true,
+                "canRequestInsertImage": true,
+                "canRequestMailMergeRecipients": true
+            },
+            "width": "100%",
+            "height": "100%",
+            "token": "[[${token}]]",
+            "frameEditorId": "iframeEditor",
+
+        }
+        var connectEditor = function () {
+            new DocsAPI.DocEditor("placeholder", config);
+        };
+        if (window.addEventListener) {
+            window.addEventListener("load", connectEditor);
+        } else if (window.attachEvent) {
+            window.attachEvent("load", connectEditor);
+        }
+    </script>
+    <title>在线编辑文档</title>
+</head>
+<body style="height: 500px ; margin: 0;">
+<div id="placeholder" style="height: 100%"></div>
+</body>
+</html>
