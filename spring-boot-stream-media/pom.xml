@@ -15,6 +15,7 @@
         <module>spring-boot-javacv</module>
         <module>simple-grab-push</module>
         <module>spring-boot-jcodec</module>
+        <module>spring-boot-hls</module>
     </modules>
 
 </project>
