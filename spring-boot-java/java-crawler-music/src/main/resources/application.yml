@@ -1,0 +1,5 @@
+server:
+  port: 9099
+
+crawler:
+  path: F:\testData\crawler
