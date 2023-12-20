@@ -1,37 +1,29 @@
 package com.example.crawler.service.impl;
 
 import com.example.crawler.model.search.Music;
-import org.junit.Before;
 import org.junit.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
-import org.slf4j.Logger;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import java.util.List;
-import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * @author iumyxF
  * @description:
- * @date 2023/12/19 10:10
+ * @date 2023/12/20 11:45
  */
-public class NetEaseMusicServiceImplTest {
-    @Mock
-    Logger log;
-    @InjectMocks
-    NetEaseMusicServiceImpl netEaseMusicServiceImpl;
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class NetEaseMusicServiceImplWebTest {
 
-    @Before
-    public void setUp() {
-        MockitoAnnotations.openMocks(this);
-    }
+    @Autowired
+    private NetEaseMusicServiceImpl netEaseMusicServiceImpl;
 
     /**
-     * 单线程 100首下载时间29秒
+     * 多线程 100首下载时间16秒
      */
     @Test
     public void testSearchMusic() {
@@ -39,7 +31,7 @@ public class NetEaseMusicServiceImplTest {
         ReflectionTestUtils.setField(netEaseMusicServiceImpl, "path", "F:\\testData\\crawler");
         List<Music> result = netEaseMusicServiceImpl.searchMusic(1, 100, "周杰伦");
         long startTime = System.currentTimeMillis();
-        netEaseMusicServiceImpl.downloadSingleThreaded(result);
+        netEaseMusicServiceImpl.download(result);
         long endTime = System.currentTimeMillis();
         System.out.println("下载歌曲所耗费时间 : " + ((endTime - startTime) / 1000) + "秒");
     }

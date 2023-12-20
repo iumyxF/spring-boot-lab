@@ -8,15 +8,20 @@ import com.example.crawler.model.download.DownloadRequest;
 import com.example.crawler.model.search.Artist;
 import com.example.crawler.model.search.Music;
 import com.example.crawler.service.IMusicService;
+import com.example.crawler.utils.DownloadUtils;
+import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Service;
 
-import com.example.crawler.utils.DownloadUtils;
-
+import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * @author iumyxF
@@ -30,12 +35,23 @@ public class NetEaseMusicServiceImpl implements IMusicService {
     @Value("${crawler.path}")
     private String path;
 
+    @Resource(name = "threadPoolTaskExecutor")
+    private ThreadPoolTaskExecutor taskExecutor;
+
     /**
      * https://music.163.com/api/search/get/web?type=1&offset=2&total=false&limit=2&s=%E5%91%A8%E6%9D%B0%E4%BC%A6
      */
     private static final String SEARCH_MUSIC_URL = "https://music.163.com/api/search/get/web";
 
     private static final String DOWNLOAD_URL = "http://music.163.com/song/media/outer/url?id=%s.mp3";
+
+    @PostConstruct
+    public void init() {
+        File file = new File(path);
+        if (!file.exists()) {
+            file.mkdir();
+        }
+    }
 
     @Override
     public List<Music> searchMusic(Integer page, Integer size, String key) {
@@ -80,7 +96,41 @@ public class NetEaseMusicServiceImpl implements IMusicService {
                 fileName.append(artist.getName()).append("-");
             }
             fileName.append(music.getName()).append(".mp3");
-            requestList.add(new DownloadRequest(url, fileName.toString(), path));
+            String replace = fileName.toString()
+                    .replace('/', '-')
+                    .replace('\\', '-');
+            requestList.add(new DownloadRequest(url, replace, path));
+        }
+        List<List<DownloadRequest>> partition = Lists.partition(requestList, 15);
+        List<CompletableFuture<Boolean>> futures = new ArrayList<>(partition.size());
+        for (List<DownloadRequest> requests : partition) {
+            CompletableFuture<Boolean> future = CompletableFuture.supplyAsync(() -> {
+                requests.forEach(DownloadUtils::downloadFile);
+                return true;
+            }, taskExecutor);
+            futures.add(future);
+        }
+        futures.forEach(CompletableFuture::join);
+        log.info("下载完毕");
+    }
+
+    public void downloadSingleThreaded(List<Music> musicList) {
+        if (CollUtil.isEmpty(musicList)) {
+            log.info("带下载列表为空");
+            return;
+        }
+        ArrayList<DownloadRequest> requestList = new ArrayList<>(musicList.size());
+        for (Music music : musicList) {
+            String url = String.format(DOWNLOAD_URL, music.getId());
+            StringBuilder fileName = new StringBuilder();
+            for (Artist artist : music.getArtists()) {
+                fileName.append(artist.getName()).append("-");
+            }
+            fileName.append(music.getName()).append(".mp3");
+            String replace = fileName.toString()
+                    .replace('/', '-')
+                    .replace('\\', '-');
+            requestList.add(new DownloadRequest(url, replace, path));
         }
         if (requestList.size() > 0) {
             requestList.forEach(DownloadUtils::downloadFile);
