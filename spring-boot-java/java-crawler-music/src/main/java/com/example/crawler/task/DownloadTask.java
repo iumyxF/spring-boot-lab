@@ -14,7 +14,7 @@ import java.util.List;
 @Slf4j
 public class DownloadTask implements Runnable {
 
-    private List<DownloadRequest> downloadRequestLit;
+    private final List<DownloadRequest> downloadRequestLit;
 
     public DownloadTask(List<DownloadRequest> downloadRequestLit) {
         this.downloadRequestLit = downloadRequestLit;
