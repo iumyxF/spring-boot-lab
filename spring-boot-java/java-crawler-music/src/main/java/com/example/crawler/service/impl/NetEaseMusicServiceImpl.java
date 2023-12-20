@@ -95,11 +95,11 @@ public class NetEaseMusicServiceImpl implements IMusicService {
             for (Artist artist : music.getArtists()) {
                 fileName.append(artist.getName()).append("-");
             }
-            fileName.append(music.getName()).append(".mp3");
-            String replace = fileName.toString()
+            fileName.append(music.getName()
                     .replace('/', '-')
-                    .replace('\\', '-');
-            requestList.add(new DownloadRequest(url, replace, path));
+                    .replace('\\', '-')
+            ).append(".mp3");
+            requestList.add(new DownloadRequest(url, fileName.toString(), path));
         }
         List<List<DownloadRequest>> partition = Lists.partition(requestList, 15);
         List<CompletableFuture<Boolean>> futures = new ArrayList<>(partition.size());
