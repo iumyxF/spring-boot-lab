@@ -1,7 +1,12 @@
 package com.example.hls.converter;
 
+import org.apache.commons.lang3.SystemUtils;
+import utils.CmdUtil;
+
+import java.io.IOException;
+
 /**
- * @author fzy
+ * @author iumyxF
  * @description: 本地文件转换成HLS
  * @date 2023/12/16 16:18
  */
@@ -26,19 +31,18 @@ public class DemoLocalFile {
                 "-hls_list_size 0 " +
                 "-hls_segment_filename %s %s", FILE_PATH, tsName, OUTPUT_PATH);
         System.out.println("cmd => " + cmd);
-        //try {
-        //    if (SystemUtils.IS_OS_WINDOWS) {
-        //        System.out.println("windows环境");
-        //        ProcessBuilder builder = CmdUtil.exec(cmd);
-        //        builder.start();
-        //    } else if (SystemUtils.IS_OS_LINUX) {
-        //        System.out.println("linux环境");
-        //        ProcessBuilder builder = CmdUtil.exec("sh", "-c", cmd);
-        //        builder.start();
-        //    }
-        //} catch (IOException e) {
-        //    throw new RuntimeException(e);
-        //}
-
+        try {
+            if (SystemUtils.IS_OS_WINDOWS) {
+                System.out.println("windows环境");
+                ProcessBuilder builder = CmdUtil.exec(cmd);
+                builder.start();
+            } else if (SystemUtils.IS_OS_LINUX) {
+                System.out.println("linux环境");
+                ProcessBuilder builder = CmdUtil.exec("sh", "-c", cmd);
+                builder.start();
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
