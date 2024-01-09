@@ -21,5 +21,10 @@ public interface IMusicService {
      */
     List<Music> searchMusic(Integer page, Integer size, String key);
 
+    /**
+     * Downloads a list of music.
+     *
+     * @param  musicList  the list of music to download
+     */
     void download(List<Music> musicList);
 }
