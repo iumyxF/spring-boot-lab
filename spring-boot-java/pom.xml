@@ -15,6 +15,7 @@
         <module>java-basic-juc</module>
         <module>java-bloom-filter</module>
         <module>java-crawler-music</module>
+        <module>java-reactor</module>
     </modules>
 
 </project>
