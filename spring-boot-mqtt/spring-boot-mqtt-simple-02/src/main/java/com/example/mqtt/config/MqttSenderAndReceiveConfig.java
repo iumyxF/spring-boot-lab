@@ -73,7 +73,7 @@ public class MqttSenderAndReceiveConfig {
      * MQTT连接器选项
      **/
     @Bean(value = "getMqttConnectOptions")
-    public MqttConnectOptions getMqttConnectOptions1() {
+    public MqttConnectOptions getMqttConnectOptions() {
         MqttConnectOptions mqttConnectOptions = new MqttConnectOptions();
         // 设置是否清空session,这里如果设置为false表示服务器会保留客户端的连接记录，这里设置为true表示每次连接到服务器都以新的身份连接
         mqttConnectOptions.setCleanSession(true);
@@ -96,7 +96,7 @@ public class MqttSenderAndReceiveConfig {
     @Bean
     public MqttPahoClientFactory mqttClientFactory() {
         DefaultMqttPahoClientFactory factory = new DefaultMqttPahoClientFactory();
-        factory.setConnectionOptions(getMqttConnectOptions1());
+        factory.setConnectionOptions(getMqttConnectOptions());
         return factory;
     }
 

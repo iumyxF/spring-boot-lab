@@ -15,6 +15,7 @@
         <module>spring-boot-mqtt-simple-provider</module>
         <module>spring-boot-mqtt-simple-consumer</module>
         <module>spring-boot-mqtt-simple-02</module>
+        <module>spring-boot-mqtt-simple-03</module>
     </modules>
 
     <properties>
