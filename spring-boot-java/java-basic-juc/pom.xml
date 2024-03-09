@@ -11,4 +11,10 @@
 
     <artifactId>java-basic-juc</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+        </dependency>
+    </dependencies>
 </project>
