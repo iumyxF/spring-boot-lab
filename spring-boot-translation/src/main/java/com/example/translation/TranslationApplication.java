@@ -29,6 +29,13 @@ import java.util.concurrent.TimeUnit;
 
 public class TranslationApplication {
 
+    /**
+     * 使用步骤：
+     * <p>
+     * 1. 访问 <a href="https://help.aliyun.com/zh/sls/developer-reference/accesskey-pair?spm=a2c4g.11186623.0.i4"/>
+     * 2. 按照步骤获取ak、sk
+     * 3. 进入AliTranslationServiceImpl.class 填写ak、sk
+     */
     public static void main(String[] args) throws IOException, InterruptedException {
         //读取
         String fileName = "F:\\testData\\translate\\test.xlsx";
