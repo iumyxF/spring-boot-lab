@@ -42,6 +42,7 @@
         <module>spring-boot-stream-media</module>
         <module>spring-boot-office</module>
         <module>spring-boot-translation</module>
+        <module>spring-boot-dwz</module>
     </modules>
 
     <properties>
