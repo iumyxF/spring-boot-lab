@@ -73,13 +73,12 @@ public class TranslationApplication {
         // 按照50个单词为一组进行翻译
         List<List<Word>> partition = Lists.partition(wordList, 50);
         ExecutorService threadPool = Executors.newFixedThreadPool(partition.size());
-        List<CompletableFuture<Boolean>> futures = new ArrayList<>(partition.size());
+        List<CompletableFuture<Void>> futures = new ArrayList<>(partition.size());
 
         for (List<Word> requests : partition) {
-            CompletableFuture<Boolean> future = CompletableFuture.supplyAsync(() -> {
+            CompletableFuture<Void> future = CompletableFuture.runAsync(() -> {
                 List<Word> response = service.getBatchTranslate(requests, LanguageConstant.CHINESE, LanguageConstant.ENGLISH);
                 resWords.addAll(response);
-                return true;
             }, threadPool);
             futures.add(future);
         }
