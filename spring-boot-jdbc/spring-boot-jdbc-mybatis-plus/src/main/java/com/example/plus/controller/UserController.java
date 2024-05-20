@@ -1,11 +1,14 @@
 package com.example.plus.controller;
 
+import com.example.plus.mapper.UserMapper;
 import com.example.plus.model.Result;
+import com.example.plus.model.entities.User;
 import com.example.plus.model.vo.UserVo;
 import com.example.plus.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -20,6 +23,7 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
+    private final UserMapper userMapper;
 
     @GetMapping("/user/{id}")
     public Result<UserVo> info(@PathVariable Long id) {
@@ -31,5 +35,14 @@ public class UserController {
     public Result<List<UserVo>> list() {
 
         return Result.ok();
+    }
+
+    @PutMapping("/user")
+    public Result<User> insert() {
+        User user = new User();
+        user.setUserName("foj");
+        user.setAge(213);
+        userMapper.insert(user);
+        return Result.ok(user);
     }
 }

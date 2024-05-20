@@ -43,6 +43,7 @@
         <module>spring-boot-office</module>
         <module>spring-boot-translation</module>
         <module>spring-boot-dwz</module>
+        <module>spring-boot-docs</module>
     </modules>
 
     <properties>

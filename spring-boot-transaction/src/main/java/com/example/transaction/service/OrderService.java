@@ -11,4 +11,5 @@ import com.example.transaction.domain.Order;
  */
 public interface OrderService extends IService<Order> {
 
+    void add(Order order);
 }

@@ -1,6 +1,10 @@
 package com.example.transaction.service.impl;
 
 
+import com.example.transaction.TransactionApplication;
+import com.example.transaction.domain.Order;
+import com.example.transaction.service.OrderService;
+import com.example.transaction.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,32 +17,24 @@ import javax.annotation.Resource;
  * @description:
  * @date 2023/11/29 14:13
  */
-@SpringBootTest
+@SpringBootTest(classes = TransactionApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RunWith(SpringRunner.class)
 public class TestServiceImplTest {
 
     @Resource
     TestServiceImpl testService;
+    @Resource
+    OrderService orderService;
+    @Resource
+    UserService userService;
 
     @Test
-    public void testDoServiceVersion1() {
-        testService.doServiceVersion1();
+    public void addOrderTest() {
+        Order order = new Order();
+        order.setPrice(9999);
+        orderService.add(order);
     }
 
-    @Test
-    public void testDoServiceVersion2() {
-        testService.doServiceVersion2();
-    }
-
-    @Test
-    public void testDoServiceVersion3() {
-        testService.doServiceVersion3();
-    }
-
-    @Test
-    public void testThreadDoService() {
-        testService.threadDoService();
-    }
 }
 
 //Generated with love by TestMe :) Please report issues and submit feature requests at: http://weirddev.com/forum#!/testme

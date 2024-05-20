@@ -37,7 +37,7 @@ public class TranslationApplication {
         String fileName = "F:\\testData\\translate\\test.xlsx";
         List<Word> wordList = readByExcel(fileName);
         // 多线程翻译
-        ConcurrentLinkedQueue<Word> resWords = doTranslate(wordList);
+        List<Word> resWords = doTranslate(wordList);
         // 写入新的excel
         String outputFileName = generateOutputFileName(fileName);
         writeExcel(outputFileName, resWords);
@@ -65,8 +65,8 @@ public class TranslationApplication {
      * @param wordList 带翻译单词列表
      * @return 已翻译单词列表
      */
-    private static ConcurrentLinkedQueue<Word> doTranslate(List<Word> wordList) {
-        // 保存最后结果
+    private static List<Word> doTranslate(List<Word> wordList) {
+        // 保存临时结果
         ConcurrentLinkedQueue<Word> resWords = new ConcurrentLinkedQueue<>();
         // 创建翻译类,如果使用Spring直接注入即可
         TranslationService service = new AliTranslationServiceImpl();
@@ -91,7 +91,7 @@ public class TranslationApplication {
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
-        return resWords;
+        return new ArrayList<>(resWords);
     }
 
     /**
@@ -100,7 +100,7 @@ public class TranslationApplication {
      * @param outputFileName 输出文件全路径
      * @param resWords       翻译结果
      */
-    private static void writeExcel(String outputFileName, ConcurrentLinkedQueue<Word> resWords) {
+    private static void writeExcel(String outputFileName, List<Word> resWords) {
         EasyExcel.write(outputFileName, Word.class)
                 .sheet(LanguageConstant.ENGLISH)
                 .doWrite(resWords);

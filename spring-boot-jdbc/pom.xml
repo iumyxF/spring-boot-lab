@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>spring-boot-jdbc-mybatis-plus</module>
+        <module>spring-boot-jdbc-mybatis-parsing</module>
     </modules>
 
 </project>

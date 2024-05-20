@@ -11,4 +11,9 @@ import com.example.transaction.domain.User;
  */
 public interface UserService extends IService<User> {
 
+
+    void add(User user);
+
+    int deleteById(Long id);
+
 }
