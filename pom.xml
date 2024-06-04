@@ -44,6 +44,7 @@
         <module>spring-boot-translation</module>
         <module>spring-boot-dwz</module>
         <module>spring-boot-docs</module>
+        <module>spring-boot-vertx</module>
     </modules>
 
     <properties>
@@ -271,6 +272,12 @@
                 <groupId>org.jcodec</groupId>
                 <artifactId>jcodec</artifactId>
                 <version>${jcodec.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.vertx</groupId>
+                <artifactId>vertx-web</artifactId>
+                <version>4.4.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

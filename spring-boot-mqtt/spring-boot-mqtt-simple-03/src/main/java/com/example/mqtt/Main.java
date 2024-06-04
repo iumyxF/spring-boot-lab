@@ -11,7 +11,7 @@ import com.example.mqtt.utils.MqttUtils;
 public class Main {
 
     public static void main(String[] args) {
-        MqttUtils.subscribe("/qaq/test_topic", new DefaultMqttListener());
+        MqttUtils.subscribe("venus/client/online", new DefaultMqttListener());
         //MqttUtils.send("/qaq/test_topic", "hello mqtt");
     }
 }
