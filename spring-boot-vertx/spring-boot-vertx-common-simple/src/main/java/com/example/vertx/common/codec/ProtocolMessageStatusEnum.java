@@ -1,7 +1,7 @@
 package com.example.vertx.common.codec;
 
 /**
- * @author fzy
+ * @author iumyx
  * @description: 协议消息状态枚举
  * @date 2024/6/3 10:35
  */

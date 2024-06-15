@@ -1,7 +1,7 @@
 package com.example.translation.entities;
 
 /**
- * @author fzy
+ * @author iumyx
  * @description:
  * @date 2024/4/16 14:14
  */

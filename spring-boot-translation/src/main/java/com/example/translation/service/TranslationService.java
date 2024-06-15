@@ -5,7 +5,7 @@ import com.example.translation.entities.Word;
 import java.util.List;
 
 /**
- * @author fzy
+ * @author iumyx
  * @description:
  * @date 2024/4/16 13:42
  */

@@ -3,7 +3,7 @@ package com.example.leetcode;
 import java.util.*;
 
 /**
- * @author fzy
+ * @author iumyx
  * @description:
  * @date 2024/3/12 11:39
  */

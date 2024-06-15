@@ -3,7 +3,7 @@ package com.example.proxy.jdk;
 import java.lang.reflect.Proxy;
 
 /**
- * @author fzy
+ * @author iumyx
  * @description:
  * @date 2024/3/9 14:15
  */

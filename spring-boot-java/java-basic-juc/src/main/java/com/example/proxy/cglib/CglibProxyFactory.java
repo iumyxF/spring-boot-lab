@@ -3,7 +3,7 @@ package com.example.proxy.cglib;
 import org.springframework.cglib.proxy.Enhancer;
 
 /**
- * @author fzy
+ * @author iumyx
  * @description:
  * @date 2024/3/9 14:25
  */

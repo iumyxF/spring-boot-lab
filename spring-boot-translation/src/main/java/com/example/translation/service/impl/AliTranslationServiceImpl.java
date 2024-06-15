@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 import static com.aliyun.teautil.Common.assertAsString;
 
 /**
- * @author fzy
+ * @author iumyx
  * @description: 阿里翻译
  * @date 2024/4/16 13:44
  */
