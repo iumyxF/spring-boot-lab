@@ -2,8 +2,7 @@ package com.example.aop.controller;
 
 import com.example.aop.annotation.Log;
 import com.example.aop.entities.OperationLog;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author iumyxF
@@ -13,15 +12,22 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class LogTestController {
 
-    @Log(title = "log测试控制层")
+    @Log(title = "log测试控制层", content = "#{#name}")
     @GetMapping("/log/test")
-    public void test() {
+    public void test(@RequestParam("name") String name) {
         System.out.println("controller执行...");
     }
 
-    @Log(title = "test2")
+    @Log(title = "test2", content = "#{#log.method}")
     @GetMapping("/log/test2")
     public void test2(OperationLog log) {
         System.out.println(log.toString());
+    }
+
+    @Log(title = "xxxx", content = "#{#log.method}")
+    @PostMapping("/log/test3")
+    public void test(@RequestBody OperationLog log) {
+        System.out.println(log.toString());
+        System.out.println("controller执行...");
     }
 }

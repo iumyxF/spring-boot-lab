@@ -19,7 +19,7 @@ public class LogServiceImpl {
     @EventListener
     public void recordOperationLog(OperationLog logEvent) {
         OperationLog operationLog = BeanUtil.toBean(logEvent, OperationLog.class);
-        log.info("异步监听到的log对象{}", operationLog);
+        //log.info("异步监听到的log对象{}", operationLog);
     }
 
 }
