@@ -122,6 +122,7 @@ public class LogAspect {
         Log annotation = method.getAnnotation(Log.class);
         //获取注解上的值如 : @MyAnnotation(key = "'param id is ' + #id")
         String keyEl = annotation.content();
+        String keyEl2 = annotation.content2();
         //获取参数值
         Object[] args = joinPoint.getArgs();
         //获取运行时参数的名称
@@ -134,8 +135,11 @@ public class LogAspect {
         //将注解的值中的El表达式部分进行替换
         //获取表达式
         Expression expression = parser.parseExpression(keyEl, parserContext);
+        Expression expression2 = parser.parseExpression(keyEl2, parserContext);
         String result = String.valueOf(expression.getValue(context));
+        String result2 = String.valueOf(expression2.getValue(context));
         System.out.println(result);
+        System.out.println(result2);
 
         System.out.println("end test EL ----");
 

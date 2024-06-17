@@ -33,7 +33,7 @@ public class UserController {
 
     @Cacheable(value = "getUser", key = "#id", unless = "#result==null")
     @GetMapping("/{id}")
-    public User info(@PathVariable String id) {
+    public User info(@PathVariable Long id) {
         log.info("查询数据库...");
         return userService.getById(id);
     }

@@ -12,9 +12,10 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class LogTestController {
 
-    @Log(title = "log测试控制层", content = "#{#name}")
+    @Log(title = "log测试控制层", content = "#{#name}", content2 = "#{#age}")
     @GetMapping("/log/test")
-    public void test(@RequestParam("name") String name) {
+    public void test(@RequestParam("name") String name,
+                     @RequestParam("age") Integer age) {
         System.out.println("controller执行...");
     }
 

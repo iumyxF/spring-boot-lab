@@ -1,3 +1,5 @@
+server:
+  port: 18989
 spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource

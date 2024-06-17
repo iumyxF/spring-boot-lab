@@ -17,4 +17,6 @@ public @interface Log {
      * 测试EL表达式
      */
     String content() default "";
+
+    String content2() default "";
 }
