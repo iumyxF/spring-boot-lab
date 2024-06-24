@@ -16,6 +16,7 @@
         <module>java-bloom-filter</module>
         <module>java-crawler-music</module>
         <module>java-reactor</module>
+        <module>java-linux-test</module>
     </modules>
 
 </project>

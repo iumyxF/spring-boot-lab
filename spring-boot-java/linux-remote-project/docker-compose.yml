@@ -1,0 +1,17 @@
+version: '3'
+services:
+  remote_project:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: remote_project
+    container_name: remote_project
+    network_mode: host
+    restart: always
+    pid: "host"
+    ports:
+      - "8888:8888"
+      - "5005:5005"
+    volumes:
+      - /home/fzy/code/file:/app/file
+    privileged: true
