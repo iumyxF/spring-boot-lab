@@ -13,9 +13,17 @@ function convert_netmask_to_prefix() {
 }
 
 NEW_IP=$1
-CONNECTION_NAME=netplan-ens33
-NEW_NETMASK="255.255.255.0"
-NEW_GATEWAY="192.168.2.1"
+CONNECTION_NAME=$2
+NEW_NETMASK=$3
+NEW_GATEWAY=$4
+
+# 去除双引号
+CONNECTION_NAME=$(echo $CONNECTION_NAME | sed 's/\"//g')
+
+echo $NEW_IP
+echo $CONNECTION_NAME
+echo $NEW_NETMASK
+echo $NEW_GATEWAY
 
 # 新的 DNS 服务器列表
 NEW_DNS1="223.5.5.5"

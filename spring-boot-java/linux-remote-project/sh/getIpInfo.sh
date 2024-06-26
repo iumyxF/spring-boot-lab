@@ -1,3 +1,3 @@
 #!/bin/bash
 
-nmcli con show --active | grep ethernet
+nmcli con show --active

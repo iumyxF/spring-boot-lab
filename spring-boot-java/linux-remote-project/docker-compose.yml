@@ -13,5 +13,5 @@ services:
       - "8888:8888"
       - "5005:5005"
     volumes:
-      - /home/fzy/code/file:/app/file
+      - /home/user/code/file:/app/file
     privileged: true
