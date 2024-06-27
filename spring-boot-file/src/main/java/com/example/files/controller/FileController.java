@@ -131,7 +131,7 @@ public class FileController {
     public void download(HttpServletResponse response) throws UnsupportedEncodingException {
         String fileName = new String("001.mp4".getBytes(), "ISO8859-1");
         File file = new File(FILE_PATH + fileName);
-        try (InputStream inputStream = new FileInputStream(file); OutputStream outputStream = response.getOutputStream()) {
+        try (InputStream inputStream = Files.newInputStream(file.toPath()); OutputStream outputStream = response.getOutputStream()) {
             //设置内容类型为下载类型
             response.setContentType("application/x-download");
             //设置请求头 和 文件下载名称

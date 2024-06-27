@@ -1,5 +1,9 @@
 package com.example.files.utils;
 
+import cn.hutool.core.util.IdUtil;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -121,5 +125,34 @@ public class FileUtils {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private static final String[] IMAGE_SUFFIX = new String[]{"bmp", "jpg", "jpeg", "png", "gif"};
+
+    /**
+     * 创建临时文件
+     *
+     * @param multipartFile 请求文件
+     * @return File
+     */
+    public static File creatTempPicFile(MultipartFile multipartFile) {
+        // 重新命名文件 ${原文件名}_${随机数}.${文件类型}
+        String originalFilename = multipartFile.getOriginalFilename();
+        if (StringUtils.isEmpty(originalFilename)) {
+            // 这里应该抛异常
+            return null;
+        }
+        int index = originalFilename.lastIndexOf(".");
+        if (-1 == index) {
+            return null;
+        }
+        String suffix = originalFilename.substring(index);
+        for (String is : IMAGE_SUFFIX) {
+            if (!StringUtils.equalsIgnoreCase(is, suffix)) {
+                return null;
+            }
+        }
+        String tempName = originalFilename.substring(0, index) + "_" + IdUtil.nanoId(5) + suffix;
+        return new File(tempName);
     }
 }
