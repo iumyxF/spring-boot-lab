@@ -8,7 +8,7 @@ import com.example.plus.service.RoleService;
 import org.springframework.stereotype.Service;
 
 /**
- * @author gonsin
+ * @author iumyx
  * @description 针对表【role】的数据库操作Service实现
  * @createDate 2023-05-09 13:55:28
  */

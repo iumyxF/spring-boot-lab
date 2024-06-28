@@ -8,7 +8,7 @@ import com.example.plus.model.vo.UserVo;
 /**
  * The interface User service.
  *
- * @author gonsin
+ * @author iumyx
  * @description 针对表 【user】的数据库操作Service
  * @createDate 2023 -05-09 13:55:28
  */

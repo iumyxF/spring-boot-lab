@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 /**
- * @author gonsin
+ * @author iumyx
  * @description 针对表【person】的数据库操作Mapper
  * @createDate 2023-09-14 15:19:50
  * @Entity generator.domain.Person

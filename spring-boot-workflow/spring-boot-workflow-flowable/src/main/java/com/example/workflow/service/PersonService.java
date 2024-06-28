@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.workflow.domain.Person;
 
 /**
- * @author gonsin
+ * @author iumyx
  * @description 针对表【person】的数据库操作Service
  * @createDate 2023-09-14 15:19:50
  */

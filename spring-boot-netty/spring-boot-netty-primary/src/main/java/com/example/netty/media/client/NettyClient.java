@@ -36,7 +36,7 @@ public class NettyClient {
             ChannelFuture channelFuture = bootstrap.connect("127.0.0.1", 1553).sync();
             channelFuture.channel().closeFuture().sync();
 
-            String json = "{\"head\":\"gonsin\",\"device\":{\"user_message_id\":\"1\"},\"cmd\":{\"cmd\":\"reg\",\"respone\":0},\"args\":{\"group_name\":\"225.25.25.26:7575\"}}";
+            String json = "{\"head\":\"iumyx\",\"device\":{\"user_message_id\":\"1\"},\"cmd\":{\"cmd\":\"reg\",\"respone\":0},\"args\":{\"group_name\":\"225.25.25.26:7575\"}}";
             try {
                 byte[] dataBytes = OBJECT_MAPPER.writeValueAsBytes(json + "\n");
                 channelFuture.channel().writeAndFlush(dataBytes);
