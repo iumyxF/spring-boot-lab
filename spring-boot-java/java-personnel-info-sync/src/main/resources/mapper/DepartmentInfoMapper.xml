@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.personnel.mapper.DepartmentInfoMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.personnel.model.bean.DepartmentInfo">
+            <id property="departmentId" column="department_id" jdbcType="INTEGER"/>
+            <result property="name" column="name" jdbcType="VARCHAR"/>
+            <result property="parentId" column="parent_id" jdbcType="INTEGER"/>
+            <result property="departmentSource" column="department_source" jdbcType="TINYINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        department_id,name,parent_id,
+        department_source
+    </sql>
+</mapper>

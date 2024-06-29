@@ -17,6 +17,8 @@
         <module>java-crawler-music</module>
         <module>java-reactor</module>
         <module>java-linux-test</module>
+        <module>java-personnel-info-sync</module>
+        <module>java-practice</module>
     </modules>
 
 </project>
