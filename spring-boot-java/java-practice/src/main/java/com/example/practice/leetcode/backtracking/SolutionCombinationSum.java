@@ -66,8 +66,7 @@ public class SolutionCombinationSum {
             int n = candidates[i];
             sum += n;
             temp.add(n);
-            backtracking(candidates, target, index, sum);
-            index++;
+            backtracking(candidates, target, i, sum);
             sum -= n;
             temp.remove(temp.size() - 1);
         }
