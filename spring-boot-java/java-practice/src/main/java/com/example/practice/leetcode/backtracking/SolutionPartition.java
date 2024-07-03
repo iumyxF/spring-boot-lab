@@ -6,6 +6,7 @@ import java.util.List;
 
 /**
  * @author iumyxF
+ * @note 待看
  * @date 2024/7/2 21:01
  */
 public class SolutionPartition {
@@ -47,22 +48,41 @@ public class SolutionPartition {
     }
 
 
-    public void backtracking(String str, int index) {
-        // 结束条件
-        if (index == str.length()) {
+    //public void backtracking(String str, int index) {
+    //    // 结束条件
+    //    if (index == str.length()) {
+    //        res.add(new ArrayList<>(temp));
+    //        return;
+    //    }
+    //    for (int i = index; i < str.length(); i++) {
+    //        if (isPalindrome(str, index, i)) {
+    //            String s = str.substring(index, i + 1);
+    //            temp.add(s);
+    //        } else {
+    //            continue;
+    //        }
+    //        backtracking(str, i + 1);
+    //        temp.remove(temp.size() - 1);
+    //    }
+    //}
+
+    public void backtracking(String s, int splitIndex) {
+        // 分割到最后一个字符串 结束
+        if (splitIndex == s.length()) {
             res.add(new ArrayList<>(temp));
             return;
         }
-        for (int i = index; i < str.length(); i++) {
-            if (isPalindrome(str, index, i)) {
-                String s = str.substring(index, i + 1);
-                temp.add(s);
+        for (int i = splitIndex; i < s.length(); i++) {
+            if (isPalindrome(s, splitIndex, i)) {
+                String substring = s.substring(splitIndex, i);
+                temp.add(substring);
             } else {
                 continue;
             }
-            backtracking(str, i + 1);
+            backtracking(s, i + 1);
             temp.remove(temp.size() - 1);
         }
+
     }
 
     /**
