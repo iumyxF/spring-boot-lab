@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * @author fzy
+ * @author iumyxF
  * @description: 子集Ⅱ
  * @date 2024/7/5 14:24
  */
