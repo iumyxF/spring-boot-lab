@@ -76,6 +76,7 @@
         <ffmpeg-platform-gpl.version>6.0-1.5.9</ffmpeg-platform-gpl.version>
         <guava.version>32.1.2-jre</guava.version>
         <jcodec.version>0.2.5</jcodec.version>
+        <lite-flow.version>2.12.2.1</lite-flow.version>
     </properties>
 
     <dependencyManagement>
@@ -283,6 +284,11 @@
                 <groupId>com.github.rholder</groupId>
                 <artifactId>guava-retrying</artifactId>
                 <version>2.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.yomahub</groupId>
+                <artifactId>liteflow-spring-boot-starter</artifactId>
+                <version>${lite-flow.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

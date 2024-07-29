@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>spring-boot-workflow-flowable</module>
+        <module>spring-boot-workflow-lite-flow</module>
     </modules>
 
 </project>
