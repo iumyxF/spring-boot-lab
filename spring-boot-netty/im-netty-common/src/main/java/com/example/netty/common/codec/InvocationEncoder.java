@@ -26,6 +26,6 @@ public class InvocationEncoder extends MessageToByteEncoder<Invocation> {
         // 写入内容
         out.writeBytes(content);
         // 写入的内容，一个包 ==> [Invocation字节数组长度][Invocation字节数组]
-        log.info("[encode][连接({}) 编码了一条消息({})]", ctx.channel().id(), msg.toString());
+        //log.info("[encode][连接({}) 编码了一条消息({})]", ctx.channel().id(), msg.toString());
     }
 }

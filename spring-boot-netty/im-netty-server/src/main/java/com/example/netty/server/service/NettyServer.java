@@ -34,7 +34,7 @@ public class NettyServer {
     /**
      * boos线程组，用于接受客户端连接请求
      */
-    private EventLoopGroup bossGroup = new NioEventLoopGroup();
+    private EventLoopGroup bossGroup = new NioEventLoopGroup(1);
 
     /**
      * worker线程组，用于处理客户端读写请求

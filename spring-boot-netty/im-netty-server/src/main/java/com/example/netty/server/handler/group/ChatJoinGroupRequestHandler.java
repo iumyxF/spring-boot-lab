@@ -10,9 +10,9 @@ import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
 
 /**
+ * @author iumyxF
  * @description: 加入组请求消息处理器
  * @Date 2023/3/29 14:43
- * @author iumyxF
  */
 @Component
 public class ChatJoinGroupRequestHandler implements MessageHandler<ChatJoinGroupRequest> {
@@ -35,7 +35,7 @@ public class ChatJoinGroupRequestHandler implements MessageHandler<ChatJoinGroup
         ChatSendResponse response = new ChatSendResponse();
         response.setMsgId(message.getMsgId());
         response.setCode(200);
-        response.setMessage("成功加入[" + message.getGroupName() + "]组");
+        response.setMessage(channel.id() + " 成功加入[" + message.getGroupName() + "]组");
     }
 
     @Override

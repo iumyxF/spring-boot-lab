@@ -9,14 +9,16 @@ import com.example.netty.server.message.group.ChatSendToGroupRequest;
 import com.example.netty.server.service.NettyChannelManager;
 import io.netty.channel.Channel;
 import io.netty.channel.group.ChannelGroup;
+import io.netty.channel.group.ChannelMatcher;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.Objects;
 
 /**
+ * @author iumyxF
  * @description: 群发消息处理（改良版）
  * @Date 2023/3/29 15:03
- * @author iumyxF
  */
 @Component
 public class ChatSendToGroupRequestHandler implements MessageHandler<ChatSendToGroupRequest> {
@@ -43,13 +45,13 @@ public class ChatSendToGroupRequestHandler implements MessageHandler<ChatSendToG
         send.setMsgId(message.getMsgId());
         send.setFromUser(message.getFromUser());
         //发送消息
-        channelGroup.writeAndFlush(new Invocation(ChatRedirectToUserRequest.TYPE, send));
+        channelGroup.writeAndFlush(new Invocation(ChatRedirectToUserRequest.TYPE, send), c -> !Objects.equals(c.id(), channel.id()));
         //返回消息发送结果
         ChatSendResponse response = new ChatSendResponse();
         response.setMessage("群聊消息发送成功");
         response.setCode(200);
         response.setMsgId(message.getMsgId());
-        channel.writeAndFlush(new Invocation(ChatSendResponse.TYPE, response));
+        //channel.writeAndFlush(new Invocation(ChatSendResponse.TYPE, response));
     }
 
     @Override
