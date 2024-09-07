@@ -19,6 +19,7 @@
         <module>java-linux-test</module>
         <module>java-personnel-info-sync</module>
         <module>java-practice</module>
+        <module>java-test-excel</module>
     </modules>
 
 </project>
