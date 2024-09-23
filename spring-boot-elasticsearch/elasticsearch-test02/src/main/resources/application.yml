@@ -1,0 +1,6 @@
+server:
+  port: 9999
+
+spring:
+  elasticsearch:
+    uris: http://192.168.2.180:9200

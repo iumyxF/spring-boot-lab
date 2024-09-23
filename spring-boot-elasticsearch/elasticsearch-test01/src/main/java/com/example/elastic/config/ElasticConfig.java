@@ -26,9 +26,10 @@ public class ElasticConfig extends AbstractElasticsearchConfiguration {
     @Override
     public RestHighLevelClient elasticsearchClient() {
         ClientConfiguration clientConfiguration = ClientConfiguration.builder()
-                .connectedTo("localhost:9200")
-                .withBasicAuth("elastic", "123456")
+                .connectedTo("192.168.2.180:9200")
+                //.withBasicAuth("elastic", "123456")
                 .build();
         return RestClients.create(clientConfiguration).rest();
     }
+
 }
