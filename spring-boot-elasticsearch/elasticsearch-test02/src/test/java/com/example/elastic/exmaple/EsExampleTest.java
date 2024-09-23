@@ -3,12 +3,18 @@ package com.example.elastic.exmaple;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch._types.mapping.Property;
 import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
+import co.elastic.clients.elasticsearch.core.CreateResponse;
+import co.elastic.clients.elasticsearch.core.DeleteResponse;
+import co.elastic.clients.elasticsearch.core.GetResponse;
+import co.elastic.clients.elasticsearch.core.UpdateResponse;
 import co.elastic.clients.elasticsearch.indices.CreateIndexRequest;
 import co.elastic.clients.elasticsearch.indices.CreateIndexResponse;
 import co.elastic.clients.elasticsearch.indices.DeleteIndexRequest;
 import co.elastic.clients.elasticsearch.indices.DeleteIndexResponse;
 import co.elastic.clients.transport.endpoints.BooleanResponse;
 import com.example.elastic.model.Hotel;
+import com.example.elastic.model.HotelDoc;
+import com.example.elastic.service.HotelService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -26,10 +32,12 @@ import java.util.List;
 @SpringBootTest
 class EsExampleTest {
 
-    private final static String ES_SERVER_URL = "http://192.168.2.180:9200";
-
     @Autowired
     ElasticsearchClient client;
+    @Autowired
+    private HotelService hotelService;
+
+    //region 索引操作
 
     /**
      * 创建一个Hotel的索引库
@@ -55,10 +63,9 @@ class EsExampleTest {
                                 .properties("score", Property.of(pBuilder -> pBuilder.integer(kBuilder -> kBuilder.index(true))))
                                 .properties("brand", Property.of(pBuilder -> pBuilder.keyword(kBuilder -> kBuilder.index(true).copyTo(searchWord))))
                                 .properties("city", Property.of(pBuilder -> pBuilder.keyword(kBuilder -> kBuilder.index(true))))
-                                .properties("startName", Property.of(pBuilder -> pBuilder.keyword(kBuilder -> kBuilder.index(true))))
+                                .properties("starName", Property.of(pBuilder -> pBuilder.keyword(kBuilder -> kBuilder.index(true))))
                                 .properties("business", Property.of(pBuilder -> pBuilder.keyword(kBuilder -> kBuilder.index(true).copyTo(searchWord))))
-                                .properties("latitude", Property.of(pBuilder -> pBuilder.geoPoint(kBuilder -> kBuilder.index(true))))
-                                .properties("longitude", Property.of(pBuilder -> pBuilder.geoPoint(kBuilder -> kBuilder.index(true))))
+                                .properties("location", Property.of(pBuilder -> pBuilder.geoPoint(kBuilder -> kBuilder.index(true))))
                                 .properties("pic", Property.of(pBuilder -> pBuilder.keyword(kBuilder -> kBuilder.index(false))))
                                 .properties("search_word", Property.of(pBuilder -> pBuilder.text(kBuilder -> kBuilder.index(true).analyzer("smartcn"))))
                                 .build())
@@ -82,5 +89,52 @@ class EsExampleTest {
         System.out.println(response);
     }
 
+    //endregion
 
+    //region 文档
+
+    @Test
+    public void getDocById() throws IOException {
+        GetResponse<HotelDoc> response = client.get(builder -> builder
+                .index("hotel")
+                .id(String.valueOf(1)), HotelDoc.class);
+        // 不存在的情况：GetResponse: {"_index":"hotel","found":false,"_id":"1","_type":"_doc"}
+        // 注意构造方法
+        System.out.println(response);
+    }
+
+    @Test
+    public void insertDoc() throws IOException {
+        Hotel hotel = hotelService.getById(1L);
+        CreateResponse response = client.create(builder -> builder
+                .index("hotel")
+                .id(String.valueOf(hotel.getId()))
+                .document(new HotelDoc(hotel)));
+        System.out.println(response);
+    }
+
+    @Test
+    public void delDocById() throws IOException {
+        DeleteResponse response = client.delete(builder -> builder
+                .index("hotel")
+                .id(String.valueOf(1)));
+        System.out.println(response);
+    }
+
+    /**
+     * 全量和增量更新的API是一样的，区别是doc内的对象赋值是否完全
+     */
+    @Test
+    public void docUpdateById() throws IOException {
+        Hotel hotel = new Hotel();
+        hotel.setLatitude("24.744450841392773");
+        hotel.setLongitude("83.23270706538476");
+        UpdateResponse<HotelDoc> updateResponse = client.update(builder -> builder.index("hotel")
+                        .id(String.valueOf(1))
+                        .doc(new HotelDoc(hotel))
+                , HotelDoc.class);
+        System.out.println(updateResponse);
+    }
+
+    //endregion
 }

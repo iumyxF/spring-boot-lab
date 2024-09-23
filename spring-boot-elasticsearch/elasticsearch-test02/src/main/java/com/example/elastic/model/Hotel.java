@@ -1,5 +1,8 @@
 package com.example.elastic.model;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -9,6 +12,7 @@ import java.io.Serializable;
  * @description: 酒店对象
  * @date 2024/9/23 10:59
  */
+@TableName("hotel")
 @Data
 public class Hotel implements Serializable {
 
@@ -18,7 +22,7 @@ public class Hotel implements Serializable {
      * 酒店ID
      * id的类型比较特殊，不是long，而是keyword，而且id后期肯定需要涉及到我们的增删改查，所以需要参与搜索
      */
-
+    @TableId(type = IdType.AUTO)
     private Long id;
 
     /**
@@ -60,7 +64,7 @@ public class Hotel implements Serializable {
      * 酒店星级，1星-5星，1钻-5钻
      * 不要分词要搜索 keyword
      */
-    private String startName;
+    private String starName;
 
     /**
      * 酒店商圈
