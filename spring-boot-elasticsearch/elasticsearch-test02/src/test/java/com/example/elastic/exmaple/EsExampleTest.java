@@ -5,6 +5,7 @@ import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch._types.GeoDistanceType;
 import co.elastic.clients.elasticsearch._types.mapping.Property;
 import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
+import co.elastic.clients.elasticsearch._types.query_dsl.FunctionBoostMode;
 import co.elastic.clients.elasticsearch.core.*;
 import co.elastic.clients.elasticsearch.core.search.Hit;
 import co.elastic.clients.elasticsearch.core.search.HitsMetadata;
@@ -230,19 +231,167 @@ class EsExampleTest {
         SearchResponse<HotelDoc> response = client.search(s -> s
                         .index("hotel")
                         .query(q -> q
+                                .geoDistance(g -> g
+                                        .distance("1700km")
+                                        .field("location")
+                                        .location(l -> l
+                                                .latlon(v -> v
+                                                        .lat(36.30556423523153)
+                                                        .lon(104.48060937499996)
+                                                ))
+                                        .distanceType(GeoDistanceType.Arc)
+                                ))
+                // 写法2:
+                //.bool(b -> b
+                //        .filter(f -> f
+                //                .geoDistance(g -> g
+                //                        .distance("1700km")
+                //                        .field("location")
+                //                        .location(l -> l
+                //                                .latlon(v -> v
+                //                                        .lat(36.30556423523153)
+                //                                        .lon(104.48060937499996)
+                //                                ))
+                //                        .distanceType(GeoDistanceType.Arc)
+                //                ))
+                //))
+                , HotelDoc.class);
+        printResult(response);
+    }
+
+    /**
+     * 复合查询
+     * 1. function score：算分函数查询，可以控制文档相关性算分，控制文档排名(例如搜索引擎的排名，第一大部分都是广告)
+     * 根据相关度打分是比较合理的需求，但是合理的并不一定是产品经理需要的
+     * 以某搜索引擎为例，你在搜索的结果中，并不是相关度越高就越靠前，而是谁掏的钱多就让谁的排名越靠前
+     * 要想控制相关性算分，就需要利用ES中的function score查询了
+     * <p>
+     * 2. bool query：布尔查询，利用逻辑关系组合多个其他的查询，实现复杂搜索
+     */
+    @Test
+    public void queryFunctionScore() throws IOException {
+        SearchResponse<HotelDoc> response = client.search(s -> s
+                        .query(q -> q
+                                .functionScore(fs -> fs
+                                        // 条件查询 查询出"工程"词语的文档
+                                        .query(fsq -> fsq
+                                                .match(m -> m
+                                                        .field("search_word")
+                                                        .query("工程")
+                                                )
+                                        )
+                                        // 算分函数，结果成为functions score 后面会与上面原市的score进行运算，得到最终分数
+                                        .functions(fus -> fus
+                                                // 得到id=4的文档
+                                                .filter(filter -> filter
+                                                        .term(t -> t
+                                                                .field("id")
+                                                                .value(4)
+                                                        )
+                                                )
+                                                //算分函数有:
+                                                // 1. weight: 指定常量值作为结果
+                                                // 2. field_value_factor: 用文档中的某个字段作为函数结果
+                                                // 3. random_score:随机生成一个值
+                                                // 4. script_score:自定义计算公式，公式结果作为函数结果
+                                                .weight(10.0)
+                                        )
+                                        // 加权模式，指定分算函数结果和原始score的运算模式
+                                        // Multiply 两个结果相乘
+                                        // replace 将分算函数结果替换原来的score
+                                        // 其他sum、avg、max、min
+                                        .boostMode(FunctionBoostMode.Multiply)
+                                )
+                        )
+                , HotelDoc.class);
+        printResult(response);
+    }
+
+    /**
+     * 布尔查询是一个或多个子查询的组合，每一个子句就是一个子查询。子查询的组合方式有
+     * must：必须匹配每个子查询，类似 '与'
+     * should：选择性匹配子查询，类似 '或'
+     * must_not：必须不匹配，不参与算分，类似 '非'
+     * filter：必须匹配，不参与算分
+     */
+    @Test
+    public void queryBool() throws IOException {
+        // 搜索search_word中包含'股份有限公司'，price不高于1226428922，在坐标36.30556423523153, 104.48060937499996周围10km范围内的酒店
+        SearchResponse<HotelDoc> response = client.search(s -> s
+                        .index("hotel")
+                        .query(q -> q
                                 .bool(b -> b
+                                        .must(m -> m
+                                                .match(match -> match
+                                                        .query("股份有限公司")
+                                                        .field("search_word")
+                                                )
+                                        )
+                                        .mustNot(mn -> mn
+                                                .range(r -> r
+                                                        .field("price")
+                                                        .gte(JsonData.of("1226428922"))
+                                                )
+                                        )
                                         .filter(f -> f
-                                                .geoDistance(g -> g
+                                                .geoDistance(geo -> geo
                                                         .distance("1700km")
+                                                        .distanceType(GeoDistanceType.Arc)
                                                         .field("location")
                                                         .location(l -> l
-                                                                .latlon(v -> v
+                                                                .latlon(ll -> ll
                                                                         .lat(36.30556423523153)
                                                                         .lon(104.48060937499996)
-                                                                ))
-                                                        .distanceType(GeoDistanceType.Arc)
-                                                ))
-                                ))
+                                                                )
+                                                        )
+                                                )
+                                        )
+                                )
+                        )
+                , HotelDoc.class);
+        printResult(response);
+    }
+
+    @Test
+    public void queryBool2() throws IOException {
+        // 搜索城市在上海，品牌为xx或者yy，价格不低于500，且用户评分在45分以上的酒店
+        SearchResponse<HotelDoc> response = client.search(s -> s
+                        .index("hotel")
+                // bug
+                //.query(q -> q
+                //        .bool(b -> b
+                //                .must(m -> m
+                //                        .term(t -> t
+                //                                .field("search_word")
+                //                                .value("江苏省")
+                //                        )
+                //                )
+                //                .must(m -> m
+                //                        .range(r -> r
+                //                                .field("price")
+                //                                .lte(JsonData.of("2128647795"))
+                //                        )
+                //                )
+                //                .should(sh -> sh
+                //                        .term(t -> t
+                //                                .field("brand")
+                //                                .value("局凉挟挂工程股份有限公司")
+                //                        )
+                //                )
+                //                .should(sh -> sh
+                //                        .term(t -> t
+                //                                .field("brand")
+                //                                .value("唤韶发展有限责任公司")
+                //                        )
+                //                )
+                //                .filter(f -> f
+                //                        .range(r -> r
+                //                                .field("score")
+                //                                .gte(JsonData.of("45"))
+                //                        )
+                //                )
+                //        )
+                //)
                 , HotelDoc.class);
         printResult(response);
     }
@@ -316,7 +465,7 @@ class EsExampleTest {
                 .map(HitsMetadata::hits)
                 .orElse(null);
         if (CollUtil.isNotEmpty(hitList)) {
-            hitList.forEach(h -> System.out.println(h.source()));
+            hitList.forEach(h -> System.out.println("score = " + h.score() + " , data = " + h.source()));
         }
     }
 }
