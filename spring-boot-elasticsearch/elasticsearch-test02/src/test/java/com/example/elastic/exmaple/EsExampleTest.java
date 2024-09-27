@@ -3,6 +3,9 @@ package com.example.elastic.exmaple;
 import cn.hutool.core.collection.CollUtil;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch._types.GeoDistanceType;
+import co.elastic.clients.elasticsearch._types.SortOptions;
+import co.elastic.clients.elasticsearch._types.SortOptionsVariant;
+import co.elastic.clients.elasticsearch._types.SortOrder;
 import co.elastic.clients.elasticsearch._types.mapping.Property;
 import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
 import co.elastic.clients.elasticsearch._types.query_dsl.FunctionBoostMode;
@@ -23,6 +26,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -416,6 +420,33 @@ class EsExampleTest {
                         )
                 , HotelDoc.class);
         printResult(response);
+    }
+
+    /**
+     * 排序
+     * order by xxx [desc/asc]
+     */
+    @Test
+    public void querySort() throws IOException {
+        // 多字段
+        ArrayList<SortOptions> sortOptions = new ArrayList<>();
+        sortOptions.add(SortOptions.of(s -> s.field(f -> f.field("price").order(SortOrder.Desc))));
+        sortOptions.add(SortOptions.of(s -> s.field(f -> f.field("score").order(SortOrder.Asc))));
+        SearchResponse<HotelDoc> searchResponse = client.search(s -> s
+                        .index("hotel")
+                        .query(q -> q
+                                .matchAll(m -> m)
+                        )
+                        // 单字段
+                        //.sort(sort -> sort
+                        //        .field(f -> f
+                        //                .field("price")
+                        //                .order(SortOrder.Desc)
+                        //        )
+                        //)
+                        .sort(sortOptions)
+                , HotelDoc.class);
+        printResult(searchResponse);
     }
 
     @Test
