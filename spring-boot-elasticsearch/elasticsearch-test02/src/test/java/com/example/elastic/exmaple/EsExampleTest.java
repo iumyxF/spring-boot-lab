@@ -136,7 +136,7 @@ class EsExampleTest {
                                 .match(m -> m
                                         //.field("name")
                                         .field("search_word")
-                                        .query("文")))
+                                        .query("公司")))
                 , HotelDoc.class);
         printResult(searchResponse);
     }
@@ -352,46 +352,68 @@ class EsExampleTest {
         printResult(response);
     }
 
+    /**
+     * must和filter，效果是一样的，条件筛选，
+     * 如果结果需要算分，则使用must，否则使用filter（效率快）
+     * 个人理解：例如，如果查城市名，我们搜索相关度是要计算分数的，所以用must，筛选价格不需要计分，则用filter
+     */
     @Test
     public void queryBool2() throws IOException {
-        // 搜索城市在上海，品牌为xx或者yy，价格不低于500，且用户评分在45分以上的酒店
+        // 搜索城市在aa，品牌为xx或者yy，价格不低于bb，且用户评分在cc分以上的酒店
         SearchResponse<HotelDoc> response = client.search(s -> s
                         .index("hotel")
-                // bug
-                //.query(q -> q
-                //        .bool(b -> b
-                //                .must(m -> m
-                //                        .term(t -> t
-                //                                .field("search_word")
-                //                                .value("江苏省")
-                //                        )
-                //                )
-                //                .must(m -> m
-                //                        .range(r -> r
-                //                                .field("price")
-                //                                .lte(JsonData.of("2128647795"))
-                //                        )
-                //                )
-                //                .should(sh -> sh
-                //                        .term(t -> t
-                //                                .field("brand")
-                //                                .value("局凉挟挂工程股份有限公司")
-                //                        )
-                //                )
-                //                .should(sh -> sh
-                //                        .term(t -> t
-                //                                .field("brand")
-                //                                .value("唤韶发展有限责任公司")
-                //                        )
-                //                )
-                //                .filter(f -> f
-                //                        .range(r -> r
-                //                                .field("score")
-                //                                .gte(JsonData.of("45"))
-                //                        )
-                //                )
-                //        )
-                //)
+                        .query(q -> q
+                                .bool(b -> b
+                                        .must(m -> m
+                                                .match(t -> t
+                                                        .field("search_word")
+                                                        .query("公司")
+                                                )
+                                        )
+                                        //should 和 must同一级 不生效
+                                        //.should(sh -> sh
+                                        //        .term(t -> t
+                                        //                .field("brand")
+                                        //                .value("唤韶发展有限责任公司")
+                                        //        )
+                                        //)
+                                        //.should(sh -> sh
+                                        //        .term(t -> t
+                                        //                .field("brand")
+                                        //                .value("庐畦置业有限责任公司")
+                                        //        )
+                                        //)
+                                        // 解决方案：用一个must嵌套
+                                        .must(m -> m
+                                                .bool(bo -> bo
+                                                        .should(sh -> sh
+                                                                .term(t -> t
+                                                                        .field("brand")
+                                                                        .value("唤韶发展有限责任公司")
+                                                                )
+                                                        )
+                                                        .should(sh -> sh
+                                                                .term(t -> t
+                                                                        .field("brand")
+                                                                        .value("庐畦置业有限责任公司")
+                                                                )
+                                                        )
+                                                )
+                                        )
+                                        .filter(f -> f
+                                                .range(r -> r
+                                                        .field("price")
+                                                        .gte(JsonData.of("1"))
+                                                )
+                                        )
+                                        .filter(f -> f
+                                                .range(r -> r
+                                                        .field("score")
+                                                        .gte(JsonData.of("1"))
+                                                )
+                                        )
+                                )
+                        )
                 , HotelDoc.class);
         printResult(response);
     }
