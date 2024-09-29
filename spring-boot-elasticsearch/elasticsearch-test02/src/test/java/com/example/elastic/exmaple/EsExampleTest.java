@@ -2,10 +2,7 @@ package com.example.elastic.exmaple;
 
 import cn.hutool.core.collection.CollUtil;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
-import co.elastic.clients.elasticsearch._types.GeoDistanceType;
-import co.elastic.clients.elasticsearch._types.SortOptions;
-import co.elastic.clients.elasticsearch._types.SortOptionsVariant;
-import co.elastic.clients.elasticsearch._types.SortOrder;
+import co.elastic.clients.elasticsearch._types.*;
 import co.elastic.clients.elasticsearch._types.mapping.Property;
 import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
 import co.elastic.clients.elasticsearch._types.query_dsl.FunctionBoostMode;
@@ -196,74 +193,6 @@ class EsExampleTest {
     }
 
     /**
-     * 坐标矩阵查询，根据左上角和右下角筛选一个矩形范围
-     */
-    @Test
-    public void queryGeoByBox() throws IOException {
-        SearchResponse<HotelDoc> searchResponse = client.search(s -> s
-                        .index("hotel")
-                        .query(q -> q
-                                .geoBoundingBox(g -> g
-                                        .field("location")
-                                        .boundingBox(b -> b
-                                                .tlbr(t -> t
-                                                        // 经度:109.5702918030936 纬度:42.81018784349334
-                                                        .topLeft(tl -> tl
-                                                                .latlon(lat -> lat
-                                                                        .lon(109.5702918030936)
-                                                                        .lat(42.81018784349334)
-                                                                ))
-                                                        // 经度:118.14915253959975 纬度:21.739743055059776
-                                                        .bottomRight(br -> br
-                                                                .latlon(lat -> lat
-                                                                        .lon(118.14915253959975)
-                                                                        .lat(21.739743055059776)
-                                                                ))
-                                                )
-                                        )
-                                )
-                        )
-                , HotelDoc.class);
-        printResult(searchResponse);
-    }
-
-    /**
-     * 圆心查询 查询某个坐标附近 x km范围的信息
-     */
-    @Test
-    public void queryGeoByCircle() throws IOException {
-        SearchResponse<HotelDoc> response = client.search(s -> s
-                        .index("hotel")
-                        .query(q -> q
-                                .geoDistance(g -> g
-                                        .distance("1700km")
-                                        .field("location")
-                                        .location(l -> l
-                                                .latlon(v -> v
-                                                        .lat(36.30556423523153)
-                                                        .lon(104.48060937499996)
-                                                ))
-                                        .distanceType(GeoDistanceType.Arc)
-                                ))
-                // 写法2:
-                //.bool(b -> b
-                //        .filter(f -> f
-                //                .geoDistance(g -> g
-                //                        .distance("1700km")
-                //                        .field("location")
-                //                        .location(l -> l
-                //                                .latlon(v -> v
-                //                                        .lat(36.30556423523153)
-                //                                        .lon(104.48060937499996)
-                //                                ))
-                //                        .distanceType(GeoDistanceType.Arc)
-                //                ))
-                //))
-                , HotelDoc.class);
-        printResult(response);
-    }
-
-    /**
      * 复合查询
      * 1. function score：算分函数查询，可以控制文档相关性算分，控制文档排名(例如搜索引擎的排名，第一大部分都是广告)
      * 根据相关度打分是比较合理的需求，但是合理的并不一定是产品经理需要的
@@ -447,6 +376,168 @@ class EsExampleTest {
                         .sort(sortOptions)
                 , HotelDoc.class);
         printResult(searchResponse);
+    }
+
+    /**
+     * 分页查询
+     * 如果分页数量过大，会造成es解点故障
+     * 解决方案：<a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.17/paginate-search-results.html"/>
+     */
+    @Test
+    public void queryPage() throws IOException {
+        SearchResponse<HotelDoc> searchResponse = client.search(s -> s
+                        .index("hotel")
+                        .query(q -> q
+                                .matchAll(m -> m)
+                        )
+                        .from(9991)
+                        .size(10)
+                        .sort(sort -> sort
+                                .field(f -> f
+                                        .field("price")
+                                        .order(SortOrder.Asc)
+                                )
+                        )
+                , HotelDoc.class);
+        printResult(searchResponse);
+    }
+
+    /**
+     * 深度分页查询
+     * search_after
+     * 使用 search_after 需要具有相同 query 和 sort 值的多个搜索请求。
+     * 如果在这些请求之间发生刷新，则结果的顺序可能会更改，从而导致页面之间的结果不一致。
+     * 为防止这种情况，可以创建一个时间点 （PIT） 来保留搜索的当前索引状态。
+     */
+    @Test
+    public void queryDepthPage() throws IOException {
+        // 正常查询
+        //SearchResponse<HotelDoc> search1 = client.search(s -> s.index("hotel")
+        //                .query(query -> query.matchAll(ma -> ma))
+        //                .size(2)
+        //                .sort(sort -> sort.field(f -> f.field("address").order(SortOrder.Desc)))
+        //        , HotelDoc.class);
+        //printResult(search1);
+
+        // 使用pid查询
+        OpenPointInTimeResponse openPointInTimeResponse = client.openPointInTime(p -> p
+                .index("hotel")
+                .keepAlive(v -> v
+                        .time("1m")
+                )
+        );
+        String id = openPointInTimeResponse.id();
+        SearchResponse<HotelDoc> searchResponse = client.search(s -> s
+                        .size(2)
+                        .pit(p -> p.keepAlive(k -> k.time("1m")).id(id))
+                        .sort(sort -> sort.field(f -> f.field("address").order(SortOrder.Desc)))
+                , HotelDoc.class);
+        printResult(searchResponse);
+
+        // 获取上一页最后一个排序信息
+        List<Hit<HotelDoc>> hits = searchResponse.hits().hits();
+        List<FieldValue> values = hits.get(hits.size() - 1).sort();
+
+        // 查询下一页
+        System.out.println("下一页信息：");
+        SearchResponse<HotelDoc> searchResponse2 = client.search(s -> s
+                        .size(2)
+                        // 延续时间1min
+                        .pit(p -> p.keepAlive(k -> k.time("1m")).id(id))
+                        .sort(sort -> sort.field(f -> f.field("address").order(SortOrder.Desc)))
+                        .searchAfter(values)
+                        .trackTotalHits(t -> t.enabled(false))
+                , HotelDoc.class);
+        printResult(searchResponse2);
+
+        // 最后使用完毕可以手动关闭
+        client.closePointInTime(c -> c.id(id));
+    }
+
+    @Test
+    public void queryHighlight() throws IOException {
+        SearchResponse<HotelDoc> search1 = client.search(s -> s.index("hotel")
+                        .query(query -> query.match(ma -> ma.field("name").query("文")))
+                        .highlight(h -> h
+                                .fields("name", hf -> hf
+                                        .requireFieldMatch(false)))
+                , HotelDoc.class);
+
+        //search1.hits().hits().get(0).highlight();
+        printResult(search1);
+    }
+
+    /**
+     * GEO
+     * 坐标矩阵查询，根据左上角和右下角筛选一个矩形范围
+     */
+    @Test
+    public void queryGeoByBox() throws IOException {
+        SearchResponse<HotelDoc> searchResponse = client.search(s -> s
+                        .index("hotel")
+                        .query(q -> q
+                                .geoBoundingBox(g -> g
+                                        .field("location")
+                                        .boundingBox(b -> b
+                                                .tlbr(t -> t
+                                                        // 经度:109.5702918030936 纬度:42.81018784349334
+                                                        .topLeft(tl -> tl
+                                                                .latlon(lat -> lat
+                                                                        .lon(109.5702918030936)
+                                                                        .lat(42.81018784349334)
+                                                                )
+                                                        )
+                                                        // 经度:118.14915253959975 纬度:21.739743055059776
+                                                        .bottomRight(br -> br
+                                                                .latlon(lat -> lat
+                                                                        .lon(118.14915253959975)
+                                                                        .lat(21.739743055059776)
+                                                                )
+                                                        )
+                                                )
+                                        )
+                                )
+                        )
+                , HotelDoc.class);
+        printResult(searchResponse);
+    }
+
+    /**
+     * GEO
+     * 圆心查询 查询某个坐标附近 x km范围的信息
+     */
+    @Test
+    public void queryGeoByCircle() throws IOException {
+        SearchResponse<HotelDoc> response = client.search(s -> s
+                        .index("hotel")
+                        .query(q -> q
+                                .geoDistance(g -> g
+                                        .distance("1700km")
+                                        .field("location")
+                                        .location(l -> l
+                                                .latlon(v -> v
+                                                        .lat(36.30556423523153)
+                                                        .lon(104.48060937499996)
+                                                ))
+                                        .distanceType(GeoDistanceType.Arc)
+                                )
+                        )
+                // 写法2:
+                //.bool(b -> b
+                //        .filter(f -> f
+                //                .geoDistance(g -> g
+                //                        .distance("1700km")
+                //                        .field("location")
+                //                        .location(l -> l
+                //                                .latlon(v -> v
+                //                                        .lat(36.30556423523153)
+                //                                        .lon(104.48060937499996)
+                //                                ))
+                //                        .distanceType(GeoDistanceType.Arc)
+                //                ))
+                //))
+                , HotelDoc.class);
+        printResult(response);
     }
 
     @Test
