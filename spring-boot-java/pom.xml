@@ -20,6 +20,7 @@
         <module>java-personnel-info-sync</module>
         <module>java-practice</module>
         <module>java-test-excel</module>
+        <module>java-test-mic</module>
     </modules>
 
 </project>
