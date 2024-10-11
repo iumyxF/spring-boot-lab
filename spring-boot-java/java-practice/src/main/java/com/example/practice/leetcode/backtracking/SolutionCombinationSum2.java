@@ -63,6 +63,8 @@ public class SolutionCombinationSum2 {
         }
         for (int i = index; i < candidates.length; i++) {
             // 重点
+            // candidates[i] == candidates[i - 1] 相邻两个元素相同
+            // 而且 前一个元素没被使用，说明当前这个元素已经有保存过记录 可以忽略
             if (i > 0 && candidates[i] == candidates[i - 1] && !used[i - 1]) {
                 continue;
             }

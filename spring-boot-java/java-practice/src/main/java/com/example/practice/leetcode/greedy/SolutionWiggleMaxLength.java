@@ -62,7 +62,8 @@ public class SolutionWiggleMaxLength {
     }
 
     public static void main(String[] args) {
-        int[] nums = new int[]{1, 7, 4, 2, 5, 3, 9};
+        //int[] nums = new int[]{1, 7, 4, 2, 5, 3, 9};
+        int[] nums = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9};
         SolutionWiggleMaxLength s = new SolutionWiggleMaxLength();
         int length = s.wiggleMaxLength(nums);
         System.out.println(length);
