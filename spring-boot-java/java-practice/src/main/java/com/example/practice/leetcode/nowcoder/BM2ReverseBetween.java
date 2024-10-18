@@ -5,7 +5,7 @@ package com.example.practice.leetcode.nowcoder;
  * @description:
  * @date 2024/10/17 16:43
  */
-public class _002ReverseBetween {
+public class BM2ReverseBetween {
 
     /*
     链表内指定区间反转
@@ -56,7 +56,7 @@ public class _002ReverseBetween {
         n3.next = n4;
         n4.next = n5;
 
-        _002ReverseBetween s = new _002ReverseBetween();
+        BM2ReverseBetween s = new BM2ReverseBetween();
         ListNode listNode = s.reverseBetween(n1, 2, 4);
         System.out.println(listNode);
     }

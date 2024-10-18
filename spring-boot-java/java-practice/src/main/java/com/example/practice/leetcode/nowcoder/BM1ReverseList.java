@@ -5,7 +5,7 @@ package com.example.practice.leetcode.nowcoder;
  * @description:
  * @date 2024/10/17 16:34
  */
-public class _001ReverseList {
+public class BM1ReverseList {
 
     /*
     反转联表

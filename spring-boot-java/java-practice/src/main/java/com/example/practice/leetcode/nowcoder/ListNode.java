@@ -8,6 +8,7 @@ package com.example.practice.leetcode.nowcoder;
 public class ListNode {
 
     int val;
+
     ListNode next = null;
 
     public ListNode(int val) {
