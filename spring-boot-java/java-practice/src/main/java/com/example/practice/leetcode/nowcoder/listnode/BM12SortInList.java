@@ -1,6 +1,4 @@
-package com.example.practice.leetcode.nowcoder;
-
-import com.example.practice.leetcode.base.MergeSort;
+package com.example.practice.leetcode.nowcoder.listnode;
 
 import java.util.*;
 

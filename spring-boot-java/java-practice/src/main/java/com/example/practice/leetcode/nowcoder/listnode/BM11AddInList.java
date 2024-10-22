@@ -1,4 +1,4 @@
-package com.example.practice.leetcode.nowcoder;
+package com.example.practice.leetcode.nowcoder.listnode;
 
 import java.util.Deque;
 import java.util.LinkedList;
