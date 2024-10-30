@@ -285,4 +285,11 @@ public class TestServiceImpl {
             }
         }
     }
+
+    public void test1025(){
+        System.out.println(123);
+        List<User> list = userService.list();
+        userService.deleteById(1L);
+        list = userService.list();
+    }
 }

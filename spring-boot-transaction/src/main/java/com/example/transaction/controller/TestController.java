@@ -42,4 +42,9 @@ public class TestController {
     public void test4(@RequestParam("error") Integer error) {
         testService.threadDoServiceSingleRollBack(error);
     }
+
+    @GetMapping("/test1025")
+    public void test1025() {
+        testService.test1025();
+    }
 }

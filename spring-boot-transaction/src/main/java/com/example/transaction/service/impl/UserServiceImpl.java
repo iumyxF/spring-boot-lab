@@ -4,12 +4,14 @@ package com.example.transaction.service.impl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.transaction.domain.User;
 import com.example.transaction.mapper.UserMapper;
+import com.example.transaction.service.OrderService;
 import com.example.transaction.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import javax.annotation.Resource;
@@ -45,8 +47,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         System.out.println("add after");
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int deleteById(Long id) {
+        User aaaaaa = new User("aaaaaa");
+        userMapper.insert(aaaaaa);
+        //int i = 10 / 0;
         return 0;
     }
 }
