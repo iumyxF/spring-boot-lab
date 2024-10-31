@@ -9,7 +9,7 @@ import java.util.Stack;
  * @description:
  * @date 2024/10/30 9:29
  */
-public class PreorderTraversal {
+public class BM23PreorderTraversal {
 
     /*
     二叉树前序遍历
