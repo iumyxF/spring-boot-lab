@@ -21,6 +21,7 @@
         <module>java-practice</module>
         <module>java-test-excel</module>
         <module>java-test-mic</module>
+        <module>java-reactive-stream</module>
     </modules>
 
 </project>
