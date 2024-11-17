@@ -4,6 +4,7 @@ import com.example.media.cache.MediaCacheHandler;
 import com.example.media.common.bo.MediaBinaryData;
 import com.example.media.common.bo.MediaJsonData;
 import com.example.media.common.enums.JsonMessageType;
+import com.example.media.manager.NettyChannelManager;
 import io.netty.channel.Channel;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
@@ -24,6 +25,8 @@ public class RegisterHandler implements JsonMessageHandler {
     private ThreadPoolTaskExecutor taskExecutor;
     @Resource
     private MediaCacheHandler mediaCacheHandler;
+    @Resource
+    private NettyChannelManager channelManager;
 
     @Override
     public int getHandlerType() {
@@ -40,6 +43,8 @@ public class RegisterHandler implements JsonMessageHandler {
         if (null == groupName) {
             return;
         }
+        // 注册到channelGroup
+        channelManager.register(channel, groupName);
         // 读取缓冲区数据并发送给当前channel
         taskExecutor.execute(() -> {
             List<MediaBinaryData> cacheData = mediaCacheHandler.get(groupName);

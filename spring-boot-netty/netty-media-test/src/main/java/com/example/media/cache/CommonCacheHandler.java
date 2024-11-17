@@ -1,30 +1,29 @@
 package com.example.media.cache;
 
 import com.example.media.common.bo.MediaBinaryData;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 /**
  * @author feng
- * @description: 软编码和硬编码的关键帧判断方式不相同
- * @date 2024/11/13 21:58
+ * @description: 普通实现
+ * @date 2024/11/17 22:53
  */
-@Component
-public class MediaCacheHandler {
+public class CommonCacheHandler implements CacheHandler{
 
-    /*
-     cacheHandler 读读共享，读写互斥，同一个组内只有一个能写，用ReentrantReadWriteLock
-     */
+    private
 
+    @Override
     public void put(String groupName, MediaBinaryData data) {
 
     }
 
+    @Override
     public List<MediaBinaryData> get(String groupName) {
         return null;
     }
 
+    @Override
     public void clear(String groupName) {
 
     }

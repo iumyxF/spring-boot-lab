@@ -8,6 +8,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
 import lombok.extern.slf4j.Slf4j;
 
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 /**
@@ -94,21 +95,29 @@ public class TcpDecoder extends ByteToMessageDecoder {
      */
     private MediaJsonData decodeJsonData(ByteBuf in) {
         in.markReaderIndex();
-        // 记录json数据长度
         int length = 0;
-        while (in.readableBytes() > 0) {
+        int maxLength = 1024;
+        boolean isJsonFormat = false;
+        while (in.readableBytes() > 0 && length < maxLength) {
             byte b = in.readByte();
             length++;
-            // json结束标识符
             if (b == (byte) '\n' || b == (byte) '\r') {
-                in.resetReaderIndex();
-                byte[] data = new byte[length];
-                in.readBytes(data);
-                String str = new String(data);
-                return JacksonUtil.readValue(str, MediaJsonData.class);
+                isJsonFormat = true;
+                break;
             }
         }
         in.resetReaderIndex();
+        // 如果是合法JSON就转化
+        if (isJsonFormat) {
+            ByteBuf slice = in.readSlice(length);
+            try {
+                String str = slice.toString(StandardCharsets.UTF_8);
+                return JacksonUtil.readValue(str, MediaJsonData.class);
+            } finally {
+                slice.release();
+            }
+        }
         return null;
     }
+
 }

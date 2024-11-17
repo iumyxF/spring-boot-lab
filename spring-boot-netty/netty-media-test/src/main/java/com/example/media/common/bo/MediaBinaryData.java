@@ -1,5 +1,6 @@
 package com.example.media.common.bo;
 
+import io.netty.buffer.ByteBuf;
 import lombok.Data;
 
 /**
@@ -48,4 +49,18 @@ public class MediaBinaryData {
      */
     private byte[] data;
 
+    /**
+     * 将data数据写入buf
+     *
+     * @param buf buf
+     */
+    public void writeToBuf(ByteBuf buf) {
+        buf.writeByte(head);
+        buf.writeByte(channel);
+        buf.writeByte(type);
+        buf.writeInt(id);
+        buf.writeInt(codeType);
+        buf.writeInt(length);
+        buf.writeBytes(data);
+    }
 }

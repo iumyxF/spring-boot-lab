@@ -10,7 +10,18 @@ import io.netty.channel.Channel;
  */
 public interface BinaryMessageHandler {
 
+    /**
+     * 获取消息类型
+     *
+     * @return {@link com.example.media.common.enums.BinaryMessageType}
+     */
     int getHandlerType();
 
+    /**
+     * 处理消息实现
+     *
+     * @param channel 当前channel
+     * @param data    二进制流数据
+     */
     void handle(Channel channel, MediaBinaryData data);
 }

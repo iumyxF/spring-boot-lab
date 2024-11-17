@@ -19,6 +19,7 @@ public class HeartBeatHandler implements BinaryMessageHandler {
 
     @Override
     public void handle(Channel channel, MediaBinaryData data) {
-
+        // 这里简化操作直接刷新心跳数据，应该设计 Ping Pong 对象来实现
+        channel.writeAndFlush(data);
     }
 }
