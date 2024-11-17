@@ -11,8 +11,6 @@ import java.util.List;
  */
 public class CommonCacheHandler implements CacheHandler{
 
-    private
-
     @Override
     public void put(String groupName, MediaBinaryData data) {
 
