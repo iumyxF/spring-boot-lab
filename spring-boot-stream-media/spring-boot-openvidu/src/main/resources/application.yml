@@ -1,0 +1,6 @@
+server:
+  port: 9999
+
+openvidu:
+  url: 192.168.2.161
+  secret: Gonsin123

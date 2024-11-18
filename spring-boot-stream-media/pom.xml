@@ -16,6 +16,7 @@
         <module>simple-grab-push</module>
         <module>spring-boot-jcodec</module>
         <module>spring-boot-hls</module>
+        <module>spring-boot-openvidu</module>
     </modules>
 
 </project>
