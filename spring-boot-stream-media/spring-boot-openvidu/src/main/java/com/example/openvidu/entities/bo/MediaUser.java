@@ -19,11 +19,6 @@ public class MediaUser {
     private String userKey;
 
     /**
-     * 用户名
-     */
-    private String name;
-
-    /**
      * 用户类型 1：发布者， 2：订阅者
      */
     private Integer userType;
@@ -32,6 +27,11 @@ public class MediaUser {
      * 会话ID
      */
     private String sessionId;
+
+    /**
+     * 用户连接会话ID
+     */
+    private String connId;
 
     /**
      * 会话访问凭证
