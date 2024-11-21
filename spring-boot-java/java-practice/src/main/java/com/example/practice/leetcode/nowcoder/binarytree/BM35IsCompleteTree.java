@@ -1,7 +1,8 @@
 package com.example.practice.leetcode.nowcoder.binarytree;
 
-import java.util.Deque;
 import java.util.LinkedList;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * @author fzy
@@ -17,37 +18,48 @@ public class BM35IsCompleteTree {
     数据范围：节点数满足1 <= n <= 100
 
     层序遍历
-    判断这层的节点数 是不是2h，1层-1，2层-2，3层-6
-
 
      */
 
     public boolean isCompleteTree(TreeNode root) {
         if (root == null) {
-            return false;
+            return true;
         }
-        Deque<TreeNode> list = new LinkedList<>();
-        list.addFirst(root);
-        int loop = 1;
-        int expect;
-        int depth = 1;
-        while (!list.isEmpty()) {
-            expect = (int) Math.pow(2, depth - 1);
-            if (expect != loop) {
-                return false;
-            }
-            for (int i = 0; i < loop; i++) {
-                TreeNode node = list.pollFirst();
-                if (node.left != null) {
-                    list.addLast(node.left);
+        LinkedList<TreeNode> linkedList = new LinkedList<>();
+        linkedList.addFirst(root);
+        // 判断遍历的当前节点的左边是否有空节点
+        boolean leftNull = false;
+        while (!linkedList.isEmpty()) {
+            TreeNode node = linkedList.pollFirst();
+            if (node == null) {
+                leftNull = true;
+            } else {
+                if (leftNull) {
+                    return false;
                 }
-                if (node.right != null) {
-                    list.addLast(node.right);
-                }
+                linkedList.addLast(node.left);
+                linkedList.addLast(node.right);
             }
-            depth++;
-            loop = list.size();
         }
         return true;
+    }
+
+    public static void main(String[] args) {
+        TreeNode n1 = new TreeNode(1);
+        TreeNode n2 = new TreeNode(2);
+        TreeNode n3 = new TreeNode(3);
+        TreeNode n4 = new TreeNode(4);
+        TreeNode n5 = new TreeNode(5);
+        TreeNode n6 = new TreeNode(6);
+        n1.left = n2;
+        n1.right = n3;
+
+        n2.left = n4;
+        //n2.right = n5;
+
+        //n3.left = n6;
+
+        BM35IsCompleteTree s = new BM35IsCompleteTree();
+        System.out.println(s.isCompleteTree(n1));
     }
 }
