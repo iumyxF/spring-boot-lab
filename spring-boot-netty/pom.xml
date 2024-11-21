@@ -21,6 +21,8 @@
         <module>spring-boot-netty-websocket</module>
         <module>netty-media-test</module>
         <module>spring-boot-netty-rtmp-client</module>
+        <module>spring-boot-netty-rtsp-server</module>
+        <module>spring-boot-netty-rtsp-client</module>
     </modules>
 
     <properties>

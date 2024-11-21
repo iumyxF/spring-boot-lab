@@ -17,6 +17,7 @@
         <module>spring-boot-jcodec</module>
         <module>spring-boot-hls</module>
         <module>spring-boot-openvidu</module>
+        <module>simple-media-linux-test</module>
     </modules>
 
 </project>

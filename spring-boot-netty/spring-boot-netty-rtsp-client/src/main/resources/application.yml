@@ -1,0 +1,6 @@
+server:
+  port: 9091
+
+netty:
+  port: 1553
+  host: 127.0.0.1
