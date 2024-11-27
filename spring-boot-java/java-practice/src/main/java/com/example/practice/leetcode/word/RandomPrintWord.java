@@ -35,6 +35,16 @@ public class RandomPrintWord {
         return list;
     }
 
+    /**
+     * refusing disposable goods
+     * additive
+     * splash
+     * metacognition
+     * artware
+     * offensive
+     * dominate
+     * humor
+     */
     public List<String> wordBy20241126() {
         return Arrays.asList("拒绝一次性商品", "让人上瘾的", "泼",
                 "元认知", "工艺品", "无礼的，冒犯的",
