@@ -1,7 +1,5 @@
 package com.example.practice.leetcode.nowcoder.binarytree;
 
-import java.util.Stack;
-
 /**
  * @author fzy
  * @description:

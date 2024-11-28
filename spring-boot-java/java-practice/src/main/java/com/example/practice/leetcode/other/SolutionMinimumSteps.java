@@ -1,7 +1,5 @@
 package com.example.practice.leetcode.other;
 
-import java.util.*;
-
 /**
  * @author fzy
  * @description: <a href="https://juejin.cn/post/7420251289703137315"/>
