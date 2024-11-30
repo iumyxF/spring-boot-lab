@@ -59,7 +59,11 @@ class CouponHandler {
     public void handle(Order order, List<Coupon> useCouponList) {
         boolean[] used = new boolean[useCouponList.size()];
         dfs(useCouponList, used, order.getAmount(), new ArrayList<>(useCouponList.size()), 0, 0);
+        // 输出全部解
         consoleOutput(couponUsedCollection);
+        // 输出最优解
+        System.out.println("###");
+        consoleOutputOptimalSolution(order.getAmount(), couponUsedCollection);
     }
 
     public void dfs(List<Coupon> useCouponList, boolean[] used, Integer amount, List<Coupon> path, int index, int deduct) {
@@ -90,20 +94,53 @@ class CouponHandler {
     }
 
     private void consoleOutput(List<CouponCalculationBo> couponUsedCollection) {
-        int optimalIndex = 0;
-        int maxDeduct = Integer.MIN_VALUE;
         for (int i = 0; i < couponUsedCollection.size(); i++) {
             CouponCalculationBo bo = couponUsedCollection.get(i);
             System.out.println("优惠券使用顺序: " + bo.getCouponUsedOrderList().stream().map(Coupon::getId).collect(Collectors.toList())
                     + " ,能抵扣的金额: " + bo.getDeduct());
-            if (bo.getDeduct() > maxDeduct) {
-                maxDeduct = bo.getDeduct();
-                optimalIndex = i;
+        }
+    }
+
+    /**
+     * 如果金额能抵扣完，最优解为使用最少优惠券的方案
+     * 如果金额不能抵扣完，最优解为能抵扣的最大金额
+     *
+     * @param amount
+     * @param couponUsedCollection
+     */
+    private void consoleOutputOptimalSolution(Integer amount, List<CouponCalculationBo> couponUsedCollection) {
+        // 查询能抵扣完的方案
+        ArrayList<CouponCalculationBo> fullCancellation = new ArrayList<>(couponUsedCollection.size());
+        for (CouponCalculationBo calculationBo : couponUsedCollection) {
+            if (calculationBo.getDeduct() >= amount) {
+                fullCancellation.add(calculationBo);
             }
         }
-        System.out.println("###");
-        System.out.println("最优解为，使用顺序: " + couponUsedCollection.get(optimalIndex).getCouponUsedOrderList().stream().map(Coupon::getId).collect(Collectors.toList())
-                + " ,能抵扣的金额: " + couponUsedCollection.get(optimalIndex).getDeduct());
+        int optimalIndex = 0;
+        // 金额能抵扣完，最优解为使用最少优惠券的方案
+        if (fullCancellation.size() > 0) {
+            int usedLen = Integer.MAX_VALUE;
+            for (int i = 0; i < fullCancellation.size(); i++) {
+                CouponCalculationBo bo = fullCancellation.get(i);
+                if (bo.getCouponUsedOrderList().size() < usedLen) {
+                    usedLen = bo.getCouponUsedOrderList().size();
+                    optimalIndex = i;
+                }
+            }
+            System.out.println("最优解方案: " + fullCancellation.get(optimalIndex).getCouponUsedOrderList().stream().map(Coupon::getId).collect(Collectors.toList())
+                    + " ,能抵扣的金额: " + fullCancellation.get(optimalIndex).getDeduct());
+        } else {
+            int maxDeduct = Integer.MIN_VALUE;
+            for (int i = 0; i < couponUsedCollection.size(); i++) {
+                CouponCalculationBo bo = couponUsedCollection.get(i);
+                if (bo.getDeduct() > maxDeduct) {
+                    maxDeduct = bo.getDeduct();
+                    optimalIndex = i;
+                }
+            }
+            System.out.println("最优解方案: " + couponUsedCollection.get(optimalIndex).getCouponUsedOrderList().stream().map(Coupon::getId).collect(Collectors.toList())
+                    + " ,能抵扣的金额: " + couponUsedCollection.get(optimalIndex).getDeduct());
+        }
     }
 }
 
