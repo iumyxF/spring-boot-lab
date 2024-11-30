@@ -1,4 +1,4 @@
-package com.example.practice.leetcode.od.array;
+package com.example.practice.leetcode.od.e_volume;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -9,7 +9,7 @@ import java.util.List;
  * @description:
  * @date 2024/11/28 15:59
  */
-public class WordPuzzle {
+public class E1006WordPuzzle {
 
     /*
     小王设计了一个简单的猜字谜游戏，游戏的谜面是一个错误的单词，比如 nesw，玩家需要猜出谜底库中正确的单词。
@@ -55,6 +55,8 @@ public class WordPuzzle {
         solution(Arrays.asList("conection"), Arrays.asList("connection", "today"));
         System.out.println("###");
         solution(Arrays.asList("bdni", "wooood"), Arrays.asList("bind", "wrong", "wood"));
+        System.out.println("###");
+        solution(Arrays.asList("book", "boook","booook"), Arrays.asList("book", "wood", "good"));
     }
 
     public static void solution(List<String> targets, List<String> stringList) {
