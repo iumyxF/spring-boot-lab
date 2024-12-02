@@ -29,93 +29,65 @@ public class BM49ExpressionEvaluation {
     负数？
      */
 
-    public static List<String> operList = new ArrayList<>(4);
-
-    static {
-        operList.add("+");
-        operList.add("-");
-        operList.add("*");
-        operList.add("/");
-    }
-
 
     public int solve(String s) {
-        StringBuilder sb = new StringBuilder(s);
-        Stack<String> stack = new Stack<>();
-
-        int startIndex = 0;
-        // 找出第一个数字
-        if (sb.charAt(0) != '(') {
-            int firstOperIndex = 0;
-            for (int i = 0; i < sb.length(); i++) {
-                if (operList.contains(String.valueOf(sb.charAt(i)))) {
-                    firstOperIndex = i;
-                    break;
-                }
-            }
-            stack.push(sb.substring(0, startIndex));
-            startIndex = firstOperIndex;
+        Deque<Character> q = new LinkedList<>();
+        for (char c : s.toCharArray()) {
+            q.offer(c);
         }
-
-        int leftCount = 0;
-
-        for (int i = startIndex; i < sb.length(); i++) {
-            String value = String.valueOf(sb.charAt(i));
-            // 处理括号值
-            if (value.equals("(")) {
-                leftCount++;
-            }
-            if (value.equals(")")) {
-                StringBuilder exp = new StringBuilder();
-                while (!stack.isEmpty()) {
-                    String pop = stack.pop();
-                    exp.append(pop);
-                    if (pop.equals("(")) {
-                        int compute = compute(exp.reverse().toString());
-                        stack.push(String.valueOf(compute));
-                        leftCount--;
-                    }
-                }
-            }
-
-        }
-
-        return -1;
+        return dfs(q);
     }
 
-    public int compute(String exp) {
-        // 获取运算符号
-        String oper = "";
-        int operIndex = 0;
-        for (int i = 1; i < exp.length(); i++) {
-            String value = String.valueOf(exp.charAt(i));
-            if (operList.contains(value)) {
-                oper = value;
-                operIndex = i;
+    private int dfs(Deque<Character> q) {
+        Stack<Integer> stack = new Stack<>();
+        // 当前运算符的前一个运算符
+        char op = '+';
+        // op后面的数
+        int num = 0;
+        int res = 0;
+        while (!q.isEmpty()) {
+            char c = q.poll();
+            // c是数字就更新数字
+            if (Character.isDigit(c)) {
+                num = num * 10 + c - '0';
+            }
+            // 左括号就进入递归
+            if (c == '(') {
+                num = dfs(q);
+            }
+            // c是运算符
+            if (!Character.isDigit(c) && c != ' ' || q.isEmpty()) {
+                // 加减法直接进栈保存，乘除要先处理上一个元素和当前元素再进栈
+                if (op == '+') {
+                    stack.push(num);
+                } else if (op == '-') {
+                    stack.push(-num);
+                } else if (op == '*') {
+                    stack.push(stack.pop() * num);
+                } else if (op == '/') {
+                    stack.push(stack.pop() / num);
+                }
+                num = 0;
+                op = c;
+            }
+            // 是右括号就退出循环 直接返回结果
+            if (c == ')') {
                 break;
             }
         }
-        int a = Integer.parseInt(exp.substring(0, operIndex));
-        int b = Integer.parseInt(exp.substring(operIndex + 1));
-        switch (oper) {
-            case "+":
-                return a + b;
-            case "-":
-                return a - b;
-            case "*":
-                return a * b;
-            case "/":
-                return a / b;
-            default:
-                throw new IllegalArgumentException();
+        // System.out.println(stack.toString());
+        for (int i : stack) {
+            res += i;
         }
+        return res;
     }
+
 
     public static void main(String[] args) {
         BM49ExpressionEvaluation s = new BM49ExpressionEvaluation();
-        StringBuilder sb = new StringBuilder("-2");
-        System.out.println(sb.substring(0, 1));
-        System.out.println(sb.substring(0, 2));
+        // System.out.println(s.solve("1+2"));
+        System.out.println(s.solve("(2*(3-4))*5"));
+        System.out.println(s.solve("3+2*3*4-1"));
     }
 
 }
