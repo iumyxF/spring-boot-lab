@@ -20,6 +20,10 @@ public class BestUseCoupon {
      * [231] -2000 -100 -3000 >>> -5100
      * [312] -100 -3000 -1380 >>> -4480
      * [321] -100 -1980 -3000 >>> -5080
+     * <p>
+     * 扩展：
+     * 1. 如果优惠券每种类型有使用限制
+     * a. 在dfs()方法中再增加一个数组，标识每种券的使用数量是否达到上限
      */
     public static void main(String[] args) {
         // 注意金额单位是分 100元的订单
@@ -40,7 +44,7 @@ class CouponHandler {
 
     private final CouponHandlerFactory couponHandlerFactory;
 
-    private final List<CouponCalculationBo> couponUsedCollection;
+    private final List<CouponCalculationResultBo> couponUsedCollection;
 
 
     public CouponHandler() {
@@ -58,7 +62,7 @@ class CouponHandler {
      */
     public void handle(Order order, List<Coupon> useCouponList) {
         boolean[] used = new boolean[useCouponList.size()];
-        dfs(useCouponList, used, order.getAmount(), new ArrayList<>(useCouponList.size()), 0, 0);
+        dfs(useCouponList, used, order.getAmount(), new ArrayList<>(useCouponList.size()), 0, 0, order.getOccupation());
         // 输出全部解
         consoleOutput(couponUsedCollection);
         // 输出最优解
@@ -66,9 +70,9 @@ class CouponHandler {
         consoleOutputOptimalSolution(order.getAmount(), couponUsedCollection);
     }
 
-    public void dfs(List<Coupon> useCouponList, boolean[] used, Integer amount, List<Coupon> path, int index, int deduct) {
+    public void dfs(List<Coupon> useCouponList, boolean[] used, Integer amount, List<Coupon> path, int index, int deduct, int occupation) {
         if (amount <= 0 || index == useCouponList.size()) {
-            couponUsedCollection.add(new CouponCalculationBo(new ArrayList<>(path), deduct));
+            couponUsedCollection.add(new CouponCalculationResultBo(new ArrayList<>(path), deduct));
             return;
         }
         for (int i = 0; i < useCouponList.size(); i++) {
@@ -76,7 +80,7 @@ class CouponHandler {
                 continue;
             }
             index++;
-            Integer deduction = couponHandlerFactory.calculateAmountOfDeduction(amount, useCouponList.get(i));
+            Integer deduction = couponHandlerFactory.calculateAmountOfDeduction(new CouponCalculationRequestBo(amount, occupation), useCouponList.get(i));
             if (deduction == 0) {
                 continue;
             }
@@ -84,7 +88,7 @@ class CouponHandler {
             path.add(useCouponList.get(i));
             deduct += deduction;
             amount -= deduction;
-            dfs(useCouponList, used, amount, path, index, deduct);
+            dfs(useCouponList, used, amount, path, index, deduct, occupation);
             used[i] = false;
             path.remove(path.size() - 1);
             amount += deduction;
@@ -93,9 +97,9 @@ class CouponHandler {
         }
     }
 
-    private void consoleOutput(List<CouponCalculationBo> couponUsedCollection) {
+    private void consoleOutput(List<CouponCalculationResultBo> couponUsedCollection) {
         for (int i = 0; i < couponUsedCollection.size(); i++) {
-            CouponCalculationBo bo = couponUsedCollection.get(i);
+            CouponCalculationResultBo bo = couponUsedCollection.get(i);
             System.out.println("优惠券使用顺序: " + bo.getCouponUsedOrderList().stream().map(Coupon::getId).collect(Collectors.toList())
                     + " ,能抵扣的金额: " + bo.getDeduct());
         }
@@ -108,10 +112,10 @@ class CouponHandler {
      * @param amount
      * @param couponUsedCollection
      */
-    private void consoleOutputOptimalSolution(Integer amount, List<CouponCalculationBo> couponUsedCollection) {
+    private void consoleOutputOptimalSolution(Integer amount, List<CouponCalculationResultBo> couponUsedCollection) {
         // 查询能抵扣完的方案
-        ArrayList<CouponCalculationBo> fullCancellation = new ArrayList<>(couponUsedCollection.size());
-        for (CouponCalculationBo calculationBo : couponUsedCollection) {
+        ArrayList<CouponCalculationResultBo> fullCancellation = new ArrayList<>(couponUsedCollection.size());
+        for (CouponCalculationResultBo calculationBo : couponUsedCollection) {
             if (calculationBo.getDeduct() >= amount) {
                 fullCancellation.add(calculationBo);
             }
@@ -121,7 +125,7 @@ class CouponHandler {
         if (fullCancellation.size() > 0) {
             int usedLen = Integer.MAX_VALUE;
             for (int i = 0; i < fullCancellation.size(); i++) {
-                CouponCalculationBo bo = fullCancellation.get(i);
+                CouponCalculationResultBo bo = fullCancellation.get(i);
                 if (bo.getCouponUsedOrderList().size() < usedLen) {
                     usedLen = bo.getCouponUsedOrderList().size();
                     optimalIndex = i;
@@ -132,7 +136,7 @@ class CouponHandler {
         } else {
             int maxDeduct = Integer.MIN_VALUE;
             for (int i = 0; i < couponUsedCollection.size(); i++) {
-                CouponCalculationBo bo = couponUsedCollection.get(i);
+                CouponCalculationResultBo bo = couponUsedCollection.get(i);
                 if (bo.getDeduct() > maxDeduct) {
                     maxDeduct = bo.getDeduct();
                     optimalIndex = i;
@@ -157,16 +161,16 @@ class CouponHandlerFactory {
     /**
      * 计算优惠券能抵扣的金额
      *
-     * @param amount 订单金额
-     * @param coupon 优惠券
+     * @param requestBo 订单计算请求体
+     * @param coupon    优惠券
      * @return 抵扣金额
      */
-    public Integer calculateAmountOfDeduction(Integer amount, Coupon coupon) {
+    public Integer calculateAmountOfDeduction(CouponCalculationRequestBo requestBo, Coupon coupon) {
         ICouponHandler handler = HANDLER_MAP.get(coupon.getType());
-        if (null == handler || amount < coupon.getThreshold()) {
+        if (null == handler || requestBo.getAmount() < coupon.getThreshold()) {
             return 0;
         }
-        return handler.compute(amount, coupon);
+        return handler.compute(requestBo, coupon);
     }
 }
 
@@ -176,17 +180,17 @@ interface ICouponHandler {
     /**
      * 计算优惠券能抵扣多少钱
      *
-     * @param amount 订单金额
-     * @param coupon 优惠券
+     * @param requestBo 计算请求体
+     * @param coupon    优惠券
      * @return 能抵扣的金额
      */
-    Integer compute(Integer amount, Coupon coupon);
+    Integer compute(CouponCalculationRequestBo requestBo, Coupon coupon);
 }
 
 class FixedCouponHandler implements ICouponHandler {
 
     @Override
-    public Integer compute(Integer amount, Coupon coupon) {
+    public Integer compute(CouponCalculationRequestBo requestBo, Coupon coupon) {
         return coupon.getValue();
     }
 }
@@ -194,17 +198,25 @@ class FixedCouponHandler implements ICouponHandler {
 class DiscountCouponHandler implements ICouponHandler {
 
     @Override
-    public Integer compute(Integer amount, Coupon coupon) {
+    public Integer compute(CouponCalculationRequestBo requestBo, Coupon coupon) {
+        Integer amount = requestBo.getAmount();
         return Math.toIntExact(Math.round(amount - amount * coupon.getValue() / 100.00));
     }
 }
 
 class TimeCouponHandler implements ICouponHandler {
 
+    /**
+     * 每分钟 100 分 （每分钟 1 元）
+     */
+    private static final int roomPricePerMinute = 100;
+
     @Override
-    public Integer compute(Integer amount, Coupon coupon) {
-        // 这里要重新计算订单金额，把时间扣减后，计算订单价格
-        return 0;
+    public Integer compute(CouponCalculationRequestBo requestBo, Coupon coupon) {
+        // 如果订单占用时间 比 优惠券扣减时间长，则有效时间是 优惠券的扣减时间，反之则是订单的占用时间
+        int effectiveTime = requestBo.getOccupation() >= coupon.getValue() ?
+                coupon.getValue() : requestBo.getOccupation();
+        return effectiveTime * roomPricePerMinute;
     }
 }
 
@@ -231,7 +243,7 @@ class Coupon {
     /**
      * type = 1 时 value 范围 0 ~ Integer.MAX_VALUE
      * type = 2 时 value 范围 0 ~ 100, 88代表 8.8折
-     * type = 3 时 value 范围 0 ~ Integer.MAX_VALUE
+     * type = 3 时 value 范围 0 ~ Integer.MAX_VALUE 单位分钟
      */
     private Integer value;
 
@@ -292,7 +304,7 @@ class Order {
     }
 }
 
-class CouponCalculationBo {
+class CouponCalculationResultBo {
 
     /**
      * 优惠券使用的顺序
@@ -304,7 +316,7 @@ class CouponCalculationBo {
      */
     private Integer deduct;
 
-    public CouponCalculationBo(List<Coupon> couponUsedOrderList, Integer deduct) {
+    public CouponCalculationResultBo(List<Coupon> couponUsedOrderList, Integer deduct) {
         this.couponUsedOrderList = couponUsedOrderList;
         this.deduct = deduct;
     }
@@ -315,5 +327,31 @@ class CouponCalculationBo {
 
     public Integer getDeduct() {
         return deduct;
+    }
+}
+
+class CouponCalculationRequestBo {
+
+    /**
+     * 订单占用的会议时长 单位分钟
+     */
+    private Integer occupation;
+
+    /**
+     * 订单金额 单位分
+     */
+    private Integer amount;
+
+    public CouponCalculationRequestBo(Integer occupation, Integer amount) {
+        this.occupation = occupation;
+        this.amount = amount;
+    }
+
+    public Integer getOccupation() {
+        return occupation;
+    }
+
+    public Integer getAmount() {
+        return amount;
     }
 }
