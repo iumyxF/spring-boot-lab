@@ -12,6 +12,25 @@ import java.util.Scanner;
  */
 public class E2047Solution {
 
+    /*
+        6 30
+        81 87 47 59 81 18
+
+        57
+
+        6 20
+        81 87 47 59 81 18
+
+        12
+
+        4 10
+        40 51 62 73
+
+        -1
+
+        pairs 数组 保存能匹对成功的数量队伍
+
+     */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
