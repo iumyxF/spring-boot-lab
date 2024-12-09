@@ -1,6 +1,7 @@
 package com.example.practice.leetcode.nowcoder.recursionbacktracking;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author feng
@@ -17,10 +18,26 @@ public class BM60ParenthesisGeneration {
 
     public ArrayList<String> generateParenthesis(int n) {
         ArrayList<String> res = new ArrayList<>();
+        dfs(new StringBuilder(), n, n, res);
         return res;
     }
 
-    public void dfs(StringBuilder path, int leftCount, int rightCount, ArrayList<String> res) {
+    public void dfs(StringBuilder path, int leftCount, int rightCount, List<String> res) {
+        if (leftCount == 0 && rightCount == 0) {
+            res.add(path.toString());
+            return;
+        }
+        if (leftCount > 0) {
+            path.append("(");
+            dfs(path, leftCount - 1, rightCount, res);
+            path.deleteCharAt(path.length() - 1);
+        }
+        // path里面的左括号要比右括号多，所以leftCount要小于rightCount
+        if (leftCount < rightCount && rightCount > 0) {
+            path.append(")");
+            dfs(path, leftCount, rightCount - 1, res);
+            path.deleteCharAt(path.length() - 1);
+        }
     }
 
     public static void main(String[] args) {
