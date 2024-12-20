@@ -22,27 +22,7 @@ public class BM69TranslationString {
      */
 
     public int solve(String nums) {
-        int len = nums.length();
-        if (len == 0 || nums.charAt(0) == '0') {
-            return 0;
-        }
-        int[] dp = new int[len];
-        dp[0] = 1;
-        for (int i = 1; i < nums.length(); i++) {
-            if (nums.charAt(i) != '0') {
-                dp[i] = dp[i - 1];
-            }
-            // 如果 10<=num<=26  如果i等于1，直接dp[i]++; 如果大于1, 则dp[i] += dp[i-2];
-            int num = (nums.charAt(i - 1) - '0') * 10 + (nums.charAt(i) - '0');
-            if (num >= 10 && num <= 26) {
-                if (i == 1) {
-                    dp[i] += 1;
-                } else {
-                    dp[i] += dp[i - 2];
-                }
-            }
-        }
-        return dp[len - 1];
+        return -1;
     }
 
     public static void main(String[] args) {
