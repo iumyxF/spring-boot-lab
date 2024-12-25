@@ -65,13 +65,34 @@ public class BM74RestoreIpAddresses {
         for (String ip : ipAddresses) {
             System.out.println(ip);
         }
+
+        System.out.println(" ===== ip test =====");
+        String ip = "192.168.2.123";
+        Long anInt = s.ipv4ToInt(ip);
+        System.out.println(anInt);
+        System.out.println(s.solveIpv4(anInt));
     }
 
-    public Integer ipv4ToInt(String ip) {
-        return 0;
+    public Long ipv4ToInt(String ip) {
+        long ipValue = 0;
+        String[] split = ip.split("\\.");
+        int pow = split.length - 1;
+        for (String s : split) {
+            // 192.168.2.196 = 192*256^3 + 168*256^2 + ... + 196*256^0
+            ipValue += Integer.parseInt(s) * Math.pow(256, pow--);
+        }
+        return ipValue;
     }
 
-    public String solveIpv4(Integer num) {
-        return "";
+    public String solveIpv4(Long num) {
+        // 右移8位
+        int a = (int) (num & 0xFF);
+        int b = (int) ((num >> 8) & 0xFF);
+        int c = (int) ((num >> 16) & 0xFF);
+        int d = (int) ((num >> 24) & 0xFF);
+        return a + "." +
+                b + "." +
+                c + "." +
+                d;
     }
 }
