@@ -1,5 +1,7 @@
 package com.example.practice.leetcode.nowcoder.dynamicprogramming;
 
+import java.util.Arrays;
+
 /**
  * @author fzy
  * @description:
@@ -29,12 +31,26 @@ public class BM70MinMoney {
      */
 
     public int minMoney(int[] arr, int aim) {
-        return -1;
+        // dp[i] i元所需要的货币数量
+        // 递推公式 dp[i] = min(dp[i],dp[i-arr[j]] + 1)
+        int[] dp = new int[aim + 1];
+        Arrays.fill(dp, aim + 1);
+        dp[0] = 0;
+        for (int i = 1; i <= aim; i++) {
+            for (int j = 0; j < arr.length; j++) {
+                if (i - arr[j] >= 0) {
+                    dp[i] = Math.min(dp[i], dp[i - arr[j]] + 1);
+                }
+            }
+        }
+        return dp[aim] > aim ? -1 : dp[aim];
     }
 
     public static void main(String[] args) {
         BM70MinMoney s = new BM70MinMoney();
         int[] arr = new int[]{5, 2, 3};
-        //System.out.println(s.minMoney(arr, 20));
+        System.out.println(s.minMoney(arr, 20));
+        System.out.println(s.minMoney(arr, 0));
+        System.out.println(s.minMoney(new int[]{3, 5}, 2));
     }
 }
