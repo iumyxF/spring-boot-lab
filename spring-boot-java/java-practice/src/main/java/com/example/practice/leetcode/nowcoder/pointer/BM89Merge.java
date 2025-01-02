@@ -1,8 +1,6 @@
 package com.example.practice.leetcode.nowcoder.pointer;
 
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
 
 /**
  * @author fzy
@@ -26,20 +24,14 @@ public class BM89Merge {
         if (intervals.size() <= 1) {
             return intervals;
         }
-        intervals.sort((o1, o2) -> {
-            if (o1.start == o2.start) {
-                return o1.end - o2.end;
-            } else {
-                return o1.start - o2.start;
-            }
-        });
+        intervals.sort((o1, o2) -> o1.start == o2.start ? o1.end - o2.end : o1.start - o2.start);
         ArrayList<Interval> res = new ArrayList<>(intervals.size());
         res.add(intervals.get(0));
         for (int i = 1; i < intervals.size(); i++) {
             Interval pre = res.get(res.size() - 1);
             Interval cur = intervals.get(i);
-            if (cur.start <= pre.end) {
-                if (cur.end > pre.end) {
+            if (pre.end >= cur.start) {
+                if (pre.end < cur.end) {
                     pre.end = cur.end;
                 }
             } else {
