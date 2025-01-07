@@ -1,16 +1,13 @@
-package com.example.practice.leetcode.nowcoder.pointer;
+package com.example.practice.leetcode.nowcoder.dynamicprogramming;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @author fzy
  * @description:
  * @date 6/1/2025 上午9:46
  */
-public class BM94MinmumNumberOfHost {
+public class BM96MinmumNumberOfHost {
 
     /*
     有 n 个活动即将举办，每个活动都有开始时间与活动的结束时间，
@@ -28,12 +25,15 @@ public class BM94MinmumNumberOfHost {
     2,[[1,3],[2,4]]
     2
     需要两个主持人才能成功举办这两个活动
+    思路：
+    我们利用贪心思想，什么时候需要的主持人最少？
+    那肯定是所有的区间没有重叠，每个区间首和上一个的区间尾都没有相交的情况，我们就可以让同一位主持人不辞辛劳，一直主持了。
+    但是题目肯定不是这种理想的情况，那我们需要对交叉部分，判断需要增加多少位主持人。
 
-    动态规划?
-    dp[i] ? 执行当前活动所需要的主持人数量
-    递归公式 ?
-    if start[1] <= end[0]  dp[i] = dp[i-1]
-    else dp[i] = dp[i-1] + 1
+    具体做法：
+    step 1: 利用辅助数组获取单独各个活动开始的时间和结束时间，然后分别开始时间和结束时间进行排序，方便后面判断是否相交。
+    step 2: 遍历n个活动，如果某个活动开始的时间大于之前活动结束的时候，当前主持人就够了，活动结束时间往后一个。
+    step 3: 若是出现之前活动结束时间晚于当前活动开始时间的，则需要增加主持人
      */
     public int minmumNumberOfHost(int n, int[][] startEnd) {
         if (n <= 1) {
@@ -61,7 +61,7 @@ public class BM94MinmumNumberOfHost {
     }
 
     public static void main(String[] args) {
-        BM94MinmumNumberOfHost s = new BM94MinmumNumberOfHost();
+        BM96MinmumNumberOfHost s = new BM96MinmumNumberOfHost();
         //int[][] arr = new int[2][];
         //arr[0] = new int[]{1, 2};
         //arr[1] = new int[]{2, 3};
