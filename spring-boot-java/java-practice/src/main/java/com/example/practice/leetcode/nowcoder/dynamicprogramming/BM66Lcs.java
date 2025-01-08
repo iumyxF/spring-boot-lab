@@ -39,10 +39,36 @@ public class BM66Lcs {
         return str1.substring(maxIndex - maxLen, maxIndex);
     }
 
+    public String lcs2(String a, String b) {
+        int l1 = a.length();
+        int l2 = b.length();
+        int maxLen = 0;
+        int maxIndex = 0;
+        int[][] dp = new int[l1 + 1][l2 + 1];
+        for (int i = 1; i <= l1; i++) {
+            char c1 = a.charAt(i - 1);
+            for (int j = 1; j <= l2; j++) {
+                char c2 = b.charAt(j - 1);
+                if (c1 == c2) {
+                    dp[i][j] = dp[i - 1][j - 1] + 1;
+                    if (dp[i][j] > maxLen) {
+                        maxLen = dp[i][j];
+                        maxIndex = i;
+                    }
+                } else {
+                    dp[i][j] = 0;
+                }
+            }
+        }
+        return a.substring(maxIndex - maxLen, maxIndex);
+    }
+
     public static void main(String[] args) {
         BM66Lcs s = new BM66Lcs();
-        System.out.println(s.LCS("1AB2345CD", "12345EF"));
-        System.out.println(s.LCS("123456abced", "abcd123456"));
+        //System.out.println(s.LCS("1AB2345CD", "12345EF"));
+        //System.out.println(s.LCS("123456abced", "abcd123456"));
+        System.out.println(s.lcs2("1AB2345CD", "12345EF"));
+        System.out.println(s.lcs2("123456abced", "abcd123456"));
     }
 
 }

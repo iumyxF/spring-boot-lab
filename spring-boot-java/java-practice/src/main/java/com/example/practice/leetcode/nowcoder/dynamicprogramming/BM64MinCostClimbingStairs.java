@@ -16,6 +16,9 @@ public class BM64MinCostClimbingStairs {
     请你计算并返回达到楼梯顶部的最低花费。
 
     数据范围：数组长度满足1 <= n <= 10的5次方，数组中的值满足1 <= cost(i) <= 10的4次方
+
+    递推公式
+    dp[i] = Math.min(dp[i-2] + cost[i-2],dp[i-1] + cost[i-1])
      */
 
     public int minCostClimbingStairs(int[] cost) {
