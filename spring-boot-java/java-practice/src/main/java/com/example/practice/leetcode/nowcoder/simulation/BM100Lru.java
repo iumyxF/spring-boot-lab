@@ -1,9 +1,7 @@
 package com.example.practice.leetcode.nowcoder.simulation;
 
-import com.sun.source.tree.Tree;
-
-import java.util.*;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
@@ -19,6 +17,9 @@ public class BM100Lru {
     2. get(key)：如果关键字 key 存在于缓存中，则返回key对应的value值，否则返回 -1 。
     3. set(key, value)：将记录(key, value)插入该结构，如果关键字 key 已经存在，则变更其数据值 value，
     如果不存在，则向缓存中插入该组 key-value ，如果key-value的数量超过capacity，弹出最久未使用的key-value
+
+    1. 方式1，下面自己写的这种
+    2. 方式2，用LinkedHashMap实现 BM100Lru2.class
 
 
      */
