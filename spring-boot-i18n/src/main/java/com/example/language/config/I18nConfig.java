@@ -28,11 +28,14 @@ public class I18nConfig {
 
         @Override
         public Locale resolveLocale(HttpServletRequest request) {
+            // language 要等于properties的文件名前缀 如 en_US zh_CN
             String language = request.getHeader("content-language");
             Locale locale = Locale.getDefault();
             if (StrUtil.isNotBlank(language)) {
                 String[] split = language.split("_");
-                locale = new Locale(split[0], split[1]);
+                if (split.length >= 2) {
+                    locale = new Locale(split[0], split[1]);
+                }
             }
             return locale;
         }
