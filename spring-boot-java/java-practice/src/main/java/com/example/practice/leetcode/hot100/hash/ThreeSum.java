@@ -1,4 +1,4 @@
-package com.example.practice.leetcode.hot100;
+package com.example.practice.leetcode.hot100.hash;
 
 import java.util.*;
 

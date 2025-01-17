@@ -1,10 +1,7 @@
-package com.example.practice.leetcode.hot100;
-
-import com.example.practice.leetcode.test.mic.MicTestMain;
+package com.example.practice.leetcode.hot100.hash;
 
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author fzy
