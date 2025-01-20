@@ -1,4 +1,4 @@
-package com.example.practice.leetcode.hot100.hash;
+package com.example.practice.leetcode.hot100.pointer;
 
 import java.util.ArrayList;
 import java.util.Arrays;
