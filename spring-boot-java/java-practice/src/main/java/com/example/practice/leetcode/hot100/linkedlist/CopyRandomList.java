@@ -2,7 +2,6 @@ package com.example.practice.leetcode.hot100.linkedlist;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Objects;
 
 /**
  * @author fzy
