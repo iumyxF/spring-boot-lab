@@ -34,12 +34,10 @@ public class SolutionPartition {
     回文串：定位 先要找到两个相同的元素
 
      */
-    List<List<String>> res = new ArrayList<>();
-
-    List<String> temp = new ArrayList<>();
 
     public String[][] partition(String s) {
-        backtracking(s, 0);
+        List<List<String>> res = new ArrayList<>();
+        backtracking(s, 0, new ArrayList<>(), res);
         String[][] resArr = new String[res.size()][];
         for (int i = 0; i < res.size(); i++) {
             resArr[i] = res.get(i).toArray(new String[0]);
@@ -47,50 +45,23 @@ public class SolutionPartition {
         return resArr;
     }
 
-
-    //public void backtracking(String str, int index) {
-    //    // 结束条件
-    //    if (index == str.length()) {
-    //        res.add(new ArrayList<>(temp));
-    //        return;
-    //    }
-    //    for (int i = index; i < str.length(); i++) {
-    //        if (isPalindrome(str, index, i)) {
-    //            String s = str.substring(index, i + 1);
-    //            temp.add(s);
-    //        } else {
-    //            continue;
-    //        }
-    //        backtracking(str, i + 1);
-    //        temp.remove(temp.size() - 1);
-    //    }
-    //}
-
-    public void backtracking(String s, int splitIndex) {
-        // 分割到最后一个字符串 结束
-        if (splitIndex == s.length()) {
-            res.add(new ArrayList<>(temp));
+    private void backtracking(String s, int start, List<String> path, List<List<String>> res) {
+        if (start == s.length()) {
+            res.add(new ArrayList<>(path));
             return;
         }
-        for (int i = splitIndex; i < s.length(); i++) {
-            if (isPalindrome(s, splitIndex, i)) {
-                String substring = s.substring(splitIndex, i);
-                temp.add(substring);
-            } else {
-                continue;
+        for (int end = start; end < s.length(); end++) {
+            if (isPalindrome(s, start, end)) {
+                path.add(s.substring(start, end + 1));
+                backtracking(s, end + 1, path, res);
+                path.remove(path.size() - 1);
             }
-            backtracking(s, i + 1);
-            temp.remove(temp.size() - 1);
         }
-
     }
 
-    /**
-     * 判断是否是回文串
-     */
-    private boolean isPalindrome(String s, int startIndex, int end) {
-        for (int i = startIndex, j = end; i < j; i++, j--) {
-            if (s.charAt(i) != s.charAt(j)) {
+    private boolean isPalindrome(String s, int left, int right) {
+        while (left < right) {
+            if (s.charAt(left++) != s.charAt(right--)) {
                 return false;
             }
         }
